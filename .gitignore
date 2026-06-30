@@ -141,3 +141,10 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+dist_staging/
+*.zip
+*.xlsx
+*.xlsm
+admin-server.*.log
+ui02-server.*.log

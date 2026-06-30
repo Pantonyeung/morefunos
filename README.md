@@ -77,3 +77,47 @@ morefunos/
 Status：Foundation Created
 
 Next Step：補齊產品資料、UI 規格、Google Sheet 欄位規格與 Codex 任務清單。
+## Runnable App Source
+
+This repository now contains the runnable MoreFun mobile ordering web app source at the repo root.
+
+### Local Run
+
+```bash
+npm install
+npm run dev
+```
+
+Default local URL:
+
+```text
+http://127.0.0.1:4173/
+```
+
+Admin route:
+
+```text
+http://127.0.0.1:4173/admin/login
+```
+
+### Checks and Build
+
+```bash
+npm run check
+npm run build
+npm run acceptance:front
+npm run acceptance:p0
+npm run acceptance:admin
+```
+
+`npm run build` creates `dist_staging/`, which is build output and must not be committed.
+
+### Data Policy
+
+Google Sheet Backend is the source of truth for business data. GitHub hardcoded/static data is fallback or compatibility data only. If frontend fallback data differs from Backend API data, report the diff instead of guessing.
+
+The new Backend API has not been connected yet. Current passed public APIs are:
+
+- `navigation.get`
+- `ui.theme.get`
+- `store.hours.get`
