@@ -10,6 +10,7 @@ const files = [
   "boot.js",
   "morefunApiClient.js",
   "front-app.js",
+  "front-menu-v21.js",
   "front-app.css",
   "admin-cms.js",
   "admin-cms.css"
