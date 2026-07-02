@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node tools/static-server.mjs",
     "build": "node tools/build-staging.mjs",
-    "check": "node --check admin-cms.js && node --check front-app.js && node --check morefunApiClient.js && node --check boot.js && node --check tools/static-server.mjs",
+    "check": "node --check admin-cms.js && node --check front-app.js && node --check front-menu-v21.js && node --check morefunApiClient.js && node --check boot.js && node --check tools/static-server.mjs",
     "acceptance:admin": "node tools/admin-acceptance-check.mjs",
     "acceptance:front": "node tools/front-acceptance-check.mjs",
     "acceptance:p0": "node tools/p0-spec-check.mjs"
