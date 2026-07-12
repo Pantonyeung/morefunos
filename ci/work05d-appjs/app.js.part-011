@@ -1,0 +1,29 @@
+    $('submitButton').textContent=!state.cart.length?'先選擇餐點':dineMissing?'先填桌號':missing?`先補選項｜${missing}項`:`接單並保存｜${money(total)}`;
+    $('dineInFields').classList.toggle('hidden',state.serviceType!=='DINE_IN');
+    $('sourceSelect').disabled=state.serviceType==='DINE_IN';
+  }
+  function renderRuntime(){
+    if(!runtime)return;
+    $('dbStatus').textContent=runtime.database==='ROOM_V1_READY'||runtime.database==='ROOM_V2_READY'?'本機資料庫正常':runtime.database;
+    $('dbStatus').className=`status-pill ${String(runtime.database).includes('READY')?'good':'warn'}`;
+    $('networkStatus').textContent=runtime.network==='ONLINE'?'網絡在線':runtime.network==='OFFLINE_LOCAL'?'離線本機營運':runtime.network;
+    $('networkStatus').className=`status-pill ${runtime.network==='ONLINE'?'good':'warn'}`;
+    $('authorityText').textContent=`正式權威：${runtime.authority}`;
+    const warning=$('runtimeWarning');
+    if(!runtime.formal_order_writes){warning.textContent='目前為瀏覽器預覽，不會建立正式訂單。';warning.classList.remove('hidden');}
+    else if(runtime.open_system_events||runtime.recoverable_print_jobs){warning.textContent=`異常 ${runtime.open_system_events}｜待處理打印 ${runtime.recoverable_print_jobs}`;warning.classList.remove('hidden');}
+    else warning.classList.add('hidden');
+  }
+  function renderOrders(){
+    $('orderCount').textContent=recentOrders.length;
+    $('recentOrdersList').innerHTML=recentOrders.length?recentOrders.slice().reverse().map(o=>`<button class="recent-order" data-order-id="${o.order_id}"><strong>${o.table_ref||o.display_number}</strong><span><b>${money(o.total_minor)}</b><small>${o.service_type==='DINE_IN'?'堂食':'外賣'}・V${o.version}・${statusText[o.payment_status]||o.payment_status}</small></span><span class="order-status">${statusText[o.production_status]||o.production_status}</span></button>`).join(''):'<div class="helper-card">今日尚未有本機正式訂單。</div>';
+    document.querySelectorAll('[data-order-id]').forEach(b=>b.onclick=()=>showToast(`${b.querySelector('strong').textContent} 已保存於本機`));
+  }
+  function renderAll(){renderCart();renderEditor();renderSubmit();renderRuntime();renderOrders();renderProducts();}
+
+  function refreshRuntime(){
+    const result=localIntent('GET_RUNTIME_STATUS');
+    runtime=result.ok?result:{database:'ERROR',network:'UNKNOWN',authority:'UNKNOWN',formal_order_writes:false,open_system_events:0,recoverable_print_jobs:0};
+    renderRuntime();
+  }
+  function refreshOrders(){const result=localIntent('LIST_ORDERS',{business_date:today()});recentOrders=result.ok?result.orders:[];renderOrders();if(currentView!=='order')renderOperationView(currentView);}
