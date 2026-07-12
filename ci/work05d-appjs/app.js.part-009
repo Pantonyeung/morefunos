@@ -1,0 +1,31 @@
+      const ack=native.async(request);
+      if(!ack?.ok||!ack?.accepted){clearTimeout(timer);cloudPending.delete(request.request_id);resolve(ack||{ok:false,error:{code:'CLOUD_REJECTED',message:'雲端操作未接受'}});}
+    });
+  }
+  function onNativeResult(requestId,resultJson){
+    const pending=cloudPending.get(requestId);if(!pending)return;
+    clearTimeout(pending.timer);cloudPending.delete(requestId);
+    pending.resolve(safeJson(resultJson,{ok:false,error:{code:'INVALID_NATIVE_RESULT',message:'無法讀取原生回應'}}));
+  }
+
+  function renderCategories(){
+    $('categoryTabs').innerHTML=Catalog.CATEGORIES.map(c=>`<button class="category-tab ${c.id===activeCategory?'active':''}" data-category="${c.id}">${c.name}</button>`).join('');
+    document.querySelectorAll('[data-category]').forEach(btn=>btn.onclick=()=>{activeCategory=btn.dataset.category;renderCategories();renderProducts();});
+  }
+  function renderProducts(){
+    const q=search.trim().toLowerCase();
+    const filtered=products.filter(p=>(activeCategory==='all'||p.category===activeCategory)&&(!q||`${p.code} ${p.name}`.toLowerCase().includes(q)));
+    $('productGrid').innerHTML=filtered.map(p=>{
+      const sold=!Model.isProductAvailable(p);
+      return `<button class="product-card ${sold?'soldout':''}" data-product="${p.id}" ${sold?'disabled':''}>${p.badge?`<span class="badge">${p.badge}</span>`:''}<span class="product-code">${p.code}</span><div class="product-name">${p.name}</div><span class="product-price">${money(p.priceMinor)}</span>${sold?'<span class="soldout-label">售罄</span>':'<span class="product-add">＋</span>'}</button>`;
+    }).join('')||'<div class="helper-card">找不到相關產品</div>';
+    document.querySelectorAll('[data-product]:not([disabled])').forEach(btn=>btn.onclick=()=>{
+      const product=products.find(x=>x.id===btn.dataset.product);
+      try{Model.addProduct(state,product);renderAll();}catch(e){showToast(e.message);}
+    });
+  }
+  function lineOptions(line){const values=Object.values(line.selectedOptions);return values.length?values.map(x=>x.name).join('・'):'未選擇選項';}
+  function renderCart(){
+    $('cartEmpty').classList.toggle('hidden',state.cart.length>0);
+    $('cartList').innerHTML=state.cart.map(line=>{
+      const missing=Model.missingGroups(line).length;
