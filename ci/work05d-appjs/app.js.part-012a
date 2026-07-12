@@ -1,0 +1,21 @@
+  function refreshAvailability(){
+    const result=localIntent('LIST_AVAILABILITY');
+    availabilityRows=result.ok?result.availability:[];
+    const base=bootstrapData?Model.applyBootstrapCatalog(Catalog.PRODUCTS,bootstrapData):Catalog.PRODUCTS;
+    products=Model.applyAvailability(base,availabilityRows);
+    renderProducts();
+  }
+  function applyBootstrap(data){
+    if(!data)return;
+    bootstrapData=data;
+    products=Model.applyBootstrapCatalog(Catalog.PRODUCTS,data);
+    refreshAvailability();
+  }
+
+  function resetDraft(){
+    state.cart=[];state.selectedLineId=null;state.paymentMethod='PAY_ON_PICKUP';state.tableRef='';state.guestCount=1;
+    Model.setService(state,'TAKEAWAY');
+    $('paymentSelect').value='PAY_ON_PICKUP';$('sourceSelect').value='STORE_WALK_IN';$('tableRefInput').value='';$('guestCountInput').value='1';
+    document.querySelectorAll('[data-service]').forEach(x=>x.classList.toggle('active',x.dataset.service==='TAKEAWAY'));
+    $('draftTitle').textContent='現場外賣';renderAll();
+  }
