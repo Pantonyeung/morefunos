@@ -6,7 +6,7 @@ on:
     branches:
       - build/smt-v0.4.2-real
     paths:
-      - 'android/smt-v042/**'
+      - 'android/MoreFun_SMT_V0.4.2_OPERATIONAL_FLOW_SOURCE_20260712.zip'
       - '.github/workflows/build-smt-v042.yml'
 
 jobs:
@@ -33,9 +33,18 @@ jobs:
       - name: Install SDK packages
         run: sdkmanager 'platform-tools' 'platforms;android-35' 'build-tools;35.0.0'
 
-      - name: Make Gradle executable
+      - name: Extract source package
+        run: |
+          rm -rf android/smt-v042
+          mkdir -p android/smt-v042
+          unzip -q android/MoreFun_SMT_V0.4.2_OPERATIONAL_FLOW_SOURCE_20260712.zip -d android/smt-v042-unpacked
+          PROJECT=$(find android/smt-v042-unpacked -maxdepth 2 -name gradlew -type f | head -1 | xargs dirname)
+          test -n "$PROJECT"
+          cp -a "$PROJECT"/. android/smt-v042/
+
+      - name: Make scripts executable
         working-directory: android/smt-v042
-        run: chmod +x gradlew
+        run: chmod +x gradlew verification/run_all.sh
 
       - name: Verify project
         working-directory: android/smt-v042
