@@ -1,0 +1,21 @@
+      return `<article class="cart-line ${line.lineId===state.selectedLineId?'selected':''}" data-line="${line.lineId}"><div class="line-top"><strong>${line.product.code}｜${line.product.name}</strong><span class="line-price">${money(Model.lineTotalMinor(line))}</span></div><div class="line-options ${missing?'missing':''}">${missing?`待補 ${missing} 項`:lineOptions(line)}</div><div class="quantity"><button data-minus="${line.lineId}">−</button><b>${line.quantity}</b><button data-plus="${line.lineId}">＋</button></div></article>`;
+    }).join('');
+    document.querySelectorAll('[data-line]').forEach(el=>el.onclick=e=>{if(e.target.closest('button'))return;state.selectedLineId=el.dataset.line;renderAll();});
+    document.querySelectorAll('[data-minus]').forEach(b=>b.onclick=()=>{Model.changeQuantity(state,b.dataset.minus,-1);renderAll();});
+    document.querySelectorAll('[data-plus]').forEach(b=>b.onclick=()=>{Model.changeQuantity(state,b.dataset.plus,1);renderAll();});
+    $('itemCount').textContent=`${state.cart.reduce((n,x)=>n+x.quantity,0)}件`;
+    $('cartTotal').textContent=money(Model.totalMinor(state));
+  }
+  function renderEditor(){
+    const line=state.cart.find(x=>x.lineId===state.selectedLineId);
+    if(!line){$('editorTitle').textContent='等待選餐';$('optionEditor').innerHTML='<div class="helper-card">選擇餐點後，必要選項會在這裡顯示。</div>';return;}
+    $('editorTitle').textContent=`${line.product.code}｜${line.product.name}`;
+    const groups=line.product.optionGroups||[];
+    $('optionEditor').innerHTML=groups.length?groups.map(g=>`<section class="option-group"><div class="option-group-head"><strong>${g.name}</strong>${g.required?'<span class="required">必選</span>':''}</div><div class="option-grid">${g.options.map(o=>`<button class="option-chip ${line.selectedOptions[g.id]?.id===o.id?'active':''}" data-group="${g.id}" data-option="${o.id}"><span>${o.name}</span>${o.deltaMinor?`<small>${o.deltaMinor>0?'+':''}${money(o.deltaMinor)}</small>`:''}</button>`).join('')}</div></section>`).join(''):'<div class="helper-card">此餐點無必選項，可以直接落單。</div>';
+    document.querySelectorAll('[data-group]').forEach(b=>b.onclick=()=>{Model.setOption(state,line.lineId,b.dataset.group,b.dataset.option);renderAll();});
+  }
+  function renderSubmit(){
+    const missing=Model.missingRequiredCount(state), total=Model.totalMinor(state);
+    const dineMissing=state.serviceType==='DINE_IN'&&!state.tableRef.trim();
+    $('pendingText').textContent=dineMissing?'待補桌號':`待補 ${missing}`;
+    $('submitButton').disabled=!state.cart.length||missing>0||dineMissing;
