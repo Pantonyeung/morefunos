@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <title>磨飯 SMT</title>
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <div class="login-gate" id="loginGate">
+    <form class="login-card" id="loginForm" autocomplete="off">
+      <div class="login-brand"><span class="brand-mark">磨</span><div><strong>磨飯 SMT</strong><small>Staff Cloud 登入</small></div></div>
+      <label>帳號<input id="usernameInput" name="username" autocomplete="username" required /></label>
+      <label>密碼<input id="passwordInput" name="password" type="password" autocomplete="current-password" required /></label>
+      <label>裝置 ID<input id="deviceIdInput" name="device_id" placeholder="例如 dev-smt-main" required /></label>
+      <div id="loginMessage" class="login-message">首次使用前，裝置 ID 必須已在 StaffDevices 批准。</div>
+      <button class="primary-action" id="loginButton" type="submit">登入並載入設定</button>
+      <button class="secondary-action hidden" id="offlineModeButton" type="button">以已驗證帳號進入離線模式</button>
+    </form>
+  </div>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">磨</span><div><strong>磨飯 SMT</strong><small>本機 POS｜方案 B</small></div></div>
+      <div class="status-strip" aria-live="polite">
+        <span class="status-pill" id="dbStatus">資料庫檢查中</span>
+        <span class="status-pill" id="networkStatus">網絡檢查中</span>
+        <span class="status-pill" id="cloudStatus">Staff Cloud 檢查中</span>
+        <span class="status-pill" id="printStatus">打印待接入</span>
+        <button class="header-button" id="recentOrdersButton">今日訂單 <b id="orderCount">0</b></button>
+      </div>
+      <div class="clock"><strong id="clockTime">--:--</strong><small id="clockDate">----</small></div>
+    </header>
+
+    <main class="workspace">
+      <aside class="rail" aria-label="主要導航">
+        <button class="rail-item active" data-view="order"><span>＋</span>點單</button>
+        <button class="rail-item" data-view="new"><span>新</span>新單</button>
+        <button class="rail-item" data-view="kitchen"><span>製</span>出餐</button>
+        <button class="rail-item" data-view="dine"><span>枱</span>堂食</button>
+        <button class="rail-item" data-view="soldout"><span>缺</span>售罄</button>
+        <button class="rail-item" data-view="ops"><span>務</span>店務</button>
+      </aside>
+
+      <section class="pane order-pane primary-pane" data-pane="order">
+        <div class="pane-title"><div><small>今張單</small><h1 id="draftTitle">現場外賣</h1></div><button class="text-button" id="clearCartButton">清除</button></div>
+        <div class="order-meta">
+          <button class="seg active" data-service="TAKEAWAY">外賣</button>
+          <button class="seg" data-service="DINE_IN">堂食</button>
+        </div>
+        <div class="table-fields hidden" id="dineInFields">
+          <label>桌號<input id="tableRefInput" placeholder="例如 桌2" /></label>
+          <label>人數<input id="guestCountInput" type="number" min="1" max="20" value="1" /></label>
+        </div>
+        <div id="cartEmpty" class="empty-state"><div class="empty-icon">飯</div><strong>由中間選擇餐點</strong><span>每份套餐會獨立保存及補選</span></div>
+        <div id="cartList" class="cart-list"></div>
+        <div class="cart-summary"><div><span>餐點</span><strong id="itemCount">0件</strong></div><div><span>合計</span><strong id="cartTotal">$0</strong></div></div>
+      </section>
+
+      <section class="pane catalog-pane primary-pane" data-pane="catalog">
+        <div class="catalog-head">
+          <div><small>快速點單</small><h2>選擇餐點</h2></div>
+          <label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="搜尋產品或編號" autocomplete="off" /></label>
+        </div>
+        <div id="categoryTabs" class="category-tabs"></div>
+        <div id="productGrid" class="product-grid"></div>
+      </section>
+
+      <section class="pane checkout-pane primary-pane" data-pane="checkout">
+        <div class="pane-title"><div><small>選項與收銀</small><h2 id="editorTitle">等待選餐</h2></div><span class="version-tag">V0.3</span></div>
+        <div id="optionEditor" class="option-editor"><div class="helper-card">選擇餐點後，必要選項會在這裡顯示。</div></div>
+        <div class="checkout-controls">
+          <label>訂單來源<select id="sourceSelect"><option value="STORE_WALK_IN">現場</option><option value="PHONE_WHATSAPP">電話／WhatsApp</option><option value="KEETA">Keeta</option><option value="FOODPANDA">Foodpanda</option><option value="CUSTOMER_WEB">網站</option></select></label>
+          <label>付款<select id="paymentSelect"><option value="PAY_ON_PICKUP">取餐付款</option><option value="CASH">現金</option><option value="PAYME">PayMe</option><option value="ALIPAY_HK">AlipayHK</option><option value="FPS">FPS</option><option value="WECHAT_PAY">WeChat Pay</option></select></label>
+        </div>
+        <div id="runtimeWarning" class="runtime-warning hidden"></div>
+        <button id="submitButton" class="primary-action" disabled>先選擇餐點</button>
+        <div class="action-foot"><span id="authorityText">正式權威：檢查中</span><span id="pendingText">待補 0</span></div>
+      </section>
+
+      <section class="pane operation-pane hidden" id="operationPane">
+        <div class="operation-head"><div><small id="operationSubtitle">門店工作</small><h1 id="operationTitle">工作台</h1></div><div id="operationActions"></div></div>
+        <div id="operationContent" class="operation-content"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="drawer-backdrop hidden" id="drawerBackdrop"></div>
+  <aside class="drawer hidden" id="ordersDrawer" aria-label="今日訂單">
+    <div class="drawer-head"><div><small>本機 SQLite</small><h2>今日訂單</h2></div><button class="icon-button" id="closeDrawerButton">×</button></div>
+    <div id="recentOrdersList" class="recent-orders"></div>
+  </aside>
+  <div id="toast" class="toast hidden" role="status"></div>
+
+  <script src="catalog.js"></script>
+  <script src="smt-model.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

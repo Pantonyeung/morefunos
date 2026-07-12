@@ -1,0 +1,18 @@
+[versions]
+agp = "9.2.1"
+ksp = "2.3.10"
+room = "2.8.4"
+work = "2.11.2"
+webkit = "1.14.0"
+
+[libraries]
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
+work-runtime = { module = "androidx.work:work-runtime", version.ref = "work" }
+webkit = { module = "androidx.webkit:webkit", version.ref = "webkit" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

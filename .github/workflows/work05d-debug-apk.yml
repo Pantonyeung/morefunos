@@ -1,0 +1,63 @@
+name: WORK05D Debug APK
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Reconstruct app.js
+        run: |
+          git fetch --depth=1 origin work05d-appjs-source-20260712
+          : > /tmp/appjs.b64
+          for part in {000..013}; do
+            git show "origin/work05d-appjs-source-20260712:ci/work05d-appjs-b64/appjs.b64.${part}" >> /tmp/appjs.b64
+          done
+          base64 --decode /tmp/appjs.b64 | gzip --decompress > ci/work05d-project/app/src/main/assets/smt/app.js
+          test -s ci/work05d-project/app/src/main/assets/smt/app.js
+          node --check ci/work05d-project/app/src/main/assets/smt/app.js
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Install Android SDK
+        run: |
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.0.0"
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "9.4.1"
+
+      - name: Build Debug APK
+        working-directory: ci/work05d-project
+        run: gradle :app:assembleDebug --stacktrace --no-daemon
+
+      - name: Verify APK
+        run: |
+          APK="$(find ci/work05d-project/app/build/outputs/apk/debug -name '*.apk' -print -quit)"
+          test -n "$APK"
+          unzip -t "$APK"
+          sha256sum "$APK" | tee work05d-apk-sha256.txt
+          "$ANDROID_HOME/build-tools/36.0.0/aapt2" dump badging "$APK" | tee work05d-apk-badging.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MoreFun-SMT-WORK05D-debug-apk
+          path: |
+            ci/work05d-project/app/build/outputs/apk/debug/*.apk
+            work05d-apk-sha256.txt
+            work05d-apk-badging.txt
+          if-no-files-found: error
