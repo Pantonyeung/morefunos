@@ -1,7 +1,7 @@
 # More FunOS｜四端閉環總控權威文件 V1.0
 
 > 狀態：CURRENT / HIGHEST AUTHORITY / MUST READ FIRST
-> 更新：2026-07-29 19:47 HKT
+> 更新：2026-07-29 19:51 HKT
 > 正式總控 Repo：`Pantonyeung/morefunos`
 > 適用範圍：Admin／Customer／SMT Register／SMT Mobile／Android Host／打印／Firebase／Order API／Audit／Report
 
@@ -95,6 +95,7 @@ Admin Draft
 
 ### 已完成
 
+- G0 Authority 收口第一階段完成：中央 repo、四端 repo map、鏡像入口、SMM superseded redirect、三方 Authority 已建立。
 - SMT 自適應系統 V1.0：Full Browser Matrix 78／78 PASS、0 failure、0 flaky。
 - Runtime／離線軟件整合：Targeted 3／3 PASS；Full Browser Matrix 81／81 PASS；0 failure；0 flaky。
 - Journal、Snapshot、Queue、Recovery、Service Worker、Storage Health、Runtime UI Hook。
@@ -114,12 +115,17 @@ Admin Draft
 
 ### G0｜Authority 收口
 
-- 四端角色及 repo map 鎖定。
-- Source of Truth Map 鎖定。
-- SMM 合併 SMT Shared Core。
-- 舊文件分類為 Current／Submodule／Superseded。
+狀態：`PHASE 1 COMPLETE`。
+
+- 四端角色及 repo map 已鎖定。
+- Source of Truth Map 已鎖定。
+- SMM 已合併為 SMT Mobile UI。
+- PR #30／長時間離線記錄已降級為 G2／G3 支援子模組。
+- 中央 Authority、四 repo 鏡像、Google Drive、Jade Note 已建立。
 
 ### G1｜Admin Publish 閉環
+
+狀態：`NEXT ACTIVE GATE`。
 
 - Firebase Auth。
 - Owner Account／Role Claims。
@@ -186,22 +192,37 @@ GitHub 係正式工程 Authority。
 
 鏡像：`More FunOS｜四端閉環總控權威文件 V1.0`
 
+File ID：`1eDlawSeHWnjbmlP9H2nVm8GajTsxRsW1fVwtMA025-A`
+
 ### Jade Note
 
 Pinned Note：`More FunOS｜四端閉環總控權威文件 V1.0`
 
+Note ID：`80777da0-ab92-414b-95b7-6863950d489b`
+
 三方衝突時，以本文件最新內容為準。
 
-## 9. Repo 鏡像規則
+## 9. Repo 鏡像狀態
 
-以下 repo 必須保留 `MOREFUNOS_MASTER_CONTROL_AUTHORITY.md` 入口或鏡像：
+- Central Authority：`Pantonyeung/morefunos`，commit `e549a8cc3a5ee7e9af5881f19230a0b87d06f72f`
+- SMT mirror：commit `6b9db8f9ce28c999ffd76937fc6c565c0eaf5490`
+- Admin mirror：commit `ebcca40b8f9d59475438f2dd6959308aa73a9689`
+- Customer mirror：commit `b7461199b0779e9ad6d8b0c3fcdbfa141337f56f`
+- SMM superseded redirect：commit `ef2068ff8d87bed92201eefa638c6bc5e8863505`
 
-- `Pantonyeung/morefunos-admin`
-- `Pantonyeung/morefun-ordering-web`
-- `Pantonyeung/morefunos-smt`
-- `Pantonyeung/morefunos-smm`（只作 superseded redirect）
+## 10. G0 踩坑／成功方法
 
-## 10. 永久禁止
+### 踩坑
+
+- 初版最高文件先落咗 SMT repo；之後辨識到真正中央 repo `Pantonyeung/morefunos`，若唔修正會形成第二個最高 Authority。
+- GitHub installed repository streaming search無結果；改用 organization repository search先完整辨識 central／Admin／Customer／SMT／SMM repos。
+- 舊 Jade Note 同 PR #30 Note 曾同時置頂，會令下一個 AI 誤認多個最高入口；已取消置頂並標記 superseded／submodule。
+
+### 成功方法
+
+`先鎖中央 repo → 建 Master Authority → 建四端 repo mirror／redirect → 更新 Drive／Jade → 降級舊主題 → 回寫中央 checkpoint`
+
+## 11. 永久禁止
 
 - 用單一 PR／單一模組作 More FunOS 最高主題。
 - 將 SMM 繼續發展成第二套系統。
@@ -213,12 +234,8 @@ Pinned Note：`More FunOS｜四端閉環總控權威文件 V1.0`
 - 有 fail／flaky 仍合併。
 - 文件存在但三方記錄未同步。
 
-## 11. 下一步唯一優先
+## 12. 下一步唯一優先
 
-完成 G0 收口：
+正式進入 G1：Admin Firebase Publish 真閉環。
 
-1. 將四個 repo 鏡像全部指向本文件。
-2. 將 PR #30／長時間離線記錄標記為 G2／G3 支援子模組。
-3. 更新 Google Drive／Jade Note 正式 Authority 路徑。
-4. 完成 G0 checkpoint。
-5. 進入 G1：Admin Firebase Publish 真閉環。
+先審核 `Pantonyeung/morefunos-admin` → `feat/admin-p0-full-connect-v1` 現況，建立 G1 execution record，逐項驗證 Firebase Auth、Rules、Draft／Runtime／Publish／Audit／Recovery，未有真實讀寫證據不得標完成。
