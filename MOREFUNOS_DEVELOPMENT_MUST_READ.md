@@ -1,7 +1,7 @@
 # More FunOS｜每次開發必讀／必須遵守
 
 > 狀態：CURRENT / MUST READ BEFORE ANY DEVELOPMENT
-> 更新：2026-07-30 10:43 HKT
+> 更新：2026-07-30 18:42 HKT
 > 正式 Authority：`Pantonyeung/morefunos` → `main`
 > GitHub＝正式工程 Authority；Google Drive＝長期鏡像；Jade Note＝AI 接手導航。
 
@@ -33,14 +33,16 @@
 - **SMT Android Host**：Kiosk、WebView、Native Bridge、LAN／SUNMI／Label printing、Offline Queue、Recovery、Runtime／APK OTA、診斷及設備能力。
 - 舊 `morefunos-smm`：`SUPERSEDED AS INDEPENDENT CORE`，只作遷移來源／歷史封存。
 
-## 4. Current Development｜2026-07-30 10:43 HKT
+## 4. Current Development｜2026-07-30 18:42 HKT
 
 ### Admin｜G1
 - Repo：`Pantonyeung/morefunos-admin`
 - Branch：`feat/admin-p0-full-connect-v1`
 - PR #1：Draft／Open／Mergeable
-- 最新 fresh-read head：`a4236c3d3314fd6557261dc34718c5ee778cfb83`
+- 最新 fresh-read head：`2835ce268160c892f1582964ff608bc12371a754`
+- Historical verified head：`a4236c3d3314fd6557261dc34718c5ee778cfb83`（已被現役 PR 後續授權 commits 取代；不得還原）
 - Evidence：Code／Contract；Live Firebase Publish 閉環未完成。
+- Authority reconciliation：Active PR 在 Registry snapshot 後持續接收授權實作 commits；中央 Authority 已於 2026-07-30 18:42 HKT 對齊實際 PR head。
 - 最新補充：WORK04G Mobile Menu 已整合，merge commit `9fe2935be47e262c16a08c7d0a494688bdbd7b07`，只代表該 UI flow 4／4 Human Preview PASS，唔代表 G1 完成。
 
 ### Customer｜G2
