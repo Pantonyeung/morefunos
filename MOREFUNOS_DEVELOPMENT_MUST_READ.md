@@ -1,192 +1,121 @@
 # More FunOS｜每次開發必讀／必須遵守
 
 > 狀態：CURRENT / MUST READ BEFORE ANY DEVELOPMENT
-> 更新：2026-07-30 10:15 HKT
+> 更新：2026-07-30 10:43 HKT
 > 正式 Authority：`Pantonyeung/morefunos` → `main`
-> 本文件整合中央 Authority、Current Development Registry、各端正式規格、Change Impact、Decision／Handoff、Google Drive 長期文件與 Jade Note 接手索引。GitHub 係正式工程 Authority；Google Drive 係結構化長期文件／鏡像；Jade Note 係 AI 接手記憶／導航。
+> GitHub＝正式工程 Authority；Google Drive＝長期鏡像；Jade Note＝AI 接手導航。
 
-## 1. 最高 Authority 與真相優先序
+## 1. 真相優先序
 
-1. 安全、資料完整、付款／訂單／打印等不可逆風險。
-2. `MOREFUNOS_MASTER_CONTROL_AUTHORITY.md`。
-3. 本文件＋`MOREFUNOS_CURRENT_DEVELOPMENT_REGISTRY.md`＋`MOREFUNOS_LOW_COST_CI_DEVELOPMENT_PROTOCOL_V1.0.md`。
-4. 對應 repo 最新 `AGENTS.md`、PRIMARY STANDARD、Ownership Registry、Decision Ledger、Current Lock、Change Impact。
-5. 對應 active branch／PR／head SHA 的 Implementation Status、Code Map、MFKG、QA／CI／Device evidence。
-6. 產品負責人在目前工作中的最新明確決定，但不得默認推翻更高層 LOCKED／CURRENT。
-7. Google Drive／Jade Note 歷史、摘要與補充資料。
+安全／資料完整／不可逆風險 → `MOREFUNOS_MASTER_CONTROL_AUTHORITY.md` → 本文件＋Current Registry＋Low Cost CI → repo `AGENTS.md`／PRIMARY STANDARD → Ownership／Decision／Current Lock／Change Impact → active branch／PR／head evidence → 最新產品明確決定 → Drive／Jade。
 
-外部 Apple／Android／Web／OWASP／硬件官方標準只用作校驗、Gap Analysis 及風險提示；不得直接覆蓋 More Fun LOCKED／CURRENT。
+外部 Apple／Android／Web／OWASP／硬件資料只作校驗與 Gap，不直接覆蓋 LOCKED／CURRENT。
 
-## 2. 四端正式定義
-
-- **Admin Control Plane**：`Pantonyeung/morefunos-admin`。產品、價格、套餐、售罄、公告、Draft／Published／Runtime、Firebase Auth／Role／Rules／Publish／Audit／Recovery Authority。
-- **Customer Experience**：`Pantonyeung/morefun-ordering-web`。只讀 Published／Runtime Snapshot，負責顧客 UI、會員、選餐、優惠及 Order API 提交；不得自行定價或成為 Order Authority。
-- **SMT Application**：`Pantonyeung/morefunos-smt`。`register`／`mobile` 兩個 UI Profile，共用 Domain、State、Business Rule、Cart、Pricing、Checkout、Order、Payment、Sync、Permission、Audit、Recovery、API Contract。
-- **SMT Android Host／Hardware Plane**：隸屬 SMT repo。負責 Kiosk、WebView、Native Bridge、LAN／SUNMI／Label printing、Offline Queue／SQLite／Recovery、Runtime／APK OTA、診斷及設備能力。
-- `Pantonyeung/morefunos-smm` 已 `SUPERSEDED AS INDEPENDENT CORE`，只可作遷移來源／歷史封存。
-
-## 3. 每次開工強制閱讀順序
+## 2. 每次開工必讀順序
 
 1. `MOREFUNOS_MASTER_CONTROL_AUTHORITY.md`
 2. `MOREFUNOS_DEVELOPMENT_MUST_READ.md`
 3. `MOREFUNOS_CURRENT_DEVELOPMENT_REGISTRY.md`
 4. `MOREFUNOS_LOW_COST_CI_DEVELOPMENT_PROTOCOL_V1.0.md`
-5. 對應 repo 最新 `AGENTS.md`
-6. 對應 PRIMARY STANDARD／Ownership Registry／Decision Ledger／Current Lock
-7. 對應 Change Impact／Pitfalls／Current Handoff／Context Min
-8. 對應 active branch／PR／head SHA 的 Implementation Status／Code Map／MFKG／QA evidence
-9. 相關 Google Drive 長期文件及 Jade Note pinned 鏡像，只作補充／接手導航
+5. `MOREFUNOS_ENGINEERING_PITFALLS_AND_PROVEN_SOLUTIONS.md`
+6. 對應 repo 最新 `AGENTS.md`
+7. PRIMARY STANDARD／Ownership Registry／Decision Ledger／Current Lock
+8. Change Impact／Pitfalls／Current Handoff／Context Min
+9. active branch／PR／head 的 Status／Code Map／MFKG／QA evidence
 
-未讀完，禁止修改程式、建立新 CI、合拼、宣稱完成或更新 LOCKED／CURRENT。
+未讀完，禁止修改、建立新 CI、合拼或宣稱完成。
 
-## 4. Current Development Authority｜2026-07-30 10:15 HKT
+## 3. 四端正式定義
 
-### Admin｜G1 Admin Firebase Publish
+- **Admin**：產品、價格、套餐、售罄、Draft／Published／Runtime、Firebase Auth／Role／Rules／Publish／Audit／Recovery Authority。
+- **Customer**：只讀 Published／Runtime Snapshot；負責顧客 UI、會員、選餐、優惠及 Order API 提交；不得自行定價。
+- **SMT Application**：`register`／`mobile` 共用 Domain、State、Cart、Pricing、Checkout、Order、Payment、Sync、Permission、Audit、Recovery、API Contract。
+- **SMT Android Host**：Kiosk、WebView、Native Bridge、LAN／SUNMI／Label printing、Offline Queue、Recovery、Runtime／APK OTA、診斷及設備能力。
+- 舊 `morefunos-smm`：`SUPERSEDED AS INDEPENDENT CORE`，只作遷移來源／歷史封存。
+
+## 4. Current Development｜2026-07-30 10:43 HKT
+
+### Admin｜G1
 - Repo：`Pantonyeung/morefunos-admin`
 - Branch：`feat/admin-p0-full-connect-v1`
-- PR：`#1` Draft／Open／Mergeable
+- PR #1：Draft／Open／Mergeable
 - 最新 fresh-read head：`a4236c3d3314fd6557261dc34718c5ee778cfb83`
-- Evidence：Code／Contract；Live Firebase 未完成。
-- 未完成：Auth／Claims、Rules deployment、真實 Draft／Runtime／Publish／Audit／Recovery、Published Seed。
+- Evidence：Code／Contract；Live Firebase Publish 閉環未完成。
+- 最新補充：WORK04G Mobile Menu 已整合，merge commit `9fe2935be47e262c16a08c7d0a494688bdbd7b07`，只代表該 UI flow 4／4 Human Preview PASS，唔代表 G1 完成。
 
-### Customer｜G2 Unified Consumer Adapter
+### Customer｜G2
 - Repo：`Pantonyeung/morefun-ordering-web`
-- 已知 branch：`agent/customer-pwa-firebase-cleanup-v1`
-- PR：`#21` Draft／Open／Mergeable=false
-- Head：`031e7a60b95e0413678b7da3439dca0abcad5c24`
-- 警告：PR 較舊，default branch 有後續手機 uploads；未 reconciliation 前，PR #21 或 main 都不得單獨當最終 Authority。
+- 已知 PR #21／head `031e7a60b95e0413678b7da3439dca0abcad5c24`
+- PR 較舊且 main 有後續 uploads；未 reconciliation 前，兩邊都唔係最終 Authority。
 
 ### SMT Runtime／Offline Baseline
-- Repo：`Pantonyeung/morefunos-smt`
 - Base：`smt-functional-completeness-v1`
-- PR #30 已於 2026-07-29 合併。
-- Merge commit：`7e990adc7b8f7db3499b59c43636c1251603019b`
-- Evidence：Targeted 3／3 PASS；Full Browser Matrix 81／81 PASS；0 failure／0 flaky。
-- 邊界：Runtime／Offline software＋Browser only；不代表 Firebase／Device／Store。
+- PR #30 已合併；merge `7e990adc7b8f7db3499b59c43636c1251603019b`
+- Evidence：Targeted 3／3＋Browser 81／81 PASS；只代表 Software／Browser。
 
-### SMT Main Candidate｜最新整合線
-- Candidate：`smt-main-candidate-v1`
-- Draft PR：`#34`，Open／Mergeable
-- PR current head：`4937ea2efb5c149644fb51287ab6a1adc919563c`
-- Software Gate verified code head：`9bad3a9c40d21a30b114824820ba3de8214a7b05`
-- Gate：Run `30505574564`／Job `90754516056`／SUCCESS
-- Artifact：`8745190934`；digest `sha256:9e17352b81049b9c67787f17d114e3ab9812d7c56af9820a0cb7dc6e81b35b1a`
-- 已整合：Runtime／Offline Authority、APK OTA signed manifest、anti-replay／anti-downgrade、Package Installer coordinator、Boot／package-replaced／runtime-health recovery、Native Bridge OTA／diagnostics、Reflective SUNMI binding、NativePrintService／SunmiPrintDriver static integration。
-- Evidence：Static／Kotlin compile／debug unit tests／software contracts PASS。
-- **Hardware Deferred**：SUNMI 實體打印、Package Installer／APK OTA 實機安裝、Production signing／release E2E。狀態係 `DEFERRED — HARDWARE UNAVAILABLE`，唔係 Failed，亦唔係 Production PASS。
-- PR #34 在硬件驗收前維持 Draft。
+### SMT Main Candidate
+- Branch：`smt-main-candidate-v1`
+- PR #34：Draft／Open／Mergeable
+- PR head：`4937ea2efb5c149644fb51287ab6a1adc919563c`
+- Software Gate verified head：`9bad3a9c40d21a30b114824820ba3de8214a7b05`
+- Run `30505574564`／Artifact `8745190934`：Static／Kotlin compile／debug unit tests／software contracts PASS。
+- `DEFERRED — HARDWARE UNAVAILABLE`：SUNMI 實體打印、Package Installer／APK OTA 實機、Production signing／release E2E。
 
-### SMT 其他獨立 Domain 線
-- Printer：`printer-transport-settings-v1`／PR #17／Contract PASS only。
-- Required Flow：`required-flow-task-model-v1`／PR #20／Domain＋Contract only。
-- Incoming Queue：`incoming-queue-domain-v1`／PR #24／Domain＋Contract only。
-- Recovery：`order-recovery-audit-v1`／PR #23／Domain＋Contract only。
-- 未整合／未有 Browser／Device／Store evidence，不得當整體 SMT 完成。
+### SMT 其他 Domain
+Printer／Required／Incoming Queue／Recovery 仍只係 Domain／Contract evidence，未有完整 Browser／Device／Store evidence。
 
-### WORK03 Staff Sync
-- Install：完成；Health：完成。
-- API `1.2.9`；Sync `0.2`；Schema `READY`；Password `SHA256_FAST`；Auto Lock 關閉。
-- Staff Login：`TEST_WORK03_UNIFIED_LOGIN` 進行中。
-- 測試：`morefun / morefun`；裝置 `dev-smt-main`；模式 `smt`。
-- 下一步：Session／Bootstrap。
-- 未開始：Push／Pull／Heartbeat／Fallback。
+### WORK03
+`TEST_WORK03_UNIFIED_LOGIN → Session／Bootstrap → Push／Pull → Heartbeat → Fallback` 已 `SUPERSEDED / DO NOT CONTINUE`。
 
-## 5. 不可違反規則
+現役替代：Firebase Auth＋Firebase RTDB＋Cloudflare Worker＋Google Sheet V2 ledger。舊 WORK03 只作 migration／contract reference。
 
-- 禁止將 default branch 當作所有 domain 最新 Authority。
-- 禁止建立第二套 SMM／Cart／Pricing／Checkout／Order／Sync／Print truth。
-- 禁止 Customer／SMT 自行重新計價；正式產品／價格／規則來自 Admin Published。
-- 禁止 Google Sheet 作即時 Order Truth、派號或重算價格。
-- SMT Mobile 只建立／控制 Print Job，不直接連實體打印機。
-- Adaptive ≠ Scale；禁止 1920→1280 整頁縮放或單尺寸永久 patch。
-- 禁止 patch／override／大量 `!important`／MutationObserver／DOM scan 掩蓋 Authority／State 根因。
-- Software／Contract／Browser PASS 不等於 Device／Hardware／Store／Production PASS。
-- 有 failure／flaky、證據 commit 不對齊、或三方記錄過期時禁止宣稱完成。
-- 文件／紀錄更新使用 `[skip ci]`；不得為文件更新觸發 full CI。
+## 5. 永久禁止
 
-## 6. Targeted Failure／低成本 CI Protocol
+- default branch 代表所有 domain。
+- 第二套 SMM／Cart／Pricing／Checkout／Order／Sync／Print truth。
+- Customer／SMT 自行重新計價；Google Sheet 作即時 Order Truth。
+- SMT Mobile 直接控實體打印機。
+- Adaptive 當 Scale；單尺寸永久 patch。
+- `!important`／override／Observer／DOM scan 掩蓋 Authority 根因。
+- Software／Contract／Browser PASS 當 Device／Store／Production PASS。
+- 文件更新觸發 full CI；單一問題反覆跑完整 CI。
 
-固定流程：
+## 6. Targeted Failure／低成本流程
 
-`單一問題 → isolate exact failing unit → reproduce → root cause → minimal fix → targeted verification → minimum affected regression → integration branch → one low-cost final gate`
+`單一問題 → isolate → reproduce → root cause → minimal fix → targeted verification → minimum regression → integration branch → one final gate`
 
-- 禁止完整 CI 反覆 debug 單一問題。
-- 每條問題分支只處理一個問題或一個 Contract boundary。
-- 開發分支優先本機／Cloud Shell／targeted script；Browser／E2E／APK／Signing 預設手動或 Release Gate。
-- Integration branch 只整合 isolated PASS 修改。
-- Final full gate 只在準備合拼正式基準／Release 前跑一次。
-- 同一 commit 已有可重現 PASS evidence，不得無目的重跑。
+每條問題分支只處理一個問題或 Contract boundary；同一 commit 已有可重現 PASS，禁止無目的重跑。
 
-## 7. 開發前固定檢查
+## 7. Evidence Level
 
-每次工作必須先寫清：
-1. 所屬 Gate／Domain／repo／active branch／PR／head。
-2. 唯一 Composition／DOM／Visual／State／Domain／Token／Hardware Authority。
-3. 問題可否穩定重現；根因證據係乜。
-4. 影響 Customer／Admin／SMT Register／SMT Mobile／Android Host／API／Firebase／Print／Sync／Audit／Report 邊啲部分。
-5. 有冇第二 Authority、legacy selector、Observer、override、cache、build key、舊 Runtime 覆蓋。
-6. 有冇不可逆訂單／付款／打印／資料風險。
-7. 應新增／更新邊個 Contract／Targeted Test／Change Impact／MFKG Node／Edge。
-8. 回滾點、備份 branch／commit／artifact。
-9. Evidence 目標：Code／Contract／Browser／Device／Store 邊一層。
+`CODE_EXISTS → CONTRACT_PASS → BROWSER_PASS → DEVICE_PASS → STORE_PASS → PRODUCT_LOCKED`
 
-## 8. Evidence Level
+禁止跨級宣稱完成。
 
-- `CODE_EXISTS`：程式存在。
-- `CONTRACT_PASS`：Syntax／Unit／Domain／Contract 通過。
-- `BROWSER_PASS`：指定 commit／矩陣 Browser Gate 通過。
-- `DEVICE_PASS`：真實 iPad／T2／T2S／Android／打印機驗收。
-- `STORE_PASS`：真實 Firebase／Order API／多機／斷網／跨日／高峰／日結閉環。
-- `PRODUCT_LOCKED`：產品負責人最終確認。
+## 8. 開發前固定檢查
 
-禁止將較低層 evidence 寫成較高層完成。
+必須寫清：Gate／Domain／repo／branch／PR／head、唯一 Authority、可重現證據、影響端口、第二 Authority／cache／build key、不可逆風險、Targeted Test、回滾點、Evidence 目標、三方同步。
 
-## 9. 目前完成／未完成／延後
+## 9. 已完成／未完成／延後
 
-### 已完成或已證明
-- 中央 Authority／四端 Source-of-Truth Map。
-- SMT Adaptive Browser 78／78 PASS。
-- Runtime／Offline Browser 81／81 PASS。
-- SMT Main Candidate Software Gate PASS。
-- 低成本 CI／Targeted Failure Protocol。
+**已證明**：中央 Authority、Adaptive Browser 78／78、Runtime／Offline Browser 81／81、Main Candidate Software Gate、Targeted Failure／Low Cost CI。
 
-### 未完成
-- Admin Live Firebase Auth／Rules／Publish／Recovery。
-- Customer branch reconciliation＋Unified Published／Runtime Consumer Adapter。
-- 正式 Order API／後端重新計價／Idempotency／原子派號。
-- Customer → SMT 即時 Intake。
-- WORK03 Session／Bootstrap／Push／Pull／Heartbeat／Fallback。
-- 跨 repo Gate dashboard。
+**未完成**：Admin Live Firebase Publish、Customer reconciliation／Unified Consumer Adapter、正式 Order API／重計價／Idempotency／原子派號、Customer→SMT Intake、跨 repo Gate dashboard。
 
-### Hardware Deferred
-- SUNMI／LAN／Label 真實紙張、中文、切紙、fallback 驗收。
-- Android Package Installer／APK OTA 實機。
-- Production signing／release E2E。
-- 斷網／斷電／多日／多機／Store Acceptance。
+**Hardware Deferred**：SUNMI／LAN／Label 真實紙張、APK OTA 實機、Production release E2E、斷網／斷電／多日／多機／Store Acceptance。
 
-## 10. 回滾、備份及記錄
+## 10. Pitfalls／成功方法索引
 
-每次可驗證工作最少留下：Repo／branch／PR／head、問題、根因、修改範圍、targeted verification、minimum regression、CI 成本、merge／rollback 點、artifact digest、Evidence Level、三方同步狀態、下一步唯一事項。
+中央：`MOREFUNOS_ENGINEERING_PITFALLS_AND_PROVEN_SOLUTIONS.md`。
 
-舊決策不可靜默刪除；必須標 `SUPERSEDED`，保留來源、日期、版本及取代原因。
+Repo 特定：SMT `SMT_ENGINEERING_SUCCESS_AND_PITFALLS`／`SMT_TARGETED_FAILURE_LOG`／`SMT_CHANGE_IMPACT`；Admin `ADMIN_PITFALLS_LOG` 及 WORK04 targeted logs；Customer 以最新 repo handoff／pitfalls 為準。
 
-## 11. 三方同步規則
+## 11. Gap／Conflict
 
-- GitHub：本文件係 canonical 必讀文件。
-- Google Drive：建立／更新同名長期可讀鏡像，不得取代 GitHub。
-- Jade Note：建立／更新同名 pinned 接手鏡像／Current State／Decision／Change Impact／Handoff。
-- 三方內容衝突時，以 GitHub 最新正式文件為準。
-- 只在 Authority、branch／PR／head、Evidence Level、LOCKED／CURRENT、Gap／Conflict／Handoff 有實質變動時更新；冇變化不得製造重複紀錄。
+- Customer Authority 未 reconciliation。
+- SMT MFKG 曾落後 D-053／mobile／APK／Adaptive evidence；修改前必須 fresh-read。
+- Hardware unavailable；禁止以 Software PASS 代替。
 
-## 12. Gap／Conflict／Requires Decision
+## 12. 下一步唯一優先事項
 
-- **Registry stale**：中央 Registry 尚未反映 PR #30 已合併、PR #34 Main Candidate、Admin PR #1 新 head；本輪需同步修正。
-- **Customer Authority unresolved**：PR #21 與 default branch 後續 uploads 未 reconciliation。
-- **MFKG freshness**：SMT machine graph 曾落後最新 D-053／mobile Profile／APK／Adaptive evidence；修改 SMT 知識圖前必須 fresh-read 確認。
-- **Hardware unavailable**：Main Candidate hardware items 延後，禁止以 Software PASS 代替。
-
-## 13. 下一步唯一優先事項
-
-系統 Gate 最高優先仍係 **G1 Admin Firebase Publish 真閉環**：以 `Pantonyeung/morefunos-admin` → `feat/admin-p0-full-connect-v1` → PR #1 最新 head fresh-read，逐項取得 Auth、Claims、Rules、Draft／Runtime／Publish／Audit／Recovery 的真實 Firebase read/write evidence。
-
-SMT 硬件恢復前，不重跑已 PASS Main Candidate full Gate；下一個 SMT software-only工作必須選單一 Domain，以 isolated branch／targeted verification 推進。
+**G1 Admin Firebase Publish 真閉環**：以 Admin PR #1 最新 head，取得 Auth、Claims、Rules、Draft／Runtime／Publish／Audit／Recovery 真實 read/write evidence。
