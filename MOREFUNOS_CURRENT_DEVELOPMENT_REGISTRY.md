@@ -1,7 +1,7 @@
 # More FunOS｜Current Development Authority Registry
 
 > 狀態：CURRENT / MUST READ WITH MASTER AUTHORITY
-> 更新：2026-07-30 10:43 HKT
+> 更新：2026-07-30 18:42 HKT
 > 最高 Authority：`MOREFUNOS_MASTER_CONTROL_AUTHORITY.md`
 > 統一必讀：`MOREFUNOS_DEVELOPMENT_MUST_READ.md`
 
@@ -14,7 +14,9 @@
 - Repo：`Pantonyeung/morefunos-admin`
 - Branch：`feat/admin-p0-full-connect-v1`
 - PR #1：Draft／Open／Mergeable
-- Latest fresh-read head：`a4236c3d3314fd6557261dc34718c5ee778cfb83`
+- Latest fresh-read head：`2835ce268160c892f1582964ff608bc12371a754`
+- Historical verified head：`a4236c3d3314fd6557261dc34718c5ee778cfb83`（已被現役 PR 後續授權 commits 取代；不得還原）
+- Authority reconciliation：Active PR 在 Registry snapshot 後持續接收授權實作 commits；中央 Authority 已於 2026-07-30 18:42 HKT 對齊實際 PR head。
 - Evidence：Code＋Contract；Live Firebase Publish 閉環未完成。
 - 未完成：runtime config、Auth／Claims、Rules、Draft／Runtime／Publish／Audit／Recovery、Published Seed。
 - 子工作 WORK04G Mobile Menu 已於其 integration branch完成 Human iPhone Preview 4／4 PASS，merge `9fe2935be47e262c16a08c7d0a494688bdbd7b07`；只代表該 UI flow，唔提升 G1 Evidence Level。
