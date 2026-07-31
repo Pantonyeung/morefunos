@@ -14,10 +14,13 @@ Updated: 2026-07-31 HKT
 
 1. `MOREFUNOS_MASTER_KNOWLEDGE_AUTHORITY.md`
 2. `knowledge-base/CURRENT_STATUS.md`
-3. 相關端口的 `CURRENT_DOMAIN_AUTHORITY.md`
-4. 相關端口的 `ENGINEERING_LOG.md`
-5. 需要時讀 `knowledge-base/03_SHARED_TECH/README.md`
-6. 需要追溯時才讀 Evidence／Archive
+3. `knowledge-base/AI_EXECUTION_RULES.md`
+4. 相關端口的 `README.md`／`AGENTS.md`
+5. 相關端口的 `CURRENT_DOMAIN_AUTHORITY.md`
+6. 相關端口的 `ENGINEERING_LOG.md`
+7. Active branch／PR／observed head
+8. 需要時讀 `knowledge-base/03_SHARED_TECH/README.md`
+9. 需要追溯時才讀 Evidence／Archive
 
 ## Canonical structure
 
@@ -25,6 +28,7 @@ Updated: 2026-07-31 HKT
 knowledge-base/
 ├── 00_INDEX.md
 ├── CURRENT_STATUS.md
+├── AI_EXECUTION_RULES.md
 ├── DOCUMENT_TAXONOMY.md
 ├── MIGRATION_REGISTER.md
 ├── CROSS_PORT_CONFLICT_AUDIT.md
@@ -64,6 +68,14 @@ SMM 例外：SMM repo 係退役 Migration Source；正式 Mobile Profile 屬 SMT
 
 端口只可引用或描述採用邊界，不得再抄完整規則。
 
+## Execution ownership
+
+所有 AI、Codex、Work、agent 及工程師必須遵守：
+
+- `knowledge-base/AI_EXECUTION_RULES.md`
+
+該文件規範 Fresh Read、Scope Lock、Authority Resolution、驗證、Evidence Level、記錄、Commit、交付及 autonomous execution boundary。
+
 ## Non-duplication rule
 
 同一項規則只可以有一個 Current Truth。
@@ -78,6 +90,7 @@ SMM 例外：SMM repo 係退役 Migration Source；正式 Mobile Profile 屬 SMT
 
 ## Conflict and cleanup control
 
+- AI 執行規則：`knowledge-base/AI_EXECUTION_RULES.md`
 - 四端衝突基線：`knowledge-base/CROSS_PORT_CONFLICT_AUDIT.md`
 - Archive／Redirect 規則：`knowledge-base/ARCHIVE_REDIRECT_MANIFEST.md`
 - 逐項遷移狀態：`knowledge-base/MIGRATION_REGISTER.md`
