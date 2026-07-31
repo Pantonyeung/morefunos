@@ -1,12 +1,30 @@
 # MoreFunOS Knowledge Base V2｜Current Status
 
-Status: GOVERNANCE AND EXECUTION BASELINE COMPLETE
-Updated: 2026-07-31 HKT
+Status: GOVERNANCE AND ENGINEERING CONSTITUTION BASELINE COMPLETE
+Updated: 2026-08-01 HKT
 Authority: `MOREFUNOS_MASTER_KNOWLEDGE_AUTHORITY.md`
 
 ## Current gate
 
-Knowledge Base V2 canonical governance and AI execution baseline is complete.
+Knowledge Base V2 canonical governance、AI execution baseline 同 Engineering Constitution V2.0 三方狀態已完成收口。
+
+## Current mandatory engineering document
+
+- File: `knowledge-base/ENGINEERING_CONSTITUTION.md`
+- Status: `CURRENT / MANDATORY READ`
+- Applies to: 所有 AI、Codex、agents、工程師
+- Purpose: 現役工程制度、Native-Core-First、禁止補丁、Root Cause、Evidence、Progress、Handoff、Debt、Delivery
+
+## Archived predecessor
+
+- File: `knowledge-base/archive/DEVELOPMENT_MANDATORY_RULES_V1.2.md`
+- Status: `ARCHIVED / NON-AUTHORITY`
+- Purpose: 備份、歷史追溯、遷移核對
+- Prohibition: 不得作現役施工、Authority 或 AI 必讀依據
+
+Migration record:
+
+- `knowledge-base/V1.2_TO_V2.0_MIGRATION_REPORT.md`
 
 ## Active branch / PR
 
@@ -20,74 +38,35 @@ Knowledge Base V2 canonical governance and AI execution baseline is complete.
 - Established the single Knowledge Base navigation entry.
 - Established canonical document taxonomy and migration register.
 - Confirmed global Master Authority and integrated Engineering Log.
-- Completed Admin repository authority and entry-layer consolidation.
-- Completed Customer repository authority, log and migration mapping.
-- Completed SMT repository authority, engineering-log and shared-technology extraction.
-- Completed SMM retirement as independent core and migration into SMT Mobile Profile governance.
-- Consolidated the Shared Technology index.
-- Completed the cross-port duplicate and authority-conflict baseline.
-- Established the Archive / Redirect cleanup manifest.
-- Established `AI_EXECUTION_RULES.md` as the canonical execution protocol for all AI, Codex, agents and engineers.
+- Completed Admin、Customer、SMT authority / log / migration consolidation.
+- Completed SMM retirement as independent core.
+- Consolidated Shared Technology and cross-port conflict baseline.
+- Established `AI_EXECUTION_RULES.md`.
+- Established `ENGINEERING_CONSTITUTION.md` as the only current mandatory engineering制度文件.
+- Archived V1.2 as non-authority and added explicit redirect.
+- Added V1.2 → V2.0 migration record.
+- Google Drive current/archive titles use matching status labels.
+- Jade Note current/archive navigation uses matching status labels.
 
-## Canonical authority and execution model
+## Canonical read model
 
 ```text
 Global Master Authority
 → Knowledge Base Current Status
+→ Engineering Constitution V2.0
 → AI Execution Rules
 → Port README / AGENTS
 → Port Current Domain Authority
-→ Port Engineering Log
-→ Active source / Shared Technology / Specification / Evidence as needed
+→ CURRENT HANDOFF
+→ Active source / tests / evidence
 ```
 
-## Port state
+## Three-system authority rule
 
-| Scope | Authority state | Notes |
-|---|---|---|
-| Admin | Consolidated | One Current Authority and one Engineering Log |
-| Customer | Consolidated | Runtime/offline/history separated from Authority |
-| SMT | Consolidated | Register and Mobile share one core; Android/Print/OTA boundaries extracted |
-| SMM | Retired independent core | Migration/evidence repository only; formal implementation belongs to SMT |
-
-## Shared Technology state
-
-Current centralized mechanisms include:
-
-- Adaptive System
-- Protected Runtime / Auth / Recovery
-- Public Runtime Offline Recovery
-- Offline Journal / Queue Recovery
-- Session Token / Durable Login
-- Android Host / Print / OTA
-- Shared Core Mobile Profile
-- Low-Cost Targeted Development
-
-## AI execution enforcement
-
-All future work must follow `knowledge-base/AI_EXECUTION_RULES.md`, including:
-
-- Mandatory Fresh Read.
-- Canonical Authority resolution.
-- Scope lock and permanent prohibitions.
-- No second Runtime / Business Rule / Data Model / Current Authority.
-- Targeted verification before broad CI.
-- Evidence-level classification.
-- Engineering Log / Current Status / Shared Technology placement rules.
-- Commit, rollback and delivery traceability.
-- Autonomous execution within the approved scope.
-
-## Conflict audit result
-
-No unresolved same-level authority conflict was found after applying the canonical read order.
-
-The remaining risks are physical legacy files with misleading titles and unique QA/pitfall details that may still need individual review before deletion.
-
-## Archive / redirect state
-
-Classification and cleanup rules are complete. Blind bulk deletion is not authorized.
-
-Each individual legacy file must be fresh-read and verified before redirect, move or deletion. Evidence and Git history must remain traceable.
+- GitHub: 正式工程 Authority；V2.0 係唯一 Current。
+- Google Drive: 長期文件鏡像；標題必須清楚顯示 CURRENT 或 ARCHIVE。
+- Jade Note: 搜尋及接手導航；置頂 Current Note，Archive Note 只作追溯。
+- 三方衝突時，以 GitHub 最新 Current Authority 為準。
 
 ## Runtime and acceptance boundary
 
@@ -105,8 +84,8 @@ These remain engineering gates in the relevant Port Authority and Engineering Lo
 
 ## Next action
 
-Use this governance and execution structure for all new work. Repository README / AGENTS files should reference `AI_EXECUTION_RULES.md`; when legacy files are encountered, verify and convert them incrementally according to the Archive / Redirect manifest.
+所有新工作按 Engineering Constitution V2.0 開工；當遇到舊 V1.2 或其他歷史文件，只可追溯，不可直接施工。
 
 ## Blockers
 
-None for documentation governance or execution protocol. Runtime, deployment and hardware blockers are outside this gate.
+None for documentation governance、V2.0 Current labeling or V1.2 archive redirect. Runtime、deployment and hardware blockers are outside this gate.
