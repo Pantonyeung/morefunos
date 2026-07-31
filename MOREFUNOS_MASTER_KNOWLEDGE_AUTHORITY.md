@@ -110,28 +110,27 @@ Source implemented ≠ tests executed ≠ deployment ≠ device acceptance。禁
 - Repo：`Pantonyeung/morefunos-admin`
 - Branch：`feat/admin-p0-full-connect-v1`
 - PR #1：Draft／Open／Mergeable
-- Latest fresh-read head：`d353079a577b21a889a736c3298689d9d58dad5e`
-- Staff Auth：角色只保留 owner／staff；Owner＝Firebase Auth；Staff＝Admin 私有帳號＋Cloudflare Worker短期 Session；Staff 不建立 Firebase User、不直接寫受保護 RTDB。
-- Operational Availability：source=`smt|smm`；狀態=`available|soldout|paused`；Firebase path=`morefun/runtime/operations/v1/availability`。
+- Current observed head before consolidation：`4a3b75c13c25619a41fcdbea1a73a503434c846e`
+- Single Domain Authority commit：`6959cfb8151fcfb252d2fc13570b5aab7f8a1b86`
+- Append-only Engineering Log commit：`3599a7c1a27c6800ccb22f34fe96c906a0cca41d`
 - 未完成：Worker secrets／latest deployment、protected Runtime command acceptance、跨端 staging acceptance、latest head test execution。
 
 ### Customer｜G2
 - Repo：`Pantonyeung/morefun-ordering-web`
-- PR #21：Draft／Open／Mergeable=false，需 reconciliation。
-- PR head：`031e7a60b95e0413678b7da3439dca0abcad5c24`
-- Source branch：`feat/g1-customer-runtime-consumer-v1`
-- 已有 Public Runtime consumer、presentation mapping、soldout／paused projection、latest／previous valid offline snapshot、offline status UI。
-- 未 reconciliation 前，PR #21、main、source branch均不得單獨稱 production Authority。
+- Branch：`feat/g1-customer-runtime-consumer-v1`
+- PR #22：Draft／Open／Mergeable
+- Current observed head before consolidation：`0c32ae394e5b3b3db7885a4c032d4ed2532e56cf`
+- Single Domain Authority commit：`db6f74c3f330a2842bb833ab8fcd3e9a8a700688`
+- Append-only Engineering Log commit：`fafad097a6f53464db43d3255b63aad79dad3e10`
+- 未完成：branch reconciliation、latest-head regression、preview deployment、Safari/PWA device acceptance、production promotion。
 
 ### SMT
 - Repo：`Pantonyeung/morefunos-smt`
-- Baseline：`smt-functional-completeness-v1`
-- PR #30 已合併；Runtime／Offline Browser 81／81 PASS，只代表舊 verified head Software＋Browser。
-- Main Candidate：`smt-main-candidate-v1`／PR #34 Draft／Open／Mergeable
-- Current fresh-read head：`bd8de413ed17cbc1196abed512ef009a7c5fb1fa`
-- Supply implementation：shared `shared/supply-runtime.js`、same-origin Staff API proxy、Shell Staff Session、offline pending queue、Register＋Mobile 同一 Soldout route。
-- Targeted contracts 已提交但未有 current-head execution evidence。
-- 保留待 Domain Diff：PR #17 Printer、#20 Required Flow、#23 Recovery、#24 Incoming Queue。
+- Branch：`smt-main-candidate-v1`
+- PR #34：Draft／Open／Mergeable
+- Current observed head before consolidation：`879443a21de5bb34e798d1d4a3c773f14b3168f2`
+- Single Domain Authority commit：`eb3adef7ae4faf4b6f4c60c9b5e36728368cf5c9`
+- Append-only Engineering Log commit：`762ea147521ae3ccfbbe67377fc322f0c472d8ba`
 - Hardware：`DEFERRED — HARDWARE UNAVAILABLE`。
 
 ## 8. Gate
@@ -168,10 +167,44 @@ Source implemented ≠ tests executed ≠ deployment ≠ device acceptance。禁
 每個核心只准一份 CURRENT 主文件：
 
 - Global Project OS：`MOREFUNOS_MASTER_KNOWLEDGE_AUTHORITY.md`
-- Admin：對應 Admin repo 只保留一份 `CURRENT_DOMAIN_AUTHORITY.md`
-- Customer：對應 Customer repo 只保留一份 `CURRENT_DOMAIN_AUTHORITY.md`
-- SMT Register＋Mobile＋Android Host：對應 SMT repo 只保留一份 `CURRENT_DOMAIN_AUTHORITY.md`
+- Admin：`CURRENT_DOMAIN_AUTHORITY.md`
+- Customer：`CURRENT_DOMAIN_AUTHORITY.md`
+- SMT Register＋Mobile＋Android Host：`CURRENT_DOMAIN_AUTHORITY.md`
 
 `AGENTS.md` 只保留執行入口與指向，不重複 Architecture／Current Status。其他 Lock、Checklist、Handoff、Pitfall 文件全部改為附錄、Evidence 或 Archive，不得與 Current Domain Authority 並列。
 
 新增資料必須更新原主文件，不得建立 `V2`、`FINAL`、`NEW`、`LATEST`、`REVISED` 等平行 Current 文件。
+
+## 12. 單一累加工程日誌制度
+
+每個現役核心只准另外保留一份 `ENGINEERING_LOG.md`，用作唯一累加式工作記錄。所有以下內容必須追加到該文件尾部，不得再建立獨立文件：
+
+- 進度／Milestone／Checkpoint／Handoff
+- 踩坑／根因／失敗方法／回滾方法
+- 成功方法／可重用解法／驗證模式
+- 測試結果／部署結果／Browser／Device／Store Evidence
+- 未完成邊界／風險／下一步
+- branch／PR／head／commit／artifact 對齊記錄
+
+正式結構固定為：
+
+```text
+Global
+└── MOREFUNOS_MASTER_KNOWLEDGE_AUTHORITY.md
+
+Admin
+├── CURRENT_DOMAIN_AUTHORITY.md
+└── ENGINEERING_LOG.md
+
+Customer
+├── CURRENT_DOMAIN_AUTHORITY.md
+└── ENGINEERING_LOG.md
+
+SMT Register＋Mobile＋Android Host
+├── CURRENT_DOMAIN_AUTHORITY.md
+└── ENGINEERING_LOG.md
+```
+
+禁止新增 `MILESTONE_*`、`HANDOFF_*`、`PITFALL_*`、`SUCCESS_*`、`PROGRESS_*`、`LATEST_*`、`FINAL_*`、`VERIFICATION_SUMMARY_*` 或同類平行文件。需要保存機器產生的原始測試輸出時，只可放入 evidence/artifact 路徑，並由 `ENGINEERING_LOG.md` 引用；原始輸出不得成為 Authority。
+
+日誌採 append-only：日常只在尾部追加。定期由 Owner 主導做 compaction，刪除重複、過時、被取代內容，但必須保留：已鎖定決定、根因、成功方法、Evidence Level、rollback point、未解風險及可追溯 commit。
