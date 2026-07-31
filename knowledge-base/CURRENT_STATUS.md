@@ -1,14 +1,14 @@
 # MoreFunOS Knowledge Base V2｜Current Status
 
-Status: ACTIVE MIGRATION
+Status: GOVERNANCE BASELINE COMPLETE
 Updated: 2026-07-31 HKT
 Authority: `MOREFUNOS_MASTER_KNOWLEDGE_AUTHORITY.md`
 
-## Current Gate
+## Current gate
 
-Knowledge Base V2｜Document audit and unique-knowledge extraction.
+Knowledge Base V2 canonical governance baseline is complete.
 
-## Active Branch / PR
+## Active branch / PR
 
 - Repo: `Pantonyeung/morefunos`
 - Branch: `knowledge-base-v2`
@@ -17,51 +17,79 @@ Knowledge Base V2｜Document audit and unique-knowledge extraction.
 
 ## Completed
 
-- Established Knowledge Base V2 index.
-- Established canonical document taxonomy.
-- Established migration register.
-- Confirmed global Master Authority exists.
-- Confirmed integrated Engineering Log exists.
-- Began MoreFunOS core document audit.
+- Established the single Knowledge Base navigation entry.
+- Established canonical document taxonomy and migration register.
+- Confirmed global Master Authority and integrated Engineering Log.
+- Completed Admin repository authority and entry-layer consolidation.
+- Completed Customer repository authority, log and migration mapping.
+- Completed SMT repository authority, engineering-log and shared-technology extraction.
+- Completed SMM retirement as independent core and migration into SMT Mobile Profile governance.
+- Consolidated the Shared Technology index.
+- Completed the cross-port duplicate and authority-conflict baseline.
+- Established the Archive / Redirect cleanup manifest.
 
-## Current Finding
+## Canonical authority model
 
-Global files currently mix three information lifecycles:
+```text
+Global Master Authority
+→ Knowledge Base Current Status
+→ Port Current Domain Authority
+→ Port Engineering Log
+→ Shared Technology / Specification / Evidence as needed
+```
 
-1. Stable authority and permanent constraints.
-2. Current development state, branch, PR and gate information.
-3. Historical engineering progress and evidence.
+## Port state
 
-Target separation:
+| Scope | Authority state | Notes |
+|---|---|---|
+| Admin | Consolidated | One Current Authority and one Engineering Log |
+| Customer | Consolidated | Runtime/offline/history separated from Authority |
+| SMT | Consolidated | Register and Mobile share one core; Android/Print/OTA boundaries extracted |
+| SMM | Retired independent core | Migration/evidence repository only; formal implementation belongs to SMT |
 
-- Stable truth → Master Authority.
-- Current gate / branch / blockers / next action → this file.
-- Historical progress / root cause / success method / evidence → Integrated Engineering Log.
+## Shared Technology state
 
-## In Progress
+Current centralized mechanisms include:
 
-- Audit MoreFunOS root document families.
-- Identify unique content before any archive or redirect action.
-- Separate reusable technology from port-specific history.
+- Adaptive System
+- Protected Runtime / Auth / Recovery
+- Public Runtime Offline Recovery
+- Offline Journal / Queue Recovery
+- Session Token / Durable Login
+- Android Host / Print / OTA
+- Shared Core Mobile Profile
+- Low-Cost Targeted Development
 
-## Not Yet Done
+## Conflict audit result
 
-- No legacy file has been deleted.
-- No legacy file has been redirected.
-- Admin / Customer / SMT / SMM repository-by-repository extraction is not yet complete.
-- Cross-port duplicate comparison is not yet complete.
+No unresolved same-level authority conflict was found after applying the canonical read order.
 
-## Next Action
+The remaining risks are physical legacy files with misleading titles and unique QA/pitfall details that may still need individual review before deletion.
 
-1. Complete MoreFunOS core mapping.
-2. Audit Admin.
-3. Audit Customer.
-4. Audit SMT.
-5. Audit SMM.
-6. Consolidate Shared Technology.
-7. Perform duplicate and authority-conflict check.
-8. Archive or redirect only after extraction verification.
+## Archive / redirect state
+
+Classification and cleanup rules are complete. Blind bulk deletion is not authorized.
+
+Each individual legacy file must be fresh-read and verified before redirect, move or deletion. Evidence and Git history must remain traceable.
+
+## Runtime and acceptance boundary
+
+This governance baseline does not claim:
+
+- Runtime merge completion
+- Production deployment completion
+- Device acceptance
+- Android installer acceptance
+- Physical printer acceptance
+- Store acceptance
+- Product lock
+
+These remain engineering gates in the relevant Port Authority and Engineering Log.
+
+## Next action
+
+Use this Knowledge Base V2 structure for all new work. During normal development, convert legacy files to redirect/archive only when they are encountered and their unique content has been verified as migrated.
 
 ## Blockers
 
-None for document audit. Runtime acceptance and hardware availability are outside this documentation migration gate.
+None for documentation governance. Runtime, deployment and hardware blockers are outside this gate.
