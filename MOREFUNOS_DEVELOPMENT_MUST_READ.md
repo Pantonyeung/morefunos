@@ -7,20 +7,35 @@
 
 ## 1. 真相優先序
 
-安全／資料完整／不可逆風險 → Master Authority → 本文件＋Current Registry＋Low Cost CI → repo `AGENTS.md`／PRIMARY STANDARD → Ownership／Decision／Current Lock／Change Impact → active branch／PR／head evidence → 最新產品明確決定 → Drive／Jade。
+安全／資料完整／不可逆風險 → Master Authority → 本文件＋Current Registry＋Document Authority Classification＋Low Cost CI → repo `AGENTS.md`／PRIMARY STANDARD → Ownership／Decision／Current Lock／Change Impact → active branch／PR／head evidence → 最新產品明確決定 → Drive／Jade。
 
 ## 2. 每次開工必讀
 
 1. `MOREFUNOS_MASTER_CONTROL_AUTHORITY.md`
 2. `MOREFUNOS_DEVELOPMENT_MUST_READ.md`
 3. `MOREFUNOS_CURRENT_DEVELOPMENT_REGISTRY.md`
-4. `MOREFUNOS_LOW_COST_CI_DEVELOPMENT_PROTOCOL_V1.0.md`
-5. `MOREFUNOS_ENGINEERING_PITFALLS_AND_PROVEN_SOLUTIONS.md`
-6. 對應 repo 最新 `AGENTS.md`、Lock、Change Impact、Handoff、active PR／head evidence
+4. `MOREFUNOS_DOCUMENT_AUTHORITY_CLASSIFICATION.md`
+5. `MOREFUNOS_LOW_COST_CI_DEVELOPMENT_PROTOCOL_V1.0.md`
+6. `MOREFUNOS_ENGINEERING_PITFALLS_AND_PROVEN_SOLUTIONS.md`
+7. 對應 repo 最新 `AGENTS.md`、Lock、Change Impact、Handoff、active PR／head evidence
 
 未讀完，禁止修改、建立新 CI、合拼或宣稱完成。
 
-## 3. Current Authority
+## 3. 舊文件降權硬規則
+
+以下全部預設 `REFERENCE ONLY / NON-AUTHORITY / DO NOT IMPLEMENT DIRECTLY`：
+- WORK01／WORK02／WORK03
+- `TEST_WORK03_UNIFIED_LOGIN`、Session／Bootstrap／Push／Pull／Heartbeat／Fallback
+- Apps Script V1.2.x／Staff Auth／Sync Runtime／舊 gateway
+- 舊 Google Sheet 主資料庫／即時 Order Truth／派號／同步 Authority 文件
+- V42／SA2／EG，包括 `分支 · V42EG 設計與開發.txt`
+- 舊 Customer root-five-file／版本快照
+- 舊 SMM independent core
+- 仍引用以上架構嘅舊四端整合包、Final Lock、接手主題包
+
+呢啲文件只可抽取背景、UI 素材、舊商業規則、migration、Contract、踩坑同測試案例；不得產生 Current Next Step、不得覆蓋現行 Architecture、不得直接指導新四端閉環施工。標題含 `LOCK`／`FINAL`／`MUST READ`／`CURRENT` 亦唔會自動提升權威。
+
+## 4. Current Authority
 
 ### Project OS／G0.5
 - `Pantonyeung/morefunos/main`
@@ -56,10 +71,13 @@
 - `DEFERRED — HARDWARE UNAVAILABLE`：SUNMI 實體打印、Package Installer／APK OTA 實機、Production signing／release E2E。
 - 舊 `morefunos-smm`：`SUPERSEDED AS INDEPENDENT CORE`；只作 SMT mobile supporting／migration surface。
 
-### WORK03
-舊 Login／Push／Pull／Heartbeat／Fallback：`SUPERSEDED / DO NOT CONTINUE`。現役架構：Firebase Auth＋Firebase RTDB＋Cloudflare Worker＋Google Sheet V2 ledger。
+### WORK03／Apps Script／Google Sheet
+- WORK03 Login／Push／Pull／Heartbeat／Fallback：`SUPERSEDED / DO NOT CONTINUE`。
+- Apps Script Staff Auth／Google Sheet Sync Runtime：`REFERENCE ONLY`。
+- 現役架構：Firebase Auth＋Firebase RTDB＋Cloudflare Worker＋Google Sheet V2 ledger mirror。
+- Google Sheet V2 不可成為即時 Order Truth、定價、正式派號、付款、Print Job 或 Runtime Authority。
 
-## 4. 永久禁止
+## 5. 永久禁止
 
 - default branch 代表所有 domain；第二套 SMM／Cart／Pricing／Order／Sync／Print truth。
 - Customer／SMT 自行重新計價；Google Sheet 作即時 Order Truth。
@@ -69,14 +87,15 @@
 - Adaptive 當 Scale；override／Observer／DOM scan 掩蓋 Authority 根因。
 - Software／Contract／Browser PASS 當 Device／Store／Production PASS。
 - 文件更新觸發 full CI；單一問題反覆跑完整 CI。
+- 從 Reference／Historical 文件直接建立施工指令；必須先 reconciliation／re-adoption。
 
-## 5. Targeted Failure／Evidence
+## 6. Targeted Failure／Evidence
 
 `單一問題 → isolate → reproduce → root cause → minimal fix → targeted verification → minimum regression → integration branch → one final gate`
 
 Evidence：`CODE_EXISTS → CONTRACT_PASS → BROWSER_PASS → DEVICE_PASS → STORE_PASS → PRODUCT_LOCKED`。禁止跨級宣稱。
 
-## 6. 目前主要 Gate
+## 7. 目前主要 Gate
 
 - G1：Admin Firebase Publish 真閉環＋Staff Auth／Worker Runtime command staging 驗證。
 - G2：Customer reconciliation＋Unified Consumer Adapter。
@@ -84,6 +103,6 @@ Evidence：`CODE_EXISTS → CONTRACT_PASS → BROWSER_PASS → DEVICE_PASS → S
 - G4：Print Closure。
 - G5：Device／Store Acceptance。
 
-## 7. Gap／下一步唯一優先
+## 8. Gap／下一步唯一優先
 
 **G1 Admin Firebase Publish Real Closure**：fresh-read Admin PR #1 最新 head，先完成 RTDB V2 smoke test、Worker secrets／deployment、Owner Staff API、Staff login/session、protected Runtime command、Admin Staff UI，再取得 Draft／Runtime／Publish／Audit／Recovery 真實 staging evidence。
