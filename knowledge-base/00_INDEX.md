@@ -1,8 +1,8 @@
 # MoreFunOS Knowledge Base V2
 
-Status: ACTIVE
+Status: CURRENT NAVIGATION
 Authority: MoreFunOS Master Control
-Updated: 2026-07-31
+Updated: 2026-07-31 HKT
 
 ## Purpose
 
@@ -10,16 +10,16 @@ Updated: 2026-07-31
 
 任何 AI、工程師或接手者，先由本頁判斷應讀取邊一類文件；不得先掃描全部歷史文件。
 
-## Read Order
+## Mandatory read order
 
 1. `MOREFUNOS_MASTER_KNOWLEDGE_AUTHORITY.md`
 2. `knowledge-base/CURRENT_STATUS.md`
-3. 相關端口的 Current Authority
-4. 相關端口的 Engineering Log
-5. 需要時讀取 Shared Technology
-6. 只有追溯歷史時才讀 Archive
+3. 相關端口的 `CURRENT_DOMAIN_AUTHORITY.md`
+4. 相關端口的 `ENGINEERING_LOG.md`
+5. 需要時讀 `knowledge-base/03_SHARED_TECH/README.md`
+6. 需要追溯時才讀 Evidence／Archive
 
-## Canonical Structure
+## Canonical structure
 
 ```text
 knowledge-base/
@@ -27,45 +27,44 @@ knowledge-base/
 ├── CURRENT_STATUS.md
 ├── DOCUMENT_TAXONOMY.md
 ├── MIGRATION_REGISTER.md
-├── ports/
-│   ├── admin/
-│   ├── customer/
-│   ├── smt/
-│   └── smm/
-├── shared-technology/
-├── business-rules/
-├── architecture/
+├── CROSS_PORT_CONFLICT_AUDIT.md
+├── ARCHIVE_REDIRECT_MANIFEST.md
+├── 02_PORTS/
+│   ├── ADMIN/
+│   ├── CUSTOMER/
+│   ├── SMT/
+│   └── SMM/
+├── 03_SHARED_TECH/
 ├── evidence/
 └── archive/
 ```
 
-## Port Knowledge Ownership
+## Port ownership
 
-每個端口保留自己的：
+每個現役端口只保留：
 
-- Current Authority
-- Current Status
-- Engineering Log
-- 端口專屬 Contract / Decision / Evidence
+- 一份 Current Domain Authority
+- 一份 Engineering Log
+- 端口專屬 Specification／Contract／Evidence
 
-端口文件解決唔到問題時，先提升到 MoreFunOS 整合層。
+SMM 例外：SMM repo 係退役 Migration Source；正式 Mobile Profile 屬 SMT Shared Core。
 
-## Shared Knowledge Ownership
+## Shared Technology ownership
 
-以下內容不得複製到四個端口：
+以下內容只可喺 Shared Technology 保留完整 Current Truth：
 
 - Adaptive System
-- Offline Runtime
-- Print Pipeline
-- Sync / Recovery
-- Authentication / Permission
-- Data Contract
-- Deployment / Rollback
-- 其他可跨端口重用技術
+- Protected Runtime / Auth / Recovery
+- Public Runtime Offline Recovery
+- Offline Journal / Queue Recovery
+- Session Token / Durable Login
+- Android Host / Print / OTA
+- Shared Core Mobile Profile
+- Low-Cost Targeted Development
 
-共享技術只保留一份 Current Truth，各端口以引用方式使用。
+端口只可引用或描述採用邊界，不得再抄完整規則。
 
-## Non-Duplication Rule
+## Non-duplication rule
 
 同一項規則只可以有一個 Current Truth。
 
@@ -74,15 +73,17 @@ knowledge-base/
 - 引用
 - 紀錄實作歷史
 - 保存驗證證據
+- 保存詳細規格
 - 標示已被取代
 
-不得重新抄寫完整規則。
+## Conflict and cleanup control
 
-## Current Migration State
+- 四端衝突基線：`knowledge-base/CROSS_PORT_CONFLICT_AUDIT.md`
+- Archive／Redirect 規則：`knowledge-base/ARCHIVE_REDIRECT_MANIFEST.md`
+- 逐項遷移狀態：`knowledge-base/MIGRATION_REGISTER.md`
 
-Knowledge Base V2 已開始建立。
+## Evidence levels
 
-詳細進度見：
+`SOURCE_EXISTS → CONTRACT_PASS → BROWSER_PASS → DEVICE_PASS → HARDWARE_PASS → STORE_PASS → PRODUCT_LOCKED`
 
-- `knowledge-base/CURRENT_STATUS.md`
-- `knowledge-base/MIGRATION_REGISTER.md`
+任何較低級 Evidence 不得被描述成較高級完成。
