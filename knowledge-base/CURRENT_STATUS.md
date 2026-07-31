@@ -1,12 +1,12 @@
 # MoreFunOS Knowledge Base V2｜Current Status
 
-Status: GOVERNANCE BASELINE COMPLETE
+Status: GOVERNANCE AND EXECUTION BASELINE COMPLETE
 Updated: 2026-07-31 HKT
 Authority: `MOREFUNOS_MASTER_KNOWLEDGE_AUTHORITY.md`
 
 ## Current gate
 
-Knowledge Base V2 canonical governance baseline is complete.
+Knowledge Base V2 canonical governance and AI execution baseline is complete.
 
 ## Active branch / PR
 
@@ -27,15 +27,18 @@ Knowledge Base V2 canonical governance baseline is complete.
 - Consolidated the Shared Technology index.
 - Completed the cross-port duplicate and authority-conflict baseline.
 - Established the Archive / Redirect cleanup manifest.
+- Established `AI_EXECUTION_RULES.md` as the canonical execution protocol for all AI, Codex, agents and engineers.
 
-## Canonical authority model
+## Canonical authority and execution model
 
 ```text
 Global Master Authority
 → Knowledge Base Current Status
+→ AI Execution Rules
+→ Port README / AGENTS
 → Port Current Domain Authority
 → Port Engineering Log
-→ Shared Technology / Specification / Evidence as needed
+→ Active source / Shared Technology / Specification / Evidence as needed
 ```
 
 ## Port state
@@ -59,6 +62,20 @@ Current centralized mechanisms include:
 - Android Host / Print / OTA
 - Shared Core Mobile Profile
 - Low-Cost Targeted Development
+
+## AI execution enforcement
+
+All future work must follow `knowledge-base/AI_EXECUTION_RULES.md`, including:
+
+- Mandatory Fresh Read.
+- Canonical Authority resolution.
+- Scope lock and permanent prohibitions.
+- No second Runtime / Business Rule / Data Model / Current Authority.
+- Targeted verification before broad CI.
+- Evidence-level classification.
+- Engineering Log / Current Status / Shared Technology placement rules.
+- Commit, rollback and delivery traceability.
+- Autonomous execution within the approved scope.
 
 ## Conflict audit result
 
@@ -88,8 +105,8 @@ These remain engineering gates in the relevant Port Authority and Engineering Lo
 
 ## Next action
 
-Use this Knowledge Base V2 structure for all new work. During normal development, convert legacy files to redirect/archive only when they are encountered and their unique content has been verified as migrated.
+Use this governance and execution structure for all new work. Repository README / AGENTS files should reference `AI_EXECUTION_RULES.md`; when legacy files are encountered, verify and convert them incrementally according to the Archive / Redirect manifest.
 
 ## Blockers
 
-None for documentation governance. Runtime, deployment and hardware blockers are outside this gate.
+None for documentation governance or execution protocol. Runtime, deployment and hardware blockers are outside this gate.
