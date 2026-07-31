@@ -51,7 +51,7 @@
 - Baseline：`smt-functional-completeness-v1`
 - PR #30 已合併；Runtime／Offline Browser 81／81 PASS，只代表該舊 verified head Software＋Browser。
 - Main Candidate：`smt-main-candidate-v1`／PR #34 Draft／Open／Mergeable
-- Current fresh-read head：`4e4ca06e8d7afee364e751521932fe01052efe91`
+- Current fresh-read head：`bd8de413ed17cbc1196abed512ef009a7c5fb1fa`
 - Supply source implementation：shared `shared/supply-runtime.js`、same-origin Staff API proxy、Shell Staff Session、offline pending queue、Register＋Mobile 同一 Soldout route。
 - Targeted contracts：已提交，未執行／未對齊 report，因此不可標 Automated PASS。
 - Deployment：Admin Worker／SMT Pages Functions latest deployment待驗。
