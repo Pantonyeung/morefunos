@@ -54,8 +54,20 @@ Updated: 2026-07-31
 | MoreFunOS | Plan / Work Package / Checklist family | Plan / Specification | PENDING_AUDIT | PENDING_AUDIT | Active 期間保留，完成後抽結論並封存 |
 | MoreFunOS | Final / Latest / Revised family | Depends on content | PENDING_AUDIT | PENDING_AUDIT | 名稱不構成 Authority |
 | MoreFunOS | Document type audit baseline | Governance | MERGE_AUTHORITY | AUDITED | 已形成分類基線 |
-| Admin | AGENTS / README | Entry | PENDING_AUDIT | PENDING_AUDIT | 抽取真正入口規則 |
-| Admin | Progress / Milestone / Handoff / Pitfalls | Engineering Log | MERGE_LOG | PENDING_AUDIT | 去重後按日期合併 |
+| Admin | `CURRENT_DOMAIN_AUTHORITY.md` | Authority | KEEP | AUDITED | 已直接讀取；Admin 唯一 CURRENT Authority |
+| Admin | `ENGINEERING_LOG.md` | Engineering Log | KEEP | AUDITED | 已直接讀取；唯一 append-only Admin 工程記錄 |
+| Admin | `AGENTS.md` | Entry | PENDING_AUDIT | PENDING_AUDIT | 下一輪直接讀取，只保留 fresh-read 與執行入口 |
+| Admin | `README.md` | Entry / Context | PENDING_AUDIT | PENDING_AUDIT | 下一輪直接讀取，應指向 Authority 而非複製規格 |
+| Admin | WORK04 Current State / Implementation / Completion / Handoff / Plan Ready | Engineering Log | MERGE_LOG | AUDITED | 同一工作被拆成多份；唯一歷史應按日期併入 Admin Log，原檔後續 Redirect／Archive |
+| Admin | WORK04A protected runtime config records | Shared Technology / Log | EXTRACT_SHARED_TECH | EXTRACTED | 固定 target、部署時注入、無 live values、拒絕 privileged credentials |
+| Admin | WORK04B Firebase auth / connected-state records | Shared Technology / Log | EXTRACT_SHARED_TECH | EXTRACTED | auth 與 RTDB connectivity 分離；connected 需要 authenticated identity + `.info/connected` |
+| Admin | WORK04C atomic hydrate / recovery records | Shared Technology / Log | EXTRACT_SHARED_TECH | EXTRACTED | remote validation、pre-hydrate recovery、rollback、correlation ID、malformed rejection |
+| Admin | WORK04D integration / no-Actions verification records | Engineering Log / Evidence | MERGE_LOG | AUDITED | integration history入 Log；可重現測試與掃描結果保留 Evidence |
+| Admin | WORK04E Owner Login design / plan / implementation / handoff | Authority / Log / Archive | MERGE_AUTHORITY | AUDITED | 最終安全邊界入 Authority；歷史入 Log；完成 Spec/Plan 轉 Archive |
+| Admin | `WORK04G_MOBILE_MENU_PREVIEW_ACCEPTANCE.md` | Evidence | KEEP_EVIDENCE | AUDITED | 人手 iPhone／Preview 驗收屬不可變 Evidence，不成為 Authority |
+| Admin | WORK04 CI blocker records | Engineering Log | MERGE_LOG | AUDITED | 保留外部 blocker 與 evidence boundary，原檔後續 Archive |
+| Admin | Targeted Failure / Low-Cost CI protocols | Shared Technology | EXTRACT_SHARED_TECH | EXTRACTED | 跨端口可重用，應中央化後 Redirect |
+| Admin | Executable tests / verification scripts | Evidence / Tooling | KEEP_EVIDENCE | AUDITED | 保留作可重現證據，不搬入 Authority |
 | Customer | AGENTS / README | Entry | PENDING_AUDIT | PENDING_AUDIT | 保留前台讀取順序與邊界 |
 | Customer | Plans / Specs / Tests | Plan / Evidence | PENDING_AUDIT | PENDING_AUDIT | 分離未完成規格與驗證結果 |
 | SMT | Handoff / QA / Integration Log | Log / Evidence | PENDING_AUDIT | PENDING_AUDIT | 技術規則需抽去 Shared Technology |
