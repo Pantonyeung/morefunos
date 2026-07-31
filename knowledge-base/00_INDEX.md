@@ -2,7 +2,7 @@
 
 Status: CURRENT NAVIGATION
 Authority: MoreFunOS Master Control
-Updated: 2026-07-31 HKT
+Updated: 2026-08-01 HKT
 
 ## Purpose
 
@@ -14,13 +14,33 @@ Updated: 2026-07-31 HKT
 
 1. `MOREFUNOS_MASTER_KNOWLEDGE_AUTHORITY.md`
 2. `knowledge-base/CURRENT_STATUS.md`
-3. `knowledge-base/AI_EXECUTION_RULES.md`
-4. 相關端口的 `README.md`／`AGENTS.md`
-5. 相關端口的 `CURRENT_DOMAIN_AUTHORITY.md`
-6. 相關端口的 `ENGINEERING_LOG.md`
-7. Active branch／PR／observed head
-8. 需要時讀 `knowledge-base/03_SHARED_TECH/README.md`
-9. 需要追溯時才讀 Evidence／Archive
+3. `knowledge-base/ENGINEERING_CONSTITUTION.md` — **CURRENT / MANDATORY READ**
+4. `knowledge-base/AI_EXECUTION_RULES.md`
+5. 相關端口的 `README.md`／`AGENTS.md`
+6. 相關端口的 `CURRENT_DOMAIN_AUTHORITY.md`
+7. 相關端口 `ENGINEERING_LOG.md` 頂部 `CURRENT HANDOFF`
+8. Active branch／PR／observed head／actual source／tests
+9. 需要時讀 `knowledge-base/03_SHARED_TECH/README.md`
+10. 需要追溯時先讀 Evidence／Archive
+
+## Current and archive status
+
+### Current mandatory engineering document
+
+- `knowledge-base/ENGINEERING_CONSTITUTION.md`
+- Status: `CURRENT / MANDATORY READ`
+- Purpose: 現役工程制度、AI 行為、Progress、Handoff、Evidence、Native Core 規則
+
+### Archived predecessor
+
+- `knowledge-base/archive/DEVELOPMENT_MANDATORY_RULES_V1.2.md`
+- Status: `ARCHIVED / NON-AUTHORITY`
+- Purpose: 備份、歷史追溯、V1.2 → V2.0 遷移核對
+- Prohibition: 不得作現役施工或 AI 必讀依據
+
+Migration record:
+
+- `knowledge-base/V1.2_TO_V2.0_MIGRATION_REPORT.md`
 
 ## Canonical structure
 
@@ -28,9 +48,11 @@ Updated: 2026-07-31 HKT
 knowledge-base/
 ├── 00_INDEX.md
 ├── CURRENT_STATUS.md
+├── ENGINEERING_CONSTITUTION.md
 ├── AI_EXECUTION_RULES.md
 ├── DOCUMENT_TAXONOMY.md
 ├── MIGRATION_REGISTER.md
+├── V1.2_TO_V2.0_MIGRATION_REPORT.md
 ├── CROSS_PORT_CONFLICT_AUDIT.md
 ├── ARCHIVE_REDIRECT_MANIFEST.md
 ├── 02_PORTS/
@@ -41,6 +63,7 @@ knowledge-base/
 ├── 03_SHARED_TECH/
 ├── evidence/
 └── archive/
+    └── DEVELOPMENT_MANDATORY_RULES_V1.2.md
 ```
 
 ## Port ownership
@@ -68,14 +91,6 @@ SMM 例外：SMM repo 係退役 Migration Source；正式 Mobile Profile 屬 SMT
 
 端口只可引用或描述採用邊界，不得再抄完整規則。
 
-## Execution ownership
-
-所有 AI、Codex、Work、agent 及工程師必須遵守：
-
-- `knowledge-base/AI_EXECUTION_RULES.md`
-
-該文件規範 Fresh Read、Scope Lock、Authority Resolution、驗證、Evidence Level、記錄、Commit、交付及 autonomous execution boundary。
-
 ## Non-duplication rule
 
 同一項規則只可以有一個 Current Truth。
@@ -90,6 +105,7 @@ SMM 例外：SMM repo 係退役 Migration Source；正式 Mobile Profile 屬 SMT
 
 ## Conflict and cleanup control
 
+- 工程憲章：`knowledge-base/ENGINEERING_CONSTITUTION.md`
 - AI 執行規則：`knowledge-base/AI_EXECUTION_RULES.md`
 - 四端衝突基線：`knowledge-base/CROSS_PORT_CONFLICT_AUDIT.md`
 - Archive／Redirect 規則：`knowledge-base/ARCHIVE_REDIRECT_MANIFEST.md`
