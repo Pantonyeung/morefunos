@@ -95,7 +95,47 @@ Evidence：`CODE_EXISTS → CONTRACT_PASS → BROWSER_PASS → DEVICE_PASS → S
 
 Source implemented ≠ tests executed ≠ deployment ≠ device acceptance。禁止跨級宣稱。
 
-## 7. Current Development Registry｜2026-07-31
+## 7. Native Core Only｜全系統強制開發守則
+
+所有 MoreFunOS 開發必須將功能寫入其唯一正式責任來源：Domain、Store、Runtime、Router、Page State、API Contract、Worker Route、Print Domain 或 Native Host。UI 只可以由正式 State／Domain Render；不得用畫面攔截、橋接或補丁製造第二套行為。
+
+永久禁止以下做法作為正式功能實作或 Bug 修復：
+
+- monkey patch、覆寫 `fetch`、覆寫全域函數、替換原 API 行為；
+- 額外 bridge／guard／compatibility／override script 掛入既有頁面；
+- capture-phase 全域攔截 click／submit，再 `preventDefault`、`stopImmediatePropagation` 或模擬第二次 click；
+- MutationObserver、DOM 全樹掃描、讀畫面文字或 class 反推正式業務狀態；
+- `setInterval`／定時輪詢 DOM 或 `localStorage` 作 UI 同步機制；
+- 使用 `location.reload()`、iframe reload 或整頁重建作狀態同步；
+- 用跳轉殼、redirect wrapper、iframe 或桌面 UI 硬塞另一端 Profile；
+- 在 HTML 追加外掛 script 去旁路原生 Router、Store、Page Binder 或 Domain；
+- 建立第二套 availability、cart、pricing、order、permission、print、sync 或 cache 邏輯；
+- 用 CSS／DOM override 掩蓋 Ownership、Authority、State 或資料模型根因；
+- 因第一個 Fix 無效而疊第二層 Patch。
+
+唯一允許的例外：不可控第三方內容、瀏覽器／Native Host 邊界或明確隔離的 migration adapter；必須在 Current Domain Authority 中書面批准，具唯一 Owner、明確輸入輸出 Contract、測試、期限與移除條件。未獲批准一律視為違規補丁。
+
+任何修改前必須回答：
+
+1. 真正根因位於哪個正式責任來源？
+2. 本次修改會寫入哪個 Domain／Store／Runtime／Router／Page／API／Native Host？
+3. 是否新增 bridge、observer、global interception、reload、parallel state 或 hidden compatibility layer？如是，立即 STOP。
+4. 如何證明沒有第二套真相、沒有整頁刷新、沒有 DOM 反推？
+5. 如何做 targeted verification、minimum regression 同 rollback？
+
+Code Review／驗收必須檢查：
+
+- 功能由原生 State → Domain → Render 流動；
+- mutation 由正式 Action／Domain 入口執行；
+- availability 恢復後原生解除鎖定；
+- UI 更新為局部 subscription／render，不 reload；
+- SMT Register／SMT Mobile 共用同一 Core，Mobile 只在 Print Command 邊界不同；
+- Admin／SMT／Customer 對同一 Runtime 使用同一 canonical ID 同狀態模型；
+- 所有新增檔案均屬正式架構責任，而非旁路注入。
+
+違反本節：不得合併、不得部署、不得宣稱 PASS；先回退補丁，再做內核修正。
+
+## 8. Current Development Registry｜2026-07-31
 
 ### Project OS｜G0.5
 - Repo：`Pantonyeung/morefunos`／`main`
@@ -133,7 +173,7 @@ Source implemented ≠ tests executed ≠ deployment ≠ device acceptance。禁
 - Append-only Engineering Log commit：`762ea147521ae3ccfbbe67377fc322f0c472d8ba`
 - Hardware：`DEFERRED — HARDWARE UNAVAILABLE`。
 
-## 8. Gate
+## 9. Gate
 
 - G1：Admin Firebase Publish 真閉環＋Staff Auth／Worker Runtime command staging。
 - G2：Customer reconciliation＋Unified Consumer Adapter。
@@ -141,11 +181,11 @@ Source implemented ≠ tests executed ≠ deployment ≠ device acceptance。禁
 - G4：Print Closure。
 - G5：Device／Store Acceptance。
 
-## 9. 下一步唯一優先
+## 10. 下一步唯一優先
 
 `G1 Admin Firebase Publish Real Closure`：fresh-read Admin PR #1 最新 head，完成 RTDB V2 smoke test、Worker secrets／deployment、Owner Staff API、Staff login/session、protected Runtime command、Admin Staff UI，並取得 Draft／Runtime／Publish／Audit／Recovery 真實 staging evidence。
 
-## 10. 永久禁止
+## 11. 永久禁止
 
 - 用單一 PR／單一模組作 MoreFunOS 最高主題。
 - 將 SMM 繼續發展成第二套系統。
@@ -161,8 +201,9 @@ Source implemented ≠ tests executed ≠ deployment ≠ device acceptance。禁
 - 文件更新觸發 full CI；單一問題反覆跑完整 CI。
 - 從 Reference／Historical 文件直接建立施工指令。
 - 有 fail／flaky 仍合併。
+- 以 bridge／guard／global interception／reload／跳轉殼／DOM 掃描作正式功能或修復。
 
-## 11. 核心文件壓縮制度
+## 12. 核心文件壓縮制度
 
 每個核心只准一份 CURRENT 主文件：
 
@@ -175,7 +216,7 @@ Source implemented ≠ tests executed ≠ deployment ≠ device acceptance。禁
 
 新增資料必須更新原主文件，不得建立 `V2`、`FINAL`、`NEW`、`LATEST`、`REVISED` 等平行 Current 文件。
 
-## 12. 單一累加工程日誌制度
+## 13. 單一累加工程日誌制度
 
 每個現役核心只准另外保留一份 `ENGINEERING_LOG.md`，用作唯一累加式工作記錄。所有以下內容必須追加到該文件尾部，不得再建立獨立文件：
 
