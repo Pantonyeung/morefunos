@@ -1,11 +1,11 @@
 # MoreFunOS Knowledge Migration Register
 
-Status: GOVERNANCE BASELINE COMPLETE
+Status: GOVERNANCE AND EXECUTION BASELINE COMPLETE
 Updated: 2026-07-31 HKT
 
 ## Purpose
 
-逐份登記舊文件的分類、抽取結果及最終歸宿，防止遺漏、重複或舊文件重新搶佔 Authority。
+逐份登記舊文件的分類、抽取結果及最終歸宿，防止遺漏、重複、舊文件重新搶佔 Authority，或新 AI 建立第二套執行規則。
 
 ## Status values
 
@@ -21,10 +21,22 @@ Updated: 2026-07-31 HKT
 
 - Global Master Authority
 - Knowledge Base Current Status
+- Canonical AI Execution Rules
 - One Current Domain Authority per active domain
 - One Engineering Log per domain
 - One Shared Technology current truth per reusable mechanism
 - Evidence and Archive outside the normal read order
+
+## Governance and execution result
+
+| Mechanism | Canonical file | Status |
+|---|---|---|
+| Knowledge navigation | `00_INDEX.md` | MIGRATED |
+| Current governance state | `CURRENT_STATUS.md` | MIGRATED |
+| AI / Codex / agent execution protocol | `AI_EXECUTION_RULES.md` | MIGRATED |
+| Document taxonomy | `DOCUMENT_TAXONOMY.md` | MIGRATED |
+| Cross-port conflict baseline | `CROSS_PORT_CONFLICT_AUDIT.md` | AUDITED |
+| Archive / Redirect control | `ARCHIVE_REDIRECT_MANIFEST.md` | MIGRATED |
 
 ## Port migration result
 
@@ -50,6 +62,25 @@ Updated: 2026-07-31 HKT
 | Low-cost targeted development | `03_SHARED_TECH/LOW_COST_TARGETED_DEVELOPMENT.md` | EXTRACTED |
 | Shared Technology navigation | `03_SHARED_TECH/README.md` | MIGRATED |
 
+## AI execution enforcement result
+
+Canonical protocol: `AI_EXECUTION_RULES.md`.
+
+It now governs:
+
+- Mandatory Fresh Read order.
+- Authority resolution and conflict handling.
+- Scope lock.
+- Permanent prohibition against duplicate Runtime, Business Rule, Data Model, Firebase, Cart, Pricing, Checkout, Order, Payment, Auth, Sync, Print and Current Authority.
+- Targeted verification and low-cost CI discipline.
+- Evidence-level classification.
+- Correct placement into Current Status, Port Authority, Engineering Log, Shared Technology and Evidence.
+- Commit / PR / rollback traceability.
+- Autonomous execution within approved boundaries.
+- Definition of Done and accurate delivery wording.
+
+Status: `MIGRATED / CURRENT EXECUTION PROTOCOL`.
+
 ## Conflict audit result
 
 Canonical audit: `CROSS_PORT_CONFLICT_AUDIT.md`
@@ -71,10 +102,10 @@ Status: `AUDITED / NO UNRESOLVED SAME-LEVEL AUTHORITY CONFLICT`.
 
 | Scope | Family | Destination | Status |
 |---|---|---|---|
-| MoreFunOS | Must Read / legacy Current Registry entry files | `00_INDEX.md` / `CURRENT_STATUS.md` | REDIRECT_READY |
-| Admin | old current-state / completion / handoff entry files | Admin Authority / Log | REDIRECT_READY after individual review |
-| Customer | old authority-boundary and mutable entry files | Customer README / Authority / Log | REDIRECT_READY after individual review |
-| SMT | Start Here / Context Min / old handoff entry files | SMT README / Authority / Log | REDIRECT_READY after individual review |
+| MoreFunOS | Must Read / legacy Current Registry entry files | `00_INDEX.md` / `CURRENT_STATUS.md` / `AI_EXECUTION_RULES.md` | REDIRECT_READY |
+| Admin | old current-state / completion / handoff entry files | Admin Authority / Log / AI Execution Rules | REDIRECT_READY after individual review |
+| Customer | old authority-boundary and mutable entry files | Customer README / Authority / Log / AI Execution Rules | REDIRECT_READY after individual review |
+| SMT | Start Here / Context Min / old handoff entry files | SMT README / Authority / Log / AI Execution Rules | REDIRECT_READY after individual review |
 | SMM | any independent-core entry file | SMM retirement Authority; implementation points to SMT | REDIRECT_READY |
 
 ## Archive-ready families
@@ -107,4 +138,4 @@ No blind bulk deletion is authorized. Physical redirect/archive conversion occur
 
 ## Runtime boundary
 
-This register records documentation governance only. It does not claim runtime merge, deployment, device, printer, store or product acceptance.
+This register records documentation governance and execution protocol only. It does not claim runtime merge, deployment, device, printer, store or product acceptance.
