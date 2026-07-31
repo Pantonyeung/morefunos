@@ -1,6 +1,6 @@
 # MoreFunOS｜G0.5 → G1 正式接手文件
 
-版本：V1.0  
+版本：V1.1  
 日期：2026-07-31 HKT  
 狀態：APPROVED HANDOFF  
 Authority：MoreFunOS Master Control
@@ -16,6 +16,7 @@ Authority：MoreFunOS Master Control
 - GitHub Actions／Cloudflare／Firebase 的實際狀態
 - 遇到的坑與成因
 - 已驗證成功的處理方式
+- 本次對話中由 Owner 明確作出的重要決定
 - 禁止重犯事項
 - G1 的正確開始次序
 
@@ -258,7 +259,30 @@ GitHub 顯示私人個人 Repo ruleset 可能不被強制執行，除非升級�
 
 ---
 
-## 6. G1 開始前禁止事項
+## 6. 本次對話的重要決定
+
+以下均為本次 G0.5 收尾對話中由 Owner 明確確認、批准或執行的決定，接手者不得自行推翻：
+
+1. **不得只靠 Repo 推斷已完成。** 所有「全部清理」與「Action 已處理」判定，必須用實際證據支持；不能用推測、印象或「應該」。
+2. **採用最短證據路徑加速推進。** Owner 以 GitHub、Cloudflare、Firebase 控制台截圖提供證據；AI 負責整理、判定、寫入接手文件。
+3. **GitHub Actions 收斂為 manual-only／read-only。** Active Authority workflow 不恢復 `push`、`pull_request`、`schedule/cron`，亦不容許 bot writeback。
+4. **不把「Allow all actions and reusable workflows」在 G0.5 即時收緊。** 原因是現有 workflow 仍依賴官方 Marketplace actions；供應鏈白名單留待 G1 完整盤點後處理。
+5. **不建立暫時無實際強制效果的私人 Repo Ruleset。** G0.5 只確認沒有殘留 required check blocker；長期 branch governance 留待日後 Organization／Team 策略。
+6. **SMM 不刪 Repo、不刪歷史，但停止自動部署。** Owner 選擇 Disconnect Cloudflare Git repository，而不是 Delete Project；SMM 舊獨立核心維持 superseded。
+7. **SMT Cloudflare 只保留 `main` 生產部署。** Production branch 設為 `main`；所有非生產分支 Preview deployment 關閉。
+8. **Firebase Hosting 不啟用。** 前端部署 Authority 保持在 Cloudflare，避免 Firebase Hosting 與 Cloudflare 雙重自動部署。
+9. **Firebase Functions、Firestore、Storage、Extensions 均不為本階段啟用項目。** 不為了審核而新增服務、升級方案或製造新成本。
+10. **RTDB Rules 採完整 V2 替換。** Owner 批准使用整份 Rules V2 複製貼上並發布，而不是零碎手動補丁。
+11. **Service Account JSON 不提交。** 只核對 service account、key 數量與日期；任何 private key／JSON 不放入聊天、Repo 或前端。
+12. **目前唯一 user-managed service account key 可保留。** Owner 確認只有一把 key；因此不作無根據刪除，但仍須保持用途明確及不外洩。
+13. **Google Cloud Scheduler／Pub/Sub 等未能提供的底層盤點暫時跳過。** 狀態必須寫作 `DEFERRED BY OWNER — NOT A G1 START BLOCKER`，不可寫成已證實不存在。
+14. **G0.5 在上述證據完成後正式結案。** 狀態為 `MOREFUNOS G0.5 CLOSEOUT CERTIFIED`，之後進入 G1 四端閉環整合。
+15. **接手文件必須同步三處。** Jade Note、GitHub、Google Drive 都要保存同一套 Authority、坑位、成功方式與重要決定。
+16. **本次對話的重要決定屬正式 Authority 記錄。** 後續 AI 不可只讀技術結果而忽略 Owner 在本次對話作出的取捨及批准。
+
+---
+
+## 7. G1 開始前禁止事項
 
 - 禁止重新設計 MoreFunOS Architecture
 - 禁止把 default branch 當成唯一 Authority
@@ -269,10 +293,11 @@ GitHub 顯示私人個人 Repo ruleset 可能不被強制執行，除非升級�
 - 禁止未測試就收緊 Rules 至令 Admin／SMT 無法運作
 - 禁止直接 merge Customer PR #21
 - 禁止把 Firebase Hosting 與 Cloudflare 同時設為同一前端的自動 deployment authority
+- 禁止把 Deferred 項目改寫成 PASS
 
 ---
 
-## 7. G1 正確推進順序
+## 8. G1 正確推進順序
 
 1. Fresh Read：Master Authority、Development Must Read、Current Development Registry、Jade 最新 milestone、Active Repo current branch。
 2. 驗證 RTDB Rules V2 runtime smoke test：
@@ -291,7 +316,7 @@ GitHub 顯示私人個人 Repo ruleset 可能不被強制執行，除非升級�
 
 ---
 
-## 8. 明確 Deferred 邊界
+## 9. 明確 Deferred 邊界
 
 Owner 已批准暫時跳過未能提供的 Google Cloud 相關控制台證據，包括 Scheduler／Pub/Sub 等底層盤點。
 
@@ -303,6 +328,6 @@ Owner 已批准暫時跳過未能提供的 Google Cloud 相關控制台證據，
 
 ---
 
-## 9. 接手者第一句應確認
+## 10. 接手者第一句應確認
 
-> 已 Fresh Read Authority。G0.5 基建清理完成；我不會重新設計 Architecture，不會恢復自動 Actions／Preview，不會把 superseded SMM 當獨立核心。下一步按 G1 Work Package 執行 RTDB V2 smoke test 與 Admin／SMT authority integration。
+> 已 Fresh Read Authority。G0.5 基建清理完成；我不會重新設計 Architecture，不會恢復自動 Actions／Preview，不會把 superseded SMM 當獨立核心；我已讀取本次對話的重要決定。下一步按 G1 Work Package 執行 RTDB V2 smoke test 與 Admin／SMT authority integration。
