@@ -79,3 +79,30 @@ Milestone, Progress, Checkpoint, Handoff, Pitfall, Success, Failure, Completion 
 
 ### Next action
 Classify each existing file by actual purpose. Merge unique current knowledge into Authority, Log or Shared Technology; keep raw proof as Evidence; convert duplicates to Redirect or Archive. Preserve unique decisions, root causes, rollback points and evidence boundaries.
+
+---
+
+## 2026-08-01｜Owner Directive：Fastest Safe Complete Closure
+
+### Locked execution directive
+- Objective is the fastest, safest and most complete real store closure, not maximum repository feature count.
+- Every task starts with skeptical verification: repository source, tests, PR and documentation may look complete while deployment, cache, device, hardware or store operation is still broken.
+- Required evidence ladder: `SOURCE_EXISTS → CONTRACT_PASS → FULL_REGRESSION_PASS → DEPLOYED → BROWSER_PASS → DEVICE_PASS → HARDWARE_PASS → STORE_PASS → PRODUCTION_ACCEPTED`.
+- No evidence level may be skipped or inferred.
+- Current sole priority remains F4 P0 Supply／Availability vertical slice. P1 Order, P2 Print and P3 Recovery may only expand after the previous gate passes.
+
+### Failure protocol
+1. Stop scope expansion.
+2. Capture device, URL, build ID, branch, commit SHA, service worker version, time and exact reproduction steps.
+3. Verify the tested device actually loaded the intended deployment commit.
+4. Verify the mutation crossed Worker and reached the canonical Domain Authority.
+5. Reproduce the smallest failing path and identify the first fatal evidence.
+6. Fix only the native Core owner; no bridge, polling, DOM guard, reload or parallel state.
+7. Re-run targeted tests, affected regression, deployment and device acceptance.
+8. After three failed fixes, stop patching, return to known-good rollback and re-audit Authority, State owner, Contract and stale deployment interference.
+
+### Current implementation work package
+`P0-DEPLOY-IDENTITY-01`：make repository／branch／commit／build time／runtime version／service worker version visible and verifiable before F4 device acceptance.
+
+### Evidence boundary
+Directive recorded. Implementation starts from active Preview branches. No closure claim until deployment and device evidence exists.
