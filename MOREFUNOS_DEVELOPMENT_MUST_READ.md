@@ -1,7 +1,7 @@
 # MoreFunOS｜每次開發必讀
 
 > 狀態：CURRENT／唯一開發入口
-> 更新：2026-08-02 HKT
+> 更新：2026-08-03 HKT
 > 正式 Authority：`Pantonyeung/morefunos` → `main`
 
 本文件只保留立即施工所需精華。最高全域 Authority 為 `MOREFUNOS_MASTER_KNOWLEDGE_AUTHORITY.md`；Drive／Jade／舊 Handoff 只可作鏡像或歷史，禁止建立第二套 Current。
@@ -34,54 +34,50 @@ Evidence 固定：`SOURCE_EXISTS → CONTRACT_PASS → FULL_REGRESSION_PASS → 
 
 禁止 bridge、第二套 state authority、DOM scan、capture-click guard、MutationObserver、polling、`location.reload()` 修復、client 直寫 protected RTDB，以及大量 CI／Actions 作 debug loop。
 
-## 4. Current Registry｜2026-08-02 Fresh Read
+## 4. Current Registry｜2026-08-03 Fresh Read
 
 ### Project OS
 - Repo：`Pantonyeung/morefunos`
 - Branch：`main`
-- Fresh head：`96f8c45fd704e2b38aff31070a869e0abdc13827`
-- 最新鎖定：Unified Menu Authority design＋implementation plan。
-- Knowledge PR #4：Draft；文件治理骨架，未取代 main Authority。
+- Fresh head：`396221bc3ed29ce41bb86bff798309d111ad70f3`
+- Knowledge PR #4：`knowledge-base-v2`／head `12d5c6ed302bbaaedf7f58b1f5c7d2d06cac5b1d`／Draft；只係文件治理骨架，未取代 main Authority。
 
 ### A 線 Admin／Unified Menu
 - Repo：`Pantonyeung/morefunos-admin`
 - Active branch：`admin-preview-unified-menu-impl`
-- Draft PR：#22／mergeable
-- Fresh PR head：`077c62015f6f77f5f3d7b0c1f7adc052280db465`；Jade／部署紀錄另有較新施工 SHA，必須以 PR fresh read 再核對，禁止只抄 checkpoint。
-- 已有：Canonical Product Schema、Menu API、Owner CRUD／migration、version／checksum／history、Customer-safe projection。
-- Evidence：Source＋targeted tests；部分 Preview／初步實機回報存在，但完整 Browser／Device／Cross-port acceptance 未收口。
-- 舊 PR #1 仍係歷史大分支，唔再係統一菜單最新施工入口。
+- Draft PR #22／fresh head：`077c62015f6f77f5f3d7b0c1f7adc052280db465`
+- Evidence：Canonical Product schema、Customer／operations presentation、shared status、targeted tests；部署／Browser／Device acceptance 未完成。
+- PR #21 Build Identity、PR #20 Staff Management、PR #19 Diagnostics 仍係並行未合併工作，禁止誤當已進入 PR #22 或 Production。
 
 ### A 線 SMT／SMT Mobile
 - Repo：`Pantonyeung/morefunos-smt`
-- 現役施工已由舊 `smt-main-candidate-v1` 演進至 `smt-preview` 系列；每次必須 fresh-read branch head。
-- 最新已記錄 Source：Unified Menu 消費、Shared Supply Runtime、SMM Mobile Profile、Service Worker cache 修正、SMT direct mutation。
-- Evidence：部分裝置里程碑及 Source；offline queue、重新登入、printer、完整 device acceptance 未完成。
-- 舊 PR #34／舊 head 只作歷史基線，唔可直接當最新施工真相。
+- Runtime 基線：Draft PR #34 `smt-main-candidate-v1`／head `16ed84e0f86ad05759565fff191b521fa94b1249`
+- Login 延伸：Draft PR #35 `fix/g1-smt-remember-staff-login-v1`／head `027d2249b2e780daa49199079589de0e0873df20`
+- SMM 固定入口延伸：Draft PR #36 `feat/g1-staff-login-smm-path-v1`／head `35a5283aa51d5ced8bd22b201bf4ac21e1227559`
+- 關係：#36 以 #35 為 base，#35 以 #34 為 base；不可將三者寫成三套獨立 Current。
+- Evidence：Source＋targeted contract；Cloudflare staging、iPhone／Android、offline queue、token revoke、printer／hardware 未完整驗收。
 
 ### A 線 Customer
 - Repo：`Pantonyeung/morefun-ordering-web`
-- 現役施工已進入 `customer-preview`／Unified Menu consumer 路線；舊 `feat/g1-customer-runtime-consumer-v1` PR #22 只作演進基線。
-- 已有 latest-valid／previous-valid cache、Public Projection、availability overlay。
-- 未完成：Safari／PWA offline cold-start、所有 mutation gate、完整 device acceptance。
+- Draft PR #22：`feat/g1-customer-runtime-consumer-v1`
+- Fresh head：`859335138d089ca50b10928f274d5ad22e7ba6a1`
+- Evidence：Public Runtime、latest-valid／previous-valid offline cache、targeted contract；PR 仍不可合併，完整 diff reconciliation、Preview、Safari／PWA cold start、Device acceptance 未完成。
 
 ### Platform B｜隔離重建線
-- Repo：`Pantonyeung/morefunos-platform-b`（Private）
-- Branch：`agent/part0-monorepo-foundation`
-- Draft PR：#1／mergeable
-- Fresh PR head：`259d0f39c245abfcae4ae2353c1a022ede239860`
-- 性質：完全隔離 B 線；不可覆蓋 A 線 Authority／Production。
-- 已有：Monorepo foundation、F4 Supply contracts、Offline Runtime、Worker／OAuth foundation。
-- 未完成：Firebase Menu Reader、Supply Repository、Staff Token Verifier、Runtime Factory、真實資源 binding、部署與端到端 evidence。
+- Repo：`Pantonyeung/morefunos-platform-b`
+- `main` fresh head：`f3c74fdfa840de74700bf639b7feb64ab3b6d3ba`；Gate B6 已完成並開啟 B7。
+- Draft PR #26：shared Worker HTTP adapter／head `a06821d9de3e1130b7ef2305790fb13b52ec342a`。
+- Draft PR #27：A 線 Customer UI 抽取到 B Runtime／head `359bcba6eb93330550b5539a287f0aa94ef54922`。
+- Evidence：Source＋targeted contract；CI／Device pending。A 線只可作 UI donor，禁止帶入 A 線 Runtime、Firebase path、offline store 或 Apps Script Authority。
 
 ### 舊 SMM／Core
 - `morefunos-smm`：`SUPERSEDED AS INDEPENDENT CORE／MIGRATION SOURCE ONLY`。
 - `morefunos-core`：仍空白；禁止為整理而建立空架構、空 schema、空 docs 或大量 CI。
 
 ## 5. 現時唯一優先事項
-先完成 **Unified Menu＋F4 Supply 真實閉環收口**，同時保持 A／B 線嚴格隔離：
+A 線完成 **Unified Menu＋F4 Supply 真實閉環收口**；B 線只繼續 Gate B7 隔離垂直切片，不得覆蓋 A 線：
 
-`Admin menu／availability mutation → Worker auth＋revision＋idempotency → Firebase authority → SMT Register／Mobile shared store → Customer mutation gates`
+`Admin mutation → Worker auth＋revision＋idempotency → Firebase authority → SMT Register／Mobile shared store → Customer mutation gates`
 
 完成條件：售罄／恢復／paused、offline queue、re-login、token revoke、revision conflict、duplicate retry、Safari／Android／printer／store evidence。未達對應 evidence，不得稱 Production 完成。
 
@@ -93,4 +89,4 @@ Evidence 固定：`SOURCE_EXISTS → CONTRACT_PASS → FULL_REGRESSION_PASS → 
 ## 7. 永久踩坑索引
 中央：`MOREFUNOS_ENGINEERING_PITFALLS_AND_PROVEN_SOLUTIONS.md`。
 
-禁止重犯：舊 WORK03／V42EG 當現役、default branch 當 latest、UI filter 當資料保護、CI 當 debug loop、Cloudflare Git Integration 同 GitHub Actions 混為一談、Cache 舊版本誤判 Source、Software PASS 當 Device／Store PASS。
+禁止重犯：舊 WORK03／V42EG 當現役、default branch 當 latest、PR 延伸鏈誤寫成多套 Authority、UI donor 帶入舊 Runtime Authority、CI 當 debug loop、Cloudflare Git Integration 同 GitHub Actions 混為一談、Cache 舊版本誤判 Source、Software PASS 當 Device／Store PASS。
