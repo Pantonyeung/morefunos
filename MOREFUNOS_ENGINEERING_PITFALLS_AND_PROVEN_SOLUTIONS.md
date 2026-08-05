@@ -1,132 +1,107 @@
 # More FunOS｜工程踩坑與已證明解法
 
-> 狀態：CURRENT / PERMANENT ENGINEERING MEMORY
-> 更新：2026-08-04 HKT
+> 狀態：CURRENT／永久工程記憶
+> 更新：2026-08-05 HKT
 > Authority：`Pantonyeung/morefunos` → `main`
 
-## 1. 使用規則
+## 使用規則
+同一問題只更新同一 Entry。每條最少保留：現象、第一個 fatal evidence、根因、禁止重試、正解、驗證、適用範圍及回滾點。
 
-每次開發前先查本文件及對應 repo pitfalls。相同問題只更新同一 Entry，不建立重複紀錄。
+## 高頻跨端 Pitfalls
 
-每條紀錄最少包含：現象、重現條件、第一個 fatal evidence、根因、無效／禁止重試方法、正確解法、驗證、適用範圍、回滾點及可直接引用步驟。
+### P-001｜Default branch／舊 Handoff 被當最新 Authority
+- **現象**：只讀 `main` 漏 active PR；Drive／Jade 舊 Current 又覆蓋新狀態。
+- **正解**：`Master → Must Read → repo AGENTS／Primary Standard → active PR 最新 head → evidence`。
 
-## P-001｜錯把 default branch 當最新 Authority
-- **現象**：只讀 `main` 漏 active PR；只讀 open PR 又漏 default uploads。
-- **根因**：repo default branch 被誤當 Domain current authority。
-- **正解**：`Master → Registry → repo AGENTS → active PR/head → evidence`。
-
-## P-002｜第二套 Authority／補丁壓根因
-- **現象**：CSS／Observer／runtime patch 愈疊愈多，改咗冇變或互相破壞。
+### P-002｜第二套 Authority／補丁壓根因
 - **禁止**：大量 `!important`、MutationObserver、DOM scan、第二套 Cart／Pricing／Order／Print truth。
-- **正解**：Authority-first；查 DOM、selector、token、runtime write、cache、build、loader、QA chain。
+- **正解**：先定位唯一資料、Render、Build、Cache、Loader Authority，再作最小修正。
 
-## P-003｜完整 CI 反覆 Debug 單一問題
-- **根因**：未隔離 exact failing unit，將 Final Gate 當 Debug 工具。
-- **正解**：`isolate → reproduce → root cause → minimal fix → targeted verification → minimum regression → integration → one final gate`。
+### P-003｜完整 CI 反覆 Debug 單一問題
+- **正解**：`isolate → reproduce → first fatal evidence → root cause → minimal fix → targeted verification → minimum regression → one final gate`。
 
-## P-004｜Scanner 掃描自己造成假陽性
-- **現象**：secret／forbidden scan 命中 regex、規格或 scanner 自身。
-- **正解**：限制 candidate runtime path／file type，保留檢查本身。
+### P-004｜Scanner／工具掃描自己造成假陽性
+- **正解**：限制 runtime candidate path／file type；文件、測試及 scanner 自身不得當 secret evidence。
 
-## P-005｜假設不存在的 Build 入口
-- **現象**：`chmod gradlew` fail，但 compile 未開始。
-- **正解**：fresh-read build topology，沿用唯一 production build pattern，例如 `gradle -p android`。
+### P-005｜Build／環境錯誤誤判程式錯誤
+- **正解**：先讀第一個 fatal log；先排 command、path、Node／Gradle／Wrangler 版本、權限及網絡，再改程式。
 
-## P-006｜Compile step failure 誤判程式 failure
-- **正解**：先讀第一個 fatal log；先排 command／path／env／permission，未有 implementation evidence 禁止改程式。
+### P-006｜Connector／控制面不可見誤當 Runtime Regression
+- **正解**：Infrastructure evidence、Application evidence、SaaS 控制台 evidence 分開；不可觀察就標 `DEFERRED`。
 
-## P-007｜Connector／平台限制誤當應用 Regression
-- **現象**：0-step、runner、connector visibility 問題被當 Runtime fail。
-- **正解**：分開 infrastructure evidence 同 application evidence；必要時本機／Cloud Shell targeted 驗證。
+### P-007｜Software PASS 誤寫成 Device／Production PASS
+- Evidence 固定：`SOURCE_EXISTS → CONTRACT_PASS → FULL_REGRESSION_PASS → DEPLOYED → BROWSER_PASS → DEVICE_PASS → HARDWARE_PASS → STORE_PASS → PRODUCTION_ACCEPTED`。
 
-## P-008｜Software PASS 誤寫成 Device／Production PASS
-- **正解**：`CODE_EXISTS → CONTRACT_PASS → BROWSER_PASS → DEVICE_PASS → STORE_PASS → PRODUCT_LOCKED`。
+### P-008｜長期分叉直接硬 Merge
+- **正解**：以最新 baseline 建 clean integration，只抽取已證明功能，再跑 targeted／minimum regression。
 
-## P-009｜長期分叉分支直接硬 Merge
-- **正解**：以最新 baseline 建 clean integration branch，只抽取已證明功能，再跑 targeted／minimum regression。
+### P-009｜GitHub Actions 同 Cloudflare Git Integration 混為一談
+- 兩者係獨立部署 Authority；改 Workflow 不等於停止 Cloudflare 自動 Build。
 
-## P-010｜舊接手流程仍被當現役
-- **案例**：WORK03 Login／Push／Pull／Heartbeat／Fallback。
-- **處理**：`SUPERSEDED / DO NOT CONTINUE`；移到 Historical／Migration reference。
+### P-010｜Code／Repo 文件被誤當控制台 live state
+- Ruleset、Firebase Rules、Cloudflare 設定必須有控制台或實際 runtime evidence。
 
-## P-011｜只改 GitHub Actions，誤以為已停止 Cloudflare 自動部署
-- **Domain**：Deployment／Cost／Governance
-- **現象**：Workflow 已改 manual-only，但 branch push 仍觸發 Cloudflare build／preview。
-- **根因**：GitHub Actions trigger 與 Cloudflare Git Integration 係兩套獨立自動化 Authority。
-- **禁止重試**：只改 `.github/workflows` 就宣稱部署成本已收口。
-- **正解**：分開盤點 GitHub Actions、Cloudflare production branch、preview branch、deploy hook、Firebase Hosting。
-- **驗證**：控制台證據＋一次無意外 run 觀察。
+### P-011｜Firebase Rules 只有 write、缺少 validate
+- **正解**：備份 → 全量版本替換 → schema validation／最小權限 → 發布 → runtime smoke test。
 
-## P-012｜Repo 文件被誤當控制台設定證據
-- **Domain**：GitHub／Cloudflare／Firebase governance
-- **現象**：因 repo 有 workflow／rules 文件，就聲稱 Actions General、Ruleset、Cloudflare 或 Firebase 已完成。
-- **根因**：Code evidence 無法證明 SaaS 控制台 live state。
-- **正解**：Repo source同控制台證據分開；無法觀察標 `DEFERRED`，不可虛構 PASS。
+### P-012｜角色及身份雙重 Authority
+- Owner：Firebase Auth＋locked claim；Staff：Worker short-lived session。資料 profile 不可成第二授權真相。
 
-## P-013｜Firebase Rules 只有 `.write`，缺少 `.validate`
-- **Domain**：Security／Data integrity
-- **風險**：具寫權限者仍可寫入錯誤 schema；printer／auditLogs 權限過闊。
-- **正解**：先備份，再做完整 Rules version replacement；加入 schema validation、最小權限、append-only／immutable boundary，再做 runtime smoke test。
-- **禁止**：為求通過而全開 Rules 或零碎 patch。
+### P-013｜敏感資料流入前端／文件
+- service account、private key、password material、token 只可留 secrets／server runtime；Drive／Jade／聊天只記架構及狀態。
 
-## P-014｜角色存在雙重 Authority
-- **案例**：RTDB `staffProfiles.role` 與 Firebase Custom Claims `morefunRole` 同時決定權限。
-- **風險**：兩邊不同步，造成越權或誤拒絕。
-- **正解**：鎖定 Owner identity／claim Authority；Staff 不建立 Firebase Auth User，經 Worker short-lived session；資料角色只作必要 profile，不成第二授權真相。
+### P-014｜固定尺寸被誤做獨立版面
+- 1280×800、1920×1080、手機、平板只係驗收 Profile。
+- 禁止整頁 Scale、Copy Page、iframe 尺寸分流、尺寸專用 Store 或第二 Render Path。
 
-## P-015｜私人 Repo Ruleset 存在但未必真正強制
-- **Domain**：GitHub governance
-- **現象**：建立 Ruleset 後誤以為 branch protection 已生效。
-- **正解**：確認帳戶／repo plan 同實際 enforcement evidence；無強制效果時不可當 Gate，避免建立假安全感。
+### P-015｜HTTP 200／Mock／Surface Runner 冒充業務閉環
+- **案例**：四端頁面可開，不代表 Customer 建單、Worker repricing、Firebase persistence、SMT／SMM／Admin 同單已通。
+- **正解**：用同一真實訂單跑完整 Runtime Runner；每個 mutation 帶 idempotency、revision、audit、reload、recovery evidence。
 
-## P-016｜敏感資料因「後端需要」而流入文件或前端
-- **風險資料**：service account JSON、private key、passwordHash、passwordSalt、token、live credential。
-- **正解**：只在受信任 secrets／server runtime 保存；API response 必須移除 password material；Drive／Jade／聊天只記錄架構與狀態，不記錄 secret value。
+### P-016｜Display ID 同 Runtime ID 混淆
+- **案例**：`f4_combo` 與 `prod_f4_combo`。
+- **第一個 fatal evidence**：Pricing／Product lookup `PRICING_UNBOUND` 或找不到正式產品。
+- **禁止**：未核實就加 fallback。
+- **正解**：先讀 known-good Pricing Contract，核對 canonical productId、configVersion、published revision。
 
-## P-017｜固定裝置尺寸被誤做成獨立版面
-- **Domain**：UI／PWA／Responsive
-- **日期**：2026-08-04
-- **現象**：為 1280×800、1920×1080、手機或平板另建畫布、Scale、iframe 或第二套 Render Path。
-- **根因**：把驗收 Profile 誤當產品架構。
-- **禁止重試**：整頁 Scale、Copy Page、尺寸專用 Store、固定高度覆蓋。
-- **正解**：同一 Component／Token／State／Render Path，以 `compact／medium／wide／expanded` 自適應。
-- **驗證**：同一資料及互動在各 Profile、PWA Standalone、方向切換下通過；Device evidence 分開記錄。
-- **回滾點**：修改前 UI baseline commit／Preview。
+### P-017｜遺漏 configVersion／Revision
+- **風險**：舊價格、舊配置或 stale mutation 被接受。
+- **正解**：Order Snapshot、Quote、Mutation、Reload 全鏈保存並驗證 configVersion／revision；stale 必須拒絕。
 
-## P-018｜四端 Contract PASS 被誤寫成固定 Staging／Hardware PASS
-- **Domain**：Cross-surface QA／Evidence
-- **日期**：2026-08-04
-- **現象**：Customer／Admin／SMT／SMM Snapshot、Runner Contract 或 CI 通過後，直接聲稱網頁、APK、打印機或門店完成。
-- **第一個 fatal evidence**：未有真實 deployment URL、Browser run、APK、LAN／USB／藍牙／Native Bridge／Printer evidence。
-- **根因**：驗收層級混淆。
-- **禁止重試**：用 mock、PR 標題或 CI 綠燈代替 Browser／Device／Hardware／Store evidence。
-- **正解**：逐級取得 `DEPLOYED → BROWSER_PASS → DEVICE_PASS → HARDWARE_PASS → STORE_PASS`；第一個失敗只報一個 root cause。
-- **適用**：所有跨端、離線、打印及門店閉環。
-- **回滾點**：上一個已合併 main SHA 及 active PR base SHA。
+### P-018｜錯用 Public Projection 驗內部 Snapshot／Audit
+- Public Tracking 只含客戶可見投影；不可用嚟驗證內部 Audit／完整 Order Snapshot。
+- 應按 projection scope 使用對應 authenticated API／evidence。
 
-## 2. 已證明成功方法
-1. Authority-first。
-2. Fresh-read before write。
-3. Targeted Failure Protocol。
-4. Contract-first。
-5. Clean integration。
-6. Cache／Build chain verification。
-7. Strangler migration。
-8. Single build authority。
-9. Evidence separation。
-10. Checkpoint before cleanup。
-11. GitHub／Cloudflare／Firebase 分開審核。
-12. Workflow manual-only／read-only；結果用 artifact。
-13. Firebase Rules：備份 → 全量替換 → 發布 → runtime smoke test。
-14. 無法驗證就標 Deferred，不虛構 PASS。
-15. 固定尺寸只作驗收 Profile；全端共用自適應設計系統。
-16. 四端固定 staging 驗收先報第一個 fatal root cause，避免噪音式修正。
+### P-019｜非法重送同一狀態 Transition
+- **案例**：Active 清單同時含 accepted／preparing／ready，舊 UI 對所有項目送 `ready`，造成 `ready→ready`。
+- **正解**：UI action 由當前 state machine 決定；相同狀態不可再次 mutation。
 
-## 3. Repo 特定索引
-- SMT：Engineering Success／Targeted Failure／Change Impact。
-- Admin：`ADMIN_PITFALLS_LOG`、WORK04 targeted logs、Staff Auth Master Checklist。
-- Customer：最新 `AGENTS.md`／handoff／pitfalls；Authority reconciliation 未完成。
-- Platform B：B11 fixed staging acceptance／source identity／snapshot contracts；Hardware evidence 必須獨立。
+### P-020｜Offline Replay 驗證次序錯誤
+- **錯誤次序**：Revision 先於 Idempotency，重播合法已完成命令會被 stale revision 擋住。
+- **正確次序**：`Idempotency → Revision → Transition → Commit`。
+- **驗證**：重播同 key 不重複寫入；真正 stale 新命令仍被拒絕。
 
-## 4. 維護規則
-新案例屬既有 Pitfall 就追加 evidence；Repo 詳細 log 未遷移前不可刪除；Must Read 只留索引；Drive／Jade 只作鏡像。
+### P-021｜舊 Current Handoff 未隨主線轉換封存
+- **案例**：B11 已 `SOFTWARE RUNTIME CLOSED`，但 Drive／Jade 仍保留「下一步做 B11 Runner V2」嘅 Current 文件。
+- **正解**：新 Gate 成為 Current 時，同回合將舊 Current 改 `HISTORICAL／SUPERSEDED` 或 archive，保留取代關係。
+
+## 已證明成功方法
+1. Authority-first／Fresh-read before write。
+2. Targeted Failure Protocol／Clean integration。
+3. Contract-first／Single build authority。
+4. Cache-chain verification。
+5. Strangler migration。
+6. Software／Browser／Device／Hardware evidence separation。
+7. Checkpoint before cleanup。
+8. 固定尺寸只作 Profile；同一 Component／State／Render Path。
+9. 真實 Full Runtime Runner：同一訂單、同一 Published Config、同一 Firebase Authority、跨四端驗證。
+10. Offline replay 固定 `Idempotency → Revision → Transition → Commit`。
+
+## Repo 特定索引
+- SMT：repo Engineering Success／Targeted Failure／Change Impact。
+- Admin：`ADMIN_PITFALLS_LOG`、WORK04 logs、Staff Auth checklist。
+- Customer：最新 AGENTS／handoff／pitfalls；Authority reconciliation 未完成。
+- Platform B：B11／B12 handoff、Acceptance Registry、Runtime Runner、Offline／LAN logs。
+
+## 維護規則
+Repo 詳細 log 未遷移前不可刪；Must Read 只留索引；Drive 只作長期鏡像；Jade 只作導航／快速記憶。
