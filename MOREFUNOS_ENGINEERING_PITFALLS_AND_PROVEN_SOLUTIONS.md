@@ -1,7 +1,7 @@
 # More FunOS｜工程踩坑與已證明解法
 
 > 狀態：CURRENT／永久工程記憶
-> 更新：2026-08-05 HKT
+> 更新：2026-08-06 HKT
 > Authority：`Pantonyeung/morefunos` → `main`
 
 ## 使用規則
@@ -85,6 +85,37 @@
 - **案例**：B11 已 `SOFTWARE RUNTIME CLOSED`，但 Drive／Jade 仍保留「下一步做 B11 Runner V2」嘅 Current 文件。
 - **正解**：新 Gate 成為 Current 時，同回合將舊 Current 改 `HISTORICAL／SUPERSEDED` 或 archive，保留取代關係。
 
+### P-022｜OTA Registry／Object 分開部署
+- **現象**：Manifest 指向不存在或未同步 Object，Registry 表面健康但 Package 下載失敗。
+- **第一個 fatal evidence**：Registry metadata 可讀，但內容定址 Object 回傳 404／SHA／Size 不符。
+- **禁止**：只更新 Registry pointer、使用私人 GitHub Raw 當正式 Object Store。
+- **正解**：Registry＋Object 同次部署；先驗 Object SHA／Size，再切 Active Pointer；失敗保持 Previous／Recovery。
+- **驗證**：Deploy → Registry Validate → Object fetch → SHA／Size → Client staging → health → reload／rollback。
+
+### P-023｜Source Gate 偷做 Build／Cache 無 Lockfile
+- **現象**：輕量 Source Gate 因 setup-node cache／pnpm lockfile 或 Android build 失敗，造成無關成本及假阻塞。
+- **根因**：驗證責任混合；Source Gate 同 Candidate Build 無分離。
+- **正解**：Source Gate 禁止 Build；Hardware Candidate 只用手動、固定 source SHA 集中 Build。無 lockfile 時不可啟用依賴 cache。
+- **回滾點**：固定已知 Candidate source／Artifact／SHA。
+
+### P-024｜Node／Wrangler／Worker 入口未鎖
+- **現象**：部署到錯 Worker、Node 20 與 Wrangler 不兼容、根目錄命令無 project。
+- **第一個 fatal evidence**：Health 未顯示目標 Registry runtime，或 CLI 在 build 前已版本／project fatal。
+- **禁止**：見到 workflow 紅色就修改 runtime code。
+- **正解**：先核對 Worker 名、working directory、package script、Node 24、Wrangler 版本及 Token scope。
+
+### P-025｜Health Check 循環自證／Build Artifact 冒充真機
+- **現象**：Health endpoint 只回讀同一 Active Pointer；APK Build／Artifact／SHA PASS 被寫成 Device／Hardware PASS。
+- **根因**：驗證由被測系統自己證明自己，缺少安裝、重啟、離線、Bridge、打印及實體結果。
+- **正解**：固定 HC1，按 Device Acceptance Runbook Gate 1–9；第一個 FAIL 即停。
+- **判定**：Gate 1–7 全 PASS＝Device PASS；Gate 8–9 全 PASS＝Hardware PASS；否則維持 PENDING。
+
+### P-026｜模組化只拆 Component，仍共享隱藏狀態
+- **現象**：表面有 Module，但模組互相調私有方法、直寫 Firebase／硬件、各自保存 Business Truth。
+- **根因**：冇 Runtime Manifest、typed intent、Orchestrator 同 Canonical Projection 邊界。
+- **正解**：`Runtime Manifest → Module Registry → Slot → Capability Module → typed intent → Orchestrator → Domain Command → Canonical Result`。
+- **禁止**：無 Schema Global Event Bus、DOM／localStorage polling、每條產品線複製一套同名模組、用 Feature Flag 掩蓋 Contract 不兼容。
+
 ## 已證明成功方法
 1. Authority-first／Fresh-read before write。
 2. Targeted Failure Protocol／Clean integration。
@@ -96,12 +127,15 @@
 8. 固定尺寸只作 Profile；同一 Component／State／Render Path。
 9. 真實 Full Runtime Runner：同一訂單、同一 Published Config、同一 Firebase Authority、跨四端驗證。
 10. Offline replay 固定 `Idempotency → Revision → Transition → Commit`。
+11. OTA：Registry／Object 同次部署，內容定址驗證後原子切換，保留 Previous／Recovery。
+12. Source Gate 無 Build；固定 Candidate 手動集中 Build，未證明 Native 缺口前禁止重 Build。
+13. 模組化單體前端＋Runtime Manifest；未達真實多團隊獨立部署需求前禁止過早微前端。
 
 ## Repo 特定索引
 - SMT：repo Engineering Success／Targeted Failure／Change Impact。
 - Admin：`ADMIN_PITFALLS_LOG`、WORK04 logs、Staff Auth checklist。
 - Customer：最新 AGENTS／handoff／pitfalls；Authority reconciliation 未完成。
-- Platform B：B11／B12 handoff、Acceptance Registry、Runtime Runner、Offline／LAN logs。
+- Platform B：B11–B14 handoff、Acceptance Registry、Runtime Runner、Offline／LAN／OTA／Hardware logs。
 
 ## 維護規則
 Repo 詳細 log 未遷移前不可刪；Must Read 只留索引；Drive 只作長期鏡像；Jade 只作導航／快速記憶。
