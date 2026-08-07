@@ -1,17 +1,18 @@
 # More FunOS｜工程踩坑與已證明解法
 
 > 狀態：CURRENT／永久工程記憶
-> 更新：2026-08-06 HKT
+> 更新：2026-08-07 HKT
 > Authority：`Pantonyeung/morefunos` → `main`
 
 ## 使用規則
-同一問題只更新同一 Entry。每條最少保留：現象、第一個 fatal evidence、根因、禁止重試、正解、驗證、適用範圍及回滾點。
+同一問題只更新同一 Entry。每條最少保留：現象、第一個 fatal evidence、根因、禁止重試、正解、驗證、適用範圍及回滾點。詳細案例留 repo-specific log；中央只保存跨端高頻經驗與索引。
 
 ## 高頻跨端 Pitfalls
 
 ### P-001｜Default branch／舊 Handoff 被當最新 Authority
 - **現象**：只讀 `main` 漏 active PR；Drive／Jade 舊 Current 又覆蓋新狀態。
-- **正解**：`Master → Must Read → repo AGENTS／Primary Standard → active PR 最新 head → evidence`。
+- **正解**：`Master → Must Read → repo AGENTS／Primary Standard → active PR 最新 head → Current Status／Handoff → evidence`。
+- **2026-08-07 案例**：Platform B Current Handoff 已進入 B15-A12-02R，但 `knowledge-base/CURRENT_STATUS.md` 仍停 B15-A02；已同回合收口。
 
 ### P-002｜第二套 Authority／補丁壓根因
 - **禁止**：大量 `!important`、MutationObserver、DOM scan、第二套 Cart／Pricing／Order／Print truth。
@@ -107,14 +108,38 @@
 ### P-025｜Health Check 循環自證／Build Artifact 冒充真機
 - **現象**：Health endpoint 只回讀同一 Active Pointer；APK Build／Artifact／SHA PASS 被寫成 Device／Hardware PASS。
 - **根因**：驗證由被測系統自己證明自己，缺少安裝、重啟、離線、Bridge、打印及實體結果。
-- **正解**：固定 HC1，按 Device Acceptance Runbook Gate 1–9；第一個 FAIL 即停。
-- **判定**：Gate 1–7 全 PASS＝Device PASS；Gate 8–9 全 PASS＝Hardware PASS；否則維持 PENDING。
+- **正解**：按 Device Acceptance Runbook；第一個 FAIL 即停。
+- **判定**：實機 Gate 全部完成先可升級 evidence。
 
 ### P-026｜模組化只拆 Component，仍共享隱藏狀態
 - **現象**：表面有 Module，但模組互相調私有方法、直寫 Firebase／硬件、各自保存 Business Truth。
 - **根因**：冇 Runtime Manifest、typed intent、Orchestrator 同 Canonical Projection 邊界。
 - **正解**：`Runtime Manifest → Module Registry → Slot → Capability Module → typed intent → Orchestrator → Domain Command → Canonical Result`。
 - **禁止**：無 Schema Global Event Bus、DOM／localStorage polling、每條產品線複製一套同名模組、用 Feature Flag 掩蓋 Contract 不兼容。
+
+### P-027｜Source Harness 同真正 Deployed Artifact 分叉
+- **Pitfall ID／Domain／日期**：P-027／Deployment＋UI Runtime／2026-08-07。
+- **現象／重現**：Source `src/index.ts` 已有 Staff PIN Harness，但 Cloudflare Pages `/acceptance/b11` 仍只見舊 loader／redirect。
+- **第一個 fatal evidence**：真正部署路徑 `public/acceptance/b11/index.html` 無新 Harness；package 無 build step 將 `src` 產生到 `public`。
+- **根因**：Source Render Path 同 deployed static artifact 係兩條獨立路徑，測試只覆蓋 Source。
+- **禁止重試**：只改 `src`、只睇 Typecheck／Vitest／HTTP 200、再加 redirect／loader 補丁。
+- **正解／責任來源**：修改唯一實際部署 artifact，並將 deployed route 本身納入 contract test；Build／Deploy Authority 必須唯一。
+- **驗證**：static contract → Cloudflare deploy → Browser 直接見 Harness → Runtime API acceptance。
+- **適用／不適用**：適用任何 static output、PWA、Pages、bundled runtime；不適用有已證明 deterministic build pipeline 且 artifact 已驗 hash 嘅路徑。
+- **回滾點**：部署前已知 static artifact commit；PR #69 禁止 force overwrite。
+- **下次直接用**：先問「真正部署邊個目錄／檔案？」再驗 Source→Build→Artifact→Deploy 四段鏈。
+
+### P-028｜Staging Published Config 污染字元被 Transport 問題誤導
+- **Pitfall ID／Domain／日期**：P-028／Data Integrity＋Admin Publish／2026-08-07。
+- **現象／重現**：Published Config v7 中文 label 出現 Unicode replacement character U+FFFD `�`。
+- **第一個 fatal evidence**：Worker runtime read 可穩定重現污染值；Transport／Repository 只走 JSON／UTF-8，無轉碼邏輯。
+- **根因**：既有 staging Published Config 已被污染，而非 Worker transport 即時轉碼。
+- **禁止重試**：猜中文字直接覆寫、加 client fallback、將 `�` 靜默 replace 掉。
+- **正解／責任來源**：Admin Validate 遞迴拒絕 U+FFFD；由真正內容 Authority 提供正確文字再重新 Publish。
+- **驗證**：`CORRUPTED_UNICODE_REPLACEMENT_CHARACTER` targeted test → full gate → clean publish → runtime readback。
+- **適用／不適用**：適用 Published Config／Catalog／Content；不適用已知 binary encoding 或非 UTF-8 protocol，該類要獨立診斷。
+- **回滾點**：污染資料修正前保留現有 revision／audit，不作猜測性 mutation。
+- **下次直接用**：先判斷「資料本身壞」定「傳輸轉碼壞」，用 raw readback＋repository path 對照。
 
 ## 已證明成功方法
 1. Authority-first／Fresh-read before write。
@@ -130,12 +155,14 @@
 11. OTA：Registry／Object 同次部署，內容定址驗證後原子切換，保留 Previous／Recovery。
 12. Source Gate 無 Build；固定 Candidate 手動集中 Build，未證明 Native 缺口前禁止重 Build。
 13. 模組化單體前端＋Runtime Manifest；未達真實多團隊獨立部署需求前禁止過早微前端。
+14. Deployed-artifact-first verification：Source、Build output、真正部署目錄、Browser runtime 必須同一條鏈。
+15. Data-integrity-first validation：污染資料先 fail closed，禁止 client 猜值修復。
 
 ## Repo 特定索引
 - SMT：repo Engineering Success／Targeted Failure／Change Impact。
 - Admin：`ADMIN_PITFALLS_LOG`、WORK04 logs、Staff Auth checklist。
 - Customer：最新 AGENTS／handoff／pitfalls；Authority reconciliation 未完成。
-- Platform B：B11–B14 handoff、Acceptance Registry、Runtime Runner、Offline／LAN／OTA／Hardware logs。
+- Platform B：B11–B15 handoff、Acceptance Registry、Runtime Runner、Offline／LAN／OTA／Hardware／B15 preflight logs。
 
 ## 維護規則
 Repo 詳細 log 未遷移前不可刪；Must Read 只留索引；Drive 只作長期鏡像；Jade 只作導航／快速記憶。
