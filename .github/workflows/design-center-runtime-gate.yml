@@ -1,0 +1,27 @@
+name: Design Center Runtime Gate
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'apps/design-center/**'
+      - '.github/workflows/design-center-runtime-gate.yml'
+jobs:
+  runtime-gate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/design-center
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/design-center/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: design-center-dist
+          path: apps/design-center/dist
