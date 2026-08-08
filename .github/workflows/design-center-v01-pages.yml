@@ -1,0 +1,40 @@
+name: Design Center V0.1 Pages
+on:
+  push:
+    branches: [feat/design-center-app-fast-closure]
+    paths:
+      - 'apps/design-center-v01/**'
+      - '.github/workflows/design-center-v01-pages.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: design-center-v01-pages
+  cancel-in-progress: true
+jobs:
+  verify-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify V0.1 authority and closure markers
+        run: |
+          set -euo pipefail
+          test -s apps/design-center-v01/index.html
+          grep -q "P-Line · V0.1" apps/design-center-v01/index.html
+          grep -q "Boundary PASS" apps/design-center-v01/index.html
+          grep -q "canonical-store-readonly" apps/design-center-v01/index.html
+          grep -q "runtime-intent-only" apps/design-center-v01/index.html
+          grep -q "downloadCandidate\|exportIt" apps/design-center-v01/index.html
+          ! grep -qi "firebase-direct" apps/design-center-v01/index.html || grep -q "forbidden\|禁止\|bad=" apps/design-center-v01/index.html
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/design-center-v01
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
