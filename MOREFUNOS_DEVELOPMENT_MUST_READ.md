@@ -53,10 +53,10 @@ Evidence：`SOURCE_EXISTS → CONTRACT_PASS → FULL_REGRESSION_PASS → DEPLOYE
 
 ### P-Line｜現行 operational 主線
 - Repo：`Pantonyeung/morefunos-platform-b`。
-- Active：PR #73／`feat/p-line-fast-closure`／fresh head `85966b3281a896fc4f2ed44bf591c003e138479f`／Draft。
+- Active：PR #73／`feat/p-line-fast-closure`／fresh head `e6024e620da1431443489a778b9b903b0150c6e0`／Draft。
 - Current Authority：`docs/authority/CURRENT_MANDATORY_MORE_FUN_OS_P_LINE_CONSOLIDATED_AUTHORITY_V2.0.md`。
-- Current Status：`knowledge-base/CURRENT_STATUS.md`。
-- Current Handoff：`docs/handoffs/CURRENT_HANDOFF_MORE_FUN_OS_P_LINE_FAST_CLOSURE_2026-08-07.md`。
+- Current Status：`knowledge-base/CURRENT_STATUS.md`；本次收口 commit `8ca8128ff49e74658c9286d69e2e5835943100ea`。
+- Current Handoff：`docs/handoffs/CURRENT_HANDOFF_MORE_FUN_OS_P_LINE_FAST_CLOSURE_2026-08-07.md`；本次收口 commit `e6024e620da1431443489a778b9b903b0150c6e0`。
 
 #### Current evidence
 - P-Line 0.1.8 dependency reproducibility：CLOSED；tracked `pnpm-lock.yaml`＋frozen install。
