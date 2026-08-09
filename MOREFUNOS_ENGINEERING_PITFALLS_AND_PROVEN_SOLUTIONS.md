@@ -1,7 +1,7 @@
 # More FunOS｜工程踩坑與已證明解法
 
 > 狀態：CURRENT／永久工程記憶
-> 更新：2026-08-07 HKT
+> 更新：2026-08-09 HKT
 > Authority：`Pantonyeung/morefunos` → `main`
 
 ## 使用規則
@@ -13,6 +13,7 @@
 - **現象**：只讀 `main` 漏 active PR；Drive／Jade 舊 Current 又覆蓋新狀態。
 - **正解**：`Master → Must Read → repo AGENTS／Primary Standard → active PR 最新 head → Current Status／Handoff → evidence`。
 - **2026-08-07 案例**：Platform B Current Handoff 已進入 B15-A12-02R，但 `knowledge-base/CURRENT_STATUS.md` 仍停 B15-A02；已同回合收口。
+- **2026-08-09 案例**：同一 P-Line Current Status／Handoff 上半部已記錄 UI Interface Final Local Contract PASS，但下半部仍殘留 `FREEZE DRIFT GATE PENDING`；Drive／Jade 亦仍保存舊 Staging FAIL。第一個 fatal evidence係同一 Current 文件內證據層級互相矛盾。正解係 Fresh Read PR head＋最新 test/staging evidence後，壓縮同一 Current 文件並同步三方，禁止用新增第三份 Handoff 掩蓋漂移。
 
 ### P-002｜第二套 Authority／補丁壓根因
 - **禁止**：大量 `!important`、MutationObserver、DOM scan、第二套 Cart／Pricing／Order／Print truth。
@@ -157,12 +158,14 @@
 13. 模組化單體前端＋Runtime Manifest；未達真實多團隊獨立部署需求前禁止過早微前端。
 14. Deployed-artifact-first verification：Source、Build output、真正部署目錄、Browser runtime 必須同一條鏈。
 15. Data-integrity-first validation：污染資料先 fail closed，禁止 client 猜值修復。
+16. Current-document consistency gate：同一份 Current 內 branch/head/evidence/next step 必須只出現一套現行答案；舊段落要移 History，唔可以留低互相矛盾嘅 PASS/PENDING。
 
 ## Repo 特定索引
 - SMT：repo Engineering Success／Targeted Failure／Change Impact。
 - Admin：`ADMIN_PITFALLS_LOG`、WORK04 logs、Staff Auth checklist。
 - Customer：最新 AGENTS／handoff／pitfalls；Authority reconciliation 未完成。
 - Platform B：B11–B15 handoff、Acceptance Registry、Runtime Runner、Offline／LAN／OTA／Hardware／B15 preflight logs。
+- UI Production：Matrix authority／UI Interface registry／Owner review／P-Line batch interface backlog；候選能力不可冒充 Runtime truth。
 
 ## 維護規則
 Repo 詳細 log 未遷移前不可刪；Must Read 只留索引；Drive 只作長期鏡像；Jade 只作導航／快速記憶。
