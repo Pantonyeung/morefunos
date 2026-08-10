@@ -1,251 +1,120 @@
 # MoreFunOS｜Master Knowledge Authority
 
-> Authority Level: A / HIGHEST AUTHORITY
-> Status: CURRENT
-> Updated: 2026-07-31 HKT
-> Canonical Repo: `Pantonyeung/morefunos` → `main`
-> Purpose: MoreFunOS 全系統唯一全域知識、治理、現況與接手文件
+> Authority Level：A／GLOBAL GOVERNANCE
+> Status：CURRENT
+> Updated：2026-08-10 HKT
+> Canonical Repo：`Pantonyeung/morefunos` → `main`
+
+本文件只保存**全系統不變治理、真相優先序、Current Registry 指向及跨域邊界**。域內細節必須 Fresh Read 對應 repo Current Authority／active PR 最新 head；禁止將本文件舊快照當作域內最新 source truth。
+
+唯一每次開發入口：`MOREFUNOS_DEVELOPMENT_MUST_READ.md`。
+
+## 1. 真相優先序
+安全／資料完整／不可逆交易風險 → 本 Global Master Authority → repo `AGENTS.md`／PRIMARY STANDARD → Ownership／Decision Ledger／Current Lock → Current Development Registry／Implementation Status／Code Map／MFKG／Change Impact → Owner 最新明確決定 → Drive／Jade 補充。
+
+域內 Current Authority 可以細化責任，但不可建立第二套全域 Business Truth、Firebase、Worker、Store、State、Payment、Print、Reporting 或 Native Bridge。
+
+GitHub＝正式工程 Authority；Google Drive＝結構化長期鏡像；Jade Note＝AI 導航／快速檢索。三方衝突以 GitHub Fresh Read 為準。
+
+## 2. Evidence Ladder
+`SOURCE_EXISTS → CONTRACT_PASS → FULL_REGRESSION_PASS → DEPLOYED → BROWSER_PASS → DEVICE_PASS → HARDWARE_PASS → STORE_PASS → PRODUCTION_ACCEPTED`
+
+禁止 Source／CI／HTTP 200／Preview／Deploy／OTA install 向上偷升 Evidence。
+
+## 3. 全域正式責任
+- **Admin**：Published Business Policy、Catalog、Product、Option、Combo、Price、Channel、Print Business Policy、Staff／Permission、Audit、Rollback。
+- **P-Line**：Operational Coordination Runtime／MoreFunOS 靈魂／協調員；負責跨 Domain handoff、compatibility、recovery、operational chain acceptance，唔係中央 Business Approval Authority。
+- **Customer**：Customer-safe projection、選餐、合法推薦／Upsell、Checkout Intent；正式 mutation 必須 server-side validation。
+- **SMT Register＋SMT Mobile**：同一套 Store Operations Capability／Core；Surface 可按 Published Policy＋Permission 優化操作流程，唔建立第二 Business Domain。
+- **Worker**：protected mutation、final validation、repricing、revision、idempotency、audit 正式入口。
+- **Firebase RTDB**：Realtime Runtime／Order／Presence／Print Job Authority。
+- **Android Host**：Native／Hardware Host Shell；硬件、離線、背景打印、診斷、Native Bridge。
+- **Google Sheet V2**：ledger／report／audit mirror；唔係即時 Runtime Truth。
+- **UI／Design Center**：Presentation／Interaction／Module Composition；不得反向創造 Runtime／Business Contract。
+
+Surface 可以優化「如何完成」；不可改寫「甚麼合法」或「合法結果值多少」。Final Business Mutation 由相關 Domain 按 Published Policy／Permission／Current Operational State 重新驗證。
+
+## 4. 永久禁止
+- 第二套 Firebase／Worker／Registry／Store／State／Pricing／Order／Payment／Print／Reporting／Native Bridge／Business Truth。
+- Customer／SMT／SMM client 直寫 protected RTDB 或自行成為 authoritative pricing／order truth。
+- Google Sheet／Apps Script 成為 Runtime Authority。
+- DOM scan、MutationObserver、global interception、polling、`location.reload()`、iframe／redirect wrapper 等補丁掩蓋根因。
+- 固定尺寸建立第二套 UI／Store／Render Path；1920×1080、1280×800、手機／平板只係 Profile／Design Canvas。
+- 因 Browser／Worker／OTA 問題 Build APK；只有 exact Native contract gap 經 Owner 批准先可改 Native。
+- Secret／private key／password hash／salt／token 進 repo、前端、Drive、Jade 或聊天。
+
+## 5. Current Registry｜2026-08-10
+
+### Project OS
+- Repo：`Pantonyeung/morefunos`／`main`。
+- Unique Must Read：`MOREFUNOS_DEVELOPMENT_MUST_READ.md`。
+- Engineering Memory：`MOREFUNOS_ENGINEERING_PITFALLS_AND_PROVEN_SOLUTIONS.md`。
+
+### A-Line repositories
+- Admin：`Pantonyeung/morefunos-admin`。
+- SMT／SMT Mobile：`Pantonyeung/morefunos-smt`。
+- Customer：`Pantonyeung/morefun-ordering-web`。
+- 舊 SMM：`Pantonyeung/morefunos-smm`＝`SUPERSEDED AS INDEPENDENT CORE／MIGRATION SOURCE ONLY`。
+- A-Line 今日冇由本全域收口取得新 active evidence；任何施工必須 fresh-read repo PR／branch／head。
+
+### Frozen B-Line
+- Repo：`Pantonyeung/morefunos-platform-b`。
+- PR #69／`feat/b12-ui-runtime-integration-matrix@e9f558d9b87e681dd1d70e1c6477ca36f3d51cbd`。
+- Frozen；禁止修改／force merge／overwrite。
+
+### P-Line｜Current Operational Mainline
+- Repo：`Pantonyeung/morefunos-platform-b`。
+- PR #73／`feat/p-line-fast-closure`／fresh head `53579274897e58beeeda5f0833d8037cf944b6e7`／Draft。
+- **域內最高治理 Authority**：`docs/authority/CURRENT_MANDATORY_MORE_FUN_OS_P_LINE_GOVERNANCE_AND_ENDPOINT_SOVEREIGNTY_CHARTER_V1.0.md`。
+- Current Status：`knowledge-base/CURRENT_STATUS.md`。
+- Current Handoff：`docs/handoffs/CURRENT_HANDOFF_MORE_FUN_OS_P_LINE_FAST_CLOSURE_2026-08-07.md`。
+- Consolidated Authority：`docs/authority/CURRENT_MANDATORY_MORE_FUN_OS_P_LINE_CONSOLIDATED_AUTHORITY_V2.0.md`。
+
+Current evidence：
+- `0.1.14` Device Runtime active：**OBSERVED**。
+- O5 Backend Print State-Machine：**PASS**。
+- O5 Physical Print：**OPEN**。
+- O1–O9 Full Operational Chain：**OPEN**。
+- 10-order Continuity：**OPEN**。
+- Recovery／Rollback Store Acceptance：**OPEN**。
+- Production：**NOT PASS**。
+
+2026-08-10 Owner-confirmed governance已寫入同一 P-Line Highest Governance Authority，包括：
+- Payment／risk-based Production Release／Refund／WhatsApp recovery／daily cash reconciliation；
+- Print Business Policy／same-class failover／reprint-amendment／Ready timing；
+- Completion／Pickup semantics／Customer Risk／immutable recovery／Live Reporting；
+- Product／Category／Combo sales mix＋跨日／月／年等進度比較；
+- **Live Availability-only／Daily Sold-out Reset／Manual Stop／Availability Group／No Inventory**。
+
+詳細內容只以該域內 Highest Governance Authority 最新 branch/head 為準；本 Master 唔複製全文。
+
+### Matrix UI｜Parallel UI Domain
+- Repo：`Pantonyeung/morefun-osui-production`。
+- PR #3／`agent/ui-p-line-only-authority-v1@868226f0ad3d803d1269bf8f6e41b4cc4489dd9b`／Draft。
+- P-Line 仍係 Runtime／Business Contract Authority；UI 只做 Capability／Flow／Module／Surface／Prototype／Editor。
+- `GAP／NEW_REQUIRED／REVIEW_NEW` 只係 backlog，唔等於 Runtime capability。
+
+## 6. Operational Chain Identity
+完整鏈以「Driver／Key／Cargo／Handoff／Next Driver／Recovery／Evidence」表達。P-Line 負責協調，唔係每段唯一 Driver。
+
+所有正式 Order 最終只進一套 Order Truth；Payment、Print、Availability、Reporting、Shared Workspace 各自有單一責任來源。歷史完成事件不得 Silent Rewrite，只可追加 Recovery／Refund／Compensation／Adjustment Evidence。
+
+## 7. Targeted Failure Protocol
+`Authority-first → isolate → reproduce → first fatal evidence → root cause → minimal native-core fix → targeted verification → minimum regression → clean integration → one final gate`
 
-## 0. 唯一入口規則
+CI 紅燈先分 Fail Layer；Deploy PASS ≠ Exact Runtime PASS；Health PASS ≠ Exact Contract PASS；Test file exists ≠ Test executed。
 
-本文件係 MoreFunOS 全系統唯一全域 Authority。任何 AI、Codex、工程師或新對話開始工作時，必須先讀本文件；不得再拼接多份 Master、Must Read、Registry、Classification、Guardrails 或 Knowledge Pack 自行推斷真相。
+## 8. Change Impact
+修改前必查：Admin Publish、Customer Projection、Order／Pricing、Payment、Availability、SMT／SMM Shared Core、Print Jobs、Native Host、Offline／Recovery、Reporting、Rollback。
 
-全域層只保留本文件一份 CURRENT 主文件。其他同級舊文件全部降級為 Redirect／Archive／Reference，不得直接產生施工指令。
+只重跑 affected scope；禁止因治理文件更新、UI 改版或單一 Toolchain failure 無理由重跑／重建全系統。
 
-GitHub 係正式工程 Authority；Google Drive 係長期鏡像；Jade Note 係搜尋及接手導航。三方衝突時，以本文件最新 GitHub 內容為準。
+## 9. Current Unique Next Gate
+**P-Line O5 Physical Print：`fresh canonical Order → Receipt／Label Print Jobs → Claim／Execute → existing Native Host → 真實實體出紙 → exact confirmPrinted／hardware verification writeback`。**
 
-## 1. 四端正式定義
+成功前禁止 O5／Store／Production PASS；成功後先按 affected scope 推進 Kitchen／Production／Packing 真實 Print Policy 同後續 O1–O9。
 
-### Admin Control Plane
-Repo：`Pantonyeung/morefunos-admin`
+## 10. History Policy
+舊 G0／G1／G2、B7／B10／B11／B12／B14／B15 階段 Registry、舊 branch／PR／head／CI／QA／handoff 一律由 Git history、repo-specific history、Drive Archive、Jade archived notes追溯，唔再塞入本 Master 正文。
 
-負責產品、分類、價格、選項、套餐、售罄、公告、營業時間、Draft、Published、Runtime、Release、Audit、Firebase Auth／Role／Rules／Publish／Recovery。
-
-### Customer Experience
-Repo：`Pantonyeung/morefun-ordering-web`
-
-負責顧客瀏覽、會員、選餐、優惠及 Order API 提交。只讀 Published／Runtime Snapshot；不得自行成為價格、售罄、產品規則或 Order Authority。
-
-### SMT Application
-Repo：`Pantonyeung/morefunos-smt`
-
-包含 SMT Register UI 與 SMT Mobile UI；兩者共用同一 Domain、State、Business Rule、Cart、Pricing、Checkout、Order、Payment、Sync、Permission、Audit、Recovery、API Contract。
-
-### SMT Android Host／Hardware Plane
-隸屬 `Pantonyeung/morefunos-smt` Android／Native 部分。
-
-負責 Kiosk、WebView Host、Native Bridge、LAN／Sunmi／Label 打印、Offline Queue／SQLite／Recovery、Runtime OTA／APK OTA、安裝、版本、診斷及設備能力。SMT Mobile 只建立 Print Job／Command，不直接控制實體打印機。
-
-### 舊 SMM
-Repo：`Pantonyeung/morefunos-smm`
-
-狀態：`SUPERSEDED AS INDEPENDENT CORE`。只可作歷史參考、遷移來源或受控抽取；不得再建立第二套 SMM 商業邏輯。
-
-## 2. 唯一閉環
-
-`Admin Draft → Admin Publish → Firebase Published／Runtime Snapshot → Customer／SMT Register／SMT Mobile → Cart／Checkout → Order API → 後端重新計價／Idempotency／唯一 Order ID → Order Authority → SMT Local Queue／Firebase → Print Job → SMT Android Host → Receipt／Kitchen／Label → printed／failed／retry → Audit／Report／Google Sheet Mirror`
-
-## 3. Source of Truth
-
-| 領域 | 唯一 Authority | 永久禁止 |
-|---|---|---|
-| 產品／價格／規則 | Admin Published | Customer／SMT 自行改價 |
-| 售罄／等候時間 | Runtime Snapshot | 各端維護第二真相 |
-| 顧客訂單提交 | Order API | 前端直接寫 Order Authority |
-| 訂單正式狀態 | Order Authority＋SMT Local durable queue | Google Sheet 作即時真相 |
-| 打印工作 | Print Job Contract | Customer／SMT Mobile 直接控打印機 |
-| Android 硬件 | SMT Android Host | Web Runtime 假裝具 Native 能力 |
-| 報表／帳簿 | Google Sheet Mirror／Audit | Sheet 派正式流水或重新計價 |
-| UI／Adaptive | SMT 自適應系統 Authority | 1920→1280 整頁縮放／第二套 UI |
-
-現役架構：Firebase Auth＋Firebase RTDB＋Cloudflare Worker＋Google Sheet V2 ledger mirror。Google Sheet／Apps Script 不再係 Runtime Authority。
-
-## 4. 文件分級與舊資料降權
-
-- A｜Master Authority：只有本文件。
-- B｜Current Domain Authority：只對指定 repo／domain／branch／PR／head 有效。
-- C｜Reference Only：背景、舊 UI、商業規則、migration、Contract、測試案例。
-- D｜Engineering Knowledge：根因、踩坑、成功方法、回滾及驗證模式。
-- E｜Historical／Audit：追溯、備份、版本比較。
-
-以下全部預設 C 或 E：WORK01／WORK02／WORK03、Apps Script V1.2.x、舊 Staff Auth／Sync Runtime／gateway、舊 Google Sheet 主資料庫／即時 Order Truth、V42／SA2／EG、舊 Customer root-five-file 快照、舊 SMM independent core、仍引用上述架構的舊四端整合包／Final Lock／接手主題包。
-
-固定標籤：`REFERENCE ONLY / NON-AUTHORITY / DO NOT IMPLEMENT DIRECTLY / MUST RECONCILE WITH CURRENT AUTHORITY`。
-
-標題含 LOCK／FINAL／MUST READ／CURRENT 不會自動提升權威。
-
-## 5. 全域開工規則
-
-每次執行只需：
-
-1. Fresh-read 本文件。
-2. Fresh-read 對應 repo 最新 `AGENTS.md`。
-3. Fresh-read該核心唯一 Current Domain Authority 文件。
-4. Fresh-read active branch／PR／head evidence。
-
-未完成以上四步，禁止修改、建立 CI、合拼或宣稱完成。
-
-每次工作必須記錄：所屬 Gate、影響端口／repo、唯一 Authority、閉環影響、Evidence Level、改動／根因／驗證、未完成邊界、下一步、三方同步狀態。
-
-## 6. Targeted Failure／Evidence
-
-工作模式：`單一問題 → isolate → reproduce → root cause → minimal fix → targeted verification → minimum regression → integration branch → one final gate`
-
-Evidence：`CODE_EXISTS → CONTRACT_PASS → BROWSER_PASS → DEVICE_PASS → STORE_PASS → PRODUCT_LOCKED`。
-
-Source implemented ≠ tests executed ≠ deployment ≠ device acceptance。禁止跨級宣稱。
-
-## 7. Native Core Only｜全系統強制開發守則
-
-所有 MoreFunOS 開發必須將功能寫入其唯一正式責任來源：Domain、Store、Runtime、Router、Page State、API Contract、Worker Route、Print Domain 或 Native Host。UI 只可以由正式 State／Domain Render；不得用畫面攔截、橋接或補丁製造第二套行為。
-
-永久禁止以下做法作為正式功能實作或 Bug 修復：
-
-- monkey patch、覆寫 `fetch`、覆寫全域函數、替換原 API 行為；
-- 額外 bridge／guard／compatibility／override script 掛入既有頁面；
-- capture-phase 全域攔截 click／submit，再 `preventDefault`、`stopImmediatePropagation` 或模擬第二次 click；
-- MutationObserver、DOM 全樹掃描、讀畫面文字或 class 反推正式業務狀態；
-- `setInterval`／定時輪詢 DOM 或 `localStorage` 作 UI 同步機制；
-- 使用 `location.reload()`、iframe reload 或整頁重建作狀態同步；
-- 用跳轉殼、redirect wrapper、iframe 或桌面 UI 硬塞另一端 Profile；
-- 在 HTML 追加外掛 script 去旁路原生 Router、Store、Page Binder 或 Domain；
-- 建立第二套 availability、cart、pricing、order、permission、print、sync 或 cache 邏輯；
-- 用 CSS／DOM override 掩蓋 Ownership、Authority、State 或資料模型根因；
-- 因第一個 Fix 無效而疊第二層 Patch。
-
-唯一允許的例外：不可控第三方內容、瀏覽器／Native Host 邊界或明確隔離的 migration adapter；必須在 Current Domain Authority 中書面批准，具唯一 Owner、明確輸入輸出 Contract、測試、期限與移除條件。未獲批准一律視為違規補丁。
-
-任何修改前必須回答：
-
-1. 真正根因位於哪個正式責任來源？
-2. 本次修改會寫入哪個 Domain／Store／Runtime／Router／Page／API／Native Host？
-3. 是否新增 bridge、observer、global interception、reload、parallel state 或 hidden compatibility layer？如是，立即 STOP。
-4. 如何證明沒有第二套真相、沒有整頁刷新、沒有 DOM 反推？
-5. 如何做 targeted verification、minimum regression 同 rollback？
-
-Code Review／驗收必須檢查：
-
-- 功能由原生 State → Domain → Render 流動；
-- mutation 由正式 Action／Domain 入口執行；
-- availability 恢復後原生解除鎖定；
-- UI 更新為局部 subscription／render，不 reload；
-- SMT Register／SMT Mobile 共用同一 Core，Mobile 只在 Print Command 邊界不同；
-- Admin／SMT／Customer 對同一 Runtime 使用同一 canonical ID 同狀態模型；
-- 所有新增檔案均屬正式架構責任，而非旁路注入。
-
-違反本節：不得合併、不得部署、不得宣稱 PASS；先回退補丁，再做內核修正。
-
-## 8. Current Development Registry｜2026-07-31
-
-### Project OS｜G0.5
-- Repo：`Pantonyeung/morefunos`／`main`
-- 狀態：`MOREFUNOS G0.5 CLOSEOUT CERTIFIED`
-- Active workflows：manual-only／read-only；禁止恢復 push／pull_request／cron／bot writeback。
-- SMT Cloudflare production branch：`main`；Preview auto deploy 已停。
-- 舊 SMM Cloudflare Git integration 已斷開。
-- Firebase Hosting／Functions／Firestore／Storage／Extensions 未啟用。
-- Scheduler／Pub/Sub：`DEFERRED BY OWNER — NOT A G1 START BLOCKER`。
-
-### Admin｜G1
-- Repo：`Pantonyeung/morefunos-admin`
-- Branch：`feat/admin-p0-full-connect-v1`
-- PR #1：Draft／Open／Mergeable
-- Current observed head before consolidation：`4a3b75c13c25619a41fcdbea1a73a503434c846e`
-- Single Domain Authority commit：`6959cfb8151fcfb252d2fc13570b5aab7f8a1b86`
-- Append-only Engineering Log commit：`3599a7c1a27c6800ccb22f34fe96c906a0cca41d`
-- 未完成：Worker secrets／latest deployment、protected Runtime command acceptance、跨端 staging acceptance、latest head test execution。
-
-### Customer｜G2
-- Repo：`Pantonyeung/morefun-ordering-web`
-- Branch：`feat/g1-customer-runtime-consumer-v1`
-- PR #22：Draft／Open／Mergeable
-- Current observed head before consolidation：`0c32ae394e5b3b3db7885a4c032d4ed2532e56cf`
-- Single Domain Authority commit：`db6f74c3f330a2842bb833ab8fcd3e9a8a700688`
-- Append-only Engineering Log commit：`fafad097a6f53464db43d3255b63aad79dad3e10`
-- 未完成：branch reconciliation、latest-head regression、preview deployment、Safari/PWA device acceptance、production promotion。
-
-### SMT
-- Repo：`Pantonyeung/morefunos-smt`
-- Branch：`smt-main-candidate-v1`
-- PR #34：Draft／Open／Mergeable
-- Current observed head before consolidation：`879443a21de5bb34e798d1d4a3c773f14b3168f2`
-- Single Domain Authority commit：`eb3adef7ae4faf4b6f4c60c9b5e36728368cf5c9`
-- Append-only Engineering Log commit：`762ea147521ae3ccfbbe67377fc322f0c472d8ba`
-- Hardware：`DEFERRED — HARDWARE UNAVAILABLE`。
-
-## 9. Gate
-
-- G1：Admin Firebase Publish 真閉環＋Staff Auth／Worker Runtime command staging。
-- G2：Customer reconciliation＋Unified Consumer Adapter。
-- G3：Order API／後端重新計價／Idempotency／原子派號／Customer→SMT Intake。
-- G4：Print Closure。
-- G5：Device／Store Acceptance。
-
-## 10. 下一步唯一優先
-
-`G1 Admin Firebase Publish Real Closure`：fresh-read Admin PR #1 最新 head，完成 RTDB V2 smoke test、Worker secrets／deployment、Owner Staff API、Staff login/session、protected Runtime command、Admin Staff UI，並取得 Draft／Runtime／Publish／Audit／Recovery 真實 staging evidence。
-
-## 11. 永久禁止
-
-- 用單一 PR／單一模組作 MoreFunOS 最高主題。
-- 將 SMM 繼續發展成第二套系統。
-- default branch 代表所有 domain。
-- Customer／SMT 自行重新計價。
-- Google Sheet 作即時 Order Truth。
-- Staff／SMT／SMT Mobile 直接寫受保護 RTDB。
-- Staff 建立 Firebase Authentication User。
-- Firebase Hosting 與 Cloudflare 同時作同一前端自動部署 Authority。
-- service account JSON／private key／password hash／salt／token 進 Repo、前端、Drive、Jade 或聊天。
-- Adaptive 當 Scale；override／Observer／DOM scan 掩蓋 Authority 根因。
-- Software／Contract／Browser PASS 當 Device／Store／Production PASS。
-- 文件更新觸發 full CI；單一問題反覆跑完整 CI。
-- 從 Reference／Historical 文件直接建立施工指令。
-- 有 fail／flaky 仍合併。
-- 以 bridge／guard／global interception／reload／跳轉殼／DOM 掃描作正式功能或修復。
-
-## 12. 核心文件壓縮制度
-
-每個核心只准一份 CURRENT 主文件：
-
-- Global Project OS：`MOREFUNOS_MASTER_KNOWLEDGE_AUTHORITY.md`
-- Admin：`CURRENT_DOMAIN_AUTHORITY.md`
-- Customer：`CURRENT_DOMAIN_AUTHORITY.md`
-- SMT Register＋Mobile＋Android Host：`CURRENT_DOMAIN_AUTHORITY.md`
-
-`AGENTS.md` 只保留執行入口與指向，不重複 Architecture／Current Status。其他 Lock、Checklist、Handoff、Pitfall 文件全部改為附錄、Evidence 或 Archive，不得與 Current Domain Authority 並列。
-
-新增資料必須更新原主文件，不得建立 `V2`、`FINAL`、`NEW`、`LATEST`、`REVISED` 等平行 Current 文件。
-
-## 13. 單一累加工程日誌制度
-
-每個現役核心只准另外保留一份 `ENGINEERING_LOG.md`，用作唯一累加式工作記錄。所有以下內容必須追加到該文件尾部，不得再建立獨立文件：
-
-- 進度／Milestone／Checkpoint／Handoff
-- 踩坑／根因／失敗方法／回滾方法
-- 成功方法／可重用解法／驗證模式
-- 測試結果／部署結果／Browser／Device／Store Evidence
-- 未完成邊界／風險／下一步
-- branch／PR／head／commit／artifact 對齊記錄
-
-正式結構固定為：
-
-```text
-Global
-└── MOREFUNOS_MASTER_KNOWLEDGE_AUTHORITY.md
-
-Admin
-├── CURRENT_DOMAIN_AUTHORITY.md
-└── ENGINEERING_LOG.md
-
-Customer
-├── CURRENT_DOMAIN_AUTHORITY.md
-└── ENGINEERING_LOG.md
-
-SMT Register＋Mobile＋Android Host
-├── CURRENT_DOMAIN_AUTHORITY.md
-└── ENGINEERING_LOG.md
-```
-
-禁止新增 `MILESTONE_*`、`HANDOFF_*`、`PITFALL_*`、`SUCCESS_*`、`PROGRESS_*`、`LATEST_*`、`FINAL_*`、`VERIFICATION_SUMMARY_*` 或同類平行文件。需要保存機器產生的原始測試輸出時，只可放入 evidence/artifact 路徑，並由 `ENGINEERING_LOG.md` 引用；原始輸出不得成為 Authority。
-
-日誌採 append-only：日常只在尾部追加。定期由 Owner 主導做 compaction，刪除重複、過時、被取代內容，但必須保留：已鎖定決定、根因、成功方法、Evidence Level、rollback point、未解風險及可追溯 commit。
+舊 LOCKED／CURRENT 決策不可消失；新決策以 `SUPERSEDED`／replacement relationship 保留追溯。工程踩坑集中 `MOREFUNOS_ENGINEERING_PITFALLS_AND_PROVEN_SOLUTIONS.md` 或 repo-specific canonical log。
