@@ -51,7 +51,7 @@ GitHub＝正式工程 Authority；Drive＝結構化長期鏡像；Jade＝AI 導�
 - **Domain Single Highest Authority**：`docs/authority/CURRENT_MANDATORY_MORE_FUN_OS_P_LINE_MASTER_GOVERNANCE_EXECUTION_AND_EXTERNAL_FIRST_AUTHORITY_V1.1.md`。
 - Greenfield Boundary：`docs/authority/CURRENT_MANDATORY_P_LINE_GREENFIELD_APP_REBUILD_BOUNDARY_V1.0.md`（正文 V1.1）。
 - Current Handoff：`docs/handoffs/CURRENT_HANDOFF_MORE_FUN_OS_P_LINE_GREENFIELD_STORE_DAY_LIFECYCLE_2026-08-10.md`（正文 2026-08-11）。
-- Repo Engineering Memory：`docs/authority/CURRENT_MANDATORY_MOREFUNOS_PITFALL_MOTHER_FILE_V1.0.md`＋carry-forward protocol。
+- Repo Engineering Memory：`docs/authority/CURRENT_MANDATORY_MOREFUNOS_PITFALL_MOTHER_FILE_V1.1.md`＋carry-forward protocol；V1.0 已降級 `SUPERSEDED／REDIRECT ONLY`。
 - 舊 Governance Charter V1.0 已被 Master Governance V1.1 吸收並 `SUPERSEDED`。
 
 #### Current Product Decision
