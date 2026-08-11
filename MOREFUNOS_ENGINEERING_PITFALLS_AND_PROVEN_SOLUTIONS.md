@@ -1,7 +1,7 @@
 # More FunOS｜工程踩坑與已證明解法
 
 > 狀態：CURRENT／永久工程記憶
-> 更新：2026-08-09 HKT
+> 更新：2026-08-11 HKT
 > Authority：`Pantonyeung/morefunos` → `main`
 
 ## 使用規則
@@ -14,6 +14,7 @@
 - **正解**：`Master → Must Read → repo AGENTS／Primary Standard → active PR 最新 head → Current Status／Handoff → evidence`。
 - **2026-08-07 案例**：Platform B Current Handoff 已進入 B15-A12-02R，但 `knowledge-base/CURRENT_STATUS.md` 仍停 B15-A02；已同回合收口。
 - **2026-08-09 案例**：同一 P-Line Current Status／Handoff 上半部已記錄 UI Interface Final Local Contract PASS，但下半部仍殘留 `FREEZE DRIFT GATE PENDING`；Drive／Jade 亦仍保存舊 Staging FAIL。第一個 fatal evidence係同一 Current 文件內證據層級互相矛盾。正解係 Fresh Read PR head＋最新 test/staging evidence後，壓縮同一 Current 文件並同步三方，禁止用新增第三份 Handoff 掩蓋漂移。
+- **2026-08-11 案例**：PR #73 由昨日 head `5357927…` 前進 391 commits 到 `6377dc2…`；P-Line 已由舊 O5 修復線轉成 Greenfield Owner-Review-First，而中央 Must Read／Drive 仍寫 O5 Physical Print next gate。正解係 fresh-read 新 Highest Authority＋Greenfield Handoff，再同回合修正中央、Drive、Jade。
 
 ### P-002｜第二套 Authority／補丁壓根因
 - **禁止**：大量 `!important`、MutationObserver、DOM scan、第二套 Cart／Pricing／Order／Print truth。
@@ -142,6 +143,13 @@
 - **回滾點**：污染資料修正前保留現有 revision／audit，不作猜測性 mutation。
 - **下次直接用**：先判斷「資料本身壞」定「傳輸轉碼壞」，用 raw readback＋repository path 對照。
 
+## 2026-08-11 Greenfield 高頻 Guard｜去重索引
+詳細案例及完整字段只留 P-Line repo canonical：`docs/authority/CURRENT_MANDATORY_MOREFUNOS_PITFALL_MOTHER_FILE_V1.1.md`。
+- **PIT-044**：完整能力模組禁止過度碎片化；開 RED 前先鎖包含／不包含／主鏈位置／上游 Cargo／External-First 候選。
+- **PIT-045**：Payment Status ≠ Production Release；未付款可經人工／Policy 放行製作，付款失敗唔可自動取消製作。
+- **PIT-046／047**：最新 Owner Decision 優先；禁止開發者用舊文件／工程常識自行創作營運規則。固定 Owner-Review-First。
+- **PIT-048**：Local Store Operations、Customer Online Ordering、Internet 狀態不可綁死；Local-First／LAN 接手必須保持店舖可營運。
+
 ## 已證明成功方法
 1. Authority-first／Fresh-read before write。
 2. Targeted Failure Protocol／Clean integration。
@@ -159,12 +167,14 @@
 14. Deployed-artifact-first verification：Source、Build output、真正部署目錄、Browser runtime 必須同一條鏈。
 15. Data-integrity-first validation：污染資料先 fail closed，禁止 client 猜值修復。
 16. Current-document consistency gate：同一份 Current 內 branch/head/evidence/next step 必須只出現一套現行答案；舊段落要移 History，唔可以留低互相矛盾嘅 PASS/PENDING。
+17. Owner-Review-First：Owner先鎖真實流程／人工彈性／Fallback／Cargo，再 Contract → External-First → Implementation → affected regression／compatibility。
+18. Greenfield historical-reference discipline：舊 Source／Schema／Tests只供需求、踩坑、Evidence考古，唔可重新變成新 App dependency。
 
 ## Repo 特定索引
 - SMT：repo Engineering Success／Targeted Failure／Change Impact。
 - Admin：`ADMIN_PITFALLS_LOG`、WORK04 logs、Staff Auth checklist。
 - Customer：最新 AGENTS／handoff／pitfalls；Authority reconciliation 未完成。
-- Platform B：B11–B15 handoff、Acceptance Registry、Runtime Runner、Offline／LAN／OTA／Hardware／B15 preflight logs。
+- Platform B／P-Line Greenfield：`docs/authority/CURRENT_MANDATORY_MOREFUNOS_PITFALL_MOTHER_FILE_V1.1.md` 為唯一 Current repo Mother；V1.0 已 `SUPERSEDED／REDIRECT ONLY`。B11–B15／O5 logs全部只作歷史案例。
 - UI Production：Matrix authority／UI Interface registry／Owner review／P-Line batch interface backlog；候選能力不可冒充 Runtime truth。
 
 ## 維護規則
