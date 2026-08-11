@@ -55,7 +55,7 @@ Evidence：`SOURCE_EXISTS → CONTRACT_PASS → FULL_REGRESSION_PASS → DEPLOYE
 - 舊 `CURRENT_MANDATORY_MORE_FUN_OS_P_LINE_GOVERNANCE_AND_ENDPOINT_SOVEREIGNTY_CHARTER_V1.0.md` 已被 V1.1 吸收並 SUPERSEDED。
 - Greenfield Boundary：`docs/authority/CURRENT_MANDATORY_P_LINE_GREENFIELD_APP_REBUILD_BOUNDARY_V1.0.md`（正文 V1.1）。
 - Current Handoff：`docs/handoffs/CURRENT_HANDOFF_MORE_FUN_OS_P_LINE_GREENFIELD_STORE_DAY_LIFECYCLE_2026-08-10.md`（正文已更新至 2026-08-11）。
-- Repo Pitfall canonical：`docs/authority/CURRENT_MANDATORY_MOREFUNOS_PITFALL_MOTHER_FILE_V1.0.md`＋後續最低增量版本／carry-forward protocol。
+- Repo Pitfall canonical：`docs/authority/CURRENT_MANDATORY_MOREFUNOS_PITFALL_MOTHER_FILE_V1.1.md`＋carry-forward protocol；V1.0 只係 `SUPERSEDED／REDIRECT ONLY`。
 
 #### Greenfield Current Decision
 - 2026-08-10 下午較新 Owner Decision supersede 朝早「NO RESTART／繼續修舊 O5」路線。
@@ -95,6 +95,6 @@ Evidence：`SOURCE_EXISTS → CONTRACT_PASS → FULL_REGRESSION_PASS → DEPLOYE
 
 ## 8. Pitfalls／Proven Solutions 索引
 中央：`MOREFUNOS_ENGINEERING_PITFALLS_AND_PROVEN_SOLUTIONS.md`。
-P-Line Greenfield repo-specific：`docs/authority/CURRENT_MANDATORY_MOREFUNOS_PITFALL_MOTHER_FILE_V1.0.md`。
+P-Line Greenfield repo-specific：`docs/authority/CURRENT_MANDATORY_MOREFUNOS_PITFALL_MOTHER_FILE_V1.1.md`。
 
 目前特別禁止重犯：舊 Authority／head 冒充 Current；舊 Source dependency 綁死 Greenfield；Payment Status 同 Production Release 綁死；能力模組過度碎片化；Runtime Contract PASS 冒充 Type／Compatibility／Device PASS；Local Store Operations 被 Internet／Customer Online Ordering 綁死；External SDK 反向成為 Business Truth。
