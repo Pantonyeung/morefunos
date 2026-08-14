@@ -1,70 +1,87 @@
 # MoreFunOS｜每次開發必讀
 
 > 狀態：CURRENT／全系統唯一導航入口
-> 更新：2026-08-13 HKT
-> 本文件只做 Authority Routing；不得建立第二套 Greenfield Authority。
+> 更新：2026-08-14 HKT
+> 本文件只做 Authority Routing；正式 VNext 工程真相只存在於下述兩個 Current Repo。
 
-## 1｜唯一現役工程主線
-- Repo：`Pantonyeung/Greenfield-P-Line-Repo`
-- Default：`main`
-- Active Branch：`feat/part6-local-operational-sovereignty`
-- Fresh Head：`986c4c85312a2bd4f6ca8f609d949e24174c2de4`
-- Active engineering PR：無；PR #4–#8 為 temporary TDD/evidence branches，唔係 Current Authority。
+## 1｜唯一現役 Repository Set
+1. `Pantonyeung/morefunos-vnext`
+   - 唯一 Source／Runtime／Business／Development Authority。
+2. `Pantonyeung/-morefunos-vnext-builder`
+   - Owner-manual build／execution relay only；永遠唔係 Business Truth／Runtime／Store／Native Bridge／Print／OTA Authority。
 
-Greenfield Active Authority＝Owner 最新 Decision＋Greenfield 開發4件套＋Current Source／Contract／Tests／Evidence。`Pantonyeung/morefunos` 只保留全系統導航／歷史治理索引。
+**沒有第三個 Current Repo。**
+Greenfield、Platform-B、舊 P-Line、舊 SMT/SMM/Admin/Customer、Drive、Jade 全部只係 REFERENCE ONLY／HISTORICAL DONOR；不可覆蓋 VNext Current。
 
-## 2｜Greenfield 開工必讀4件套
-1. `docs/authority/PITFALL_MOTHER.md`
+## 2｜現役 Branch／PR／Head
+- Source Repo：`Pantonyeung/morefunos-vnext`
+- Active Branch：`feat/smt-operational-vertical-slice-gate-b`
+- Draft PR：#11 `Gate B-C: External-first SMT Business Soul + durable local operation`
+- Fresh Head：`64714a96c487ecbba280ea2773bb5c7fa976252f`
+- Base `main`：`4d654e6a77dff6fb75f9d8b8c71387f41796563c`
+- Builder `main`：`0bba4051b8c2f56135bdc01af99be9b8bca60448`
+
+## 3｜VNext 開工必讀
+1. `AGENTS.md`
 2. `docs/handoffs/CURRENT_HANDOFF.md`
-3. `docs/development/CURRENT_DEVELOPMENT_LOG.md`
-4. `docs/decisions/OWNER_DECISION_REGISTRY.md`
+3. `docs/handoffs/CURRENT_DEVELOPMENT_LOG.md`
+4. `docs/handoffs/CURRENT_OWNER_DECISIONS.md`
+5. `docs/handoffs/CURRENT_EXECUTION_PLAN.md`
+6. relevant `docs/authority/CURRENT_MANDATORY_*`
+7. UI work 額外讀：
+   - `CURRENT_MANDATORY_UI_AUTONOMY_AND_HANDOFF_POLICY.md`
+   - `CURRENT_MANDATORY_VNEXT_SMT_OPERATIONAL_SOUL_AND_UI_CONTRACT.md`
+   - `CURRENT_MANDATORY_VNEXT_SOVEREIGNTY_AND_REFERENCE_POLICY.md`
 
-再讀當前 Gate 對應 Owner Decision、Source、Tests、Workflow、Compatibility Evidence。
+## 4｜最新 LOCKED／CURRENT
+- VNext Sovereignty V1.1：只有 Source Repo＋Builder Repo Current。
+- External-first：Official OS/Framework SDK → Vendor SDK/Protocol → mature maintained OSS → thin VNext adapter → custom last。
+- UI owns presentation／layout／navigation／interaction／composition；Business Soul owns business meaning。
+- 不可建立第二套 Store／State／Business Truth／Native Bridge／Print／OTA Authority。
+- Private `morefunos-vnext` Actions 禁止；Builder 只可 Owner manual `workflow_dispatch`＋exact source SHA。
+- 一隻 APK／Source line：RK3568 primary＋SUNMI T2s backup；minSdk28；禁止 T2s fork／Printer APK。
 
-## 3｜最新 LOCKED／CURRENT
-- Full-Day Software Closure：PASS，tested SHA `d070c04791dbe6bda6b19c8a247722cbf98a89f8`。
-- MPC1 Native Host／Boot／OTA controls：只到 host/unit／emulator evidence；Physical Device 未 PASS。
-- SMT Runtime M1 Presentation Extraction：PASS。
-- SMT Runtime M2 Greenfield Binding：PASS；Final Run `31609653387`／Job `94157424969`。
-- `operationalReady=false` 必須保留；M1/M2 PASS ≠ Operational Ready。
-- 最新 Owner Decision：`MATURE_PLATFORM_ASSEMBLY_FIRST_OWNER_DECISION_2026-08-12.md`。
-- 原 Custom M3 persistence-RPC 方向降級為研究證據，唔係 production direction。
+## 5｜Evidence Truth
+Evidence ladder：`SOURCE → TEST/CONTRACT → BUILD → INSTALL → DEVICE → HARDWARE → OPERATIONAL → PRODUCTION`。
 
-## 4｜M3 新方向：成熟平台 Assembly-first
-固定組裝方向：
-`Greenfield Business Soul + SMT UI(Vite)` → `Capacitor Android shell` → `mature persistence / updater plugins` → `exact vendor hardware plugins` → `Gradle/GitHub Actions` → APK。
+已證：
+- Manual Builder mechanism：PASS。
+- MPC1 stable signing／update-over-install：PASS。
+- RK3568 Device Stability（accepted WebView provider profile）：PASS。
+- RK3568 receipt／kitchen／label／cash-drawer Hardware Acceptance：PASS。
 
-Current candidate：
-- Android container：Capacitor。
-- Local persistence：`@capacitor-community/sqlite`；只保存 opaque/versioned Greenfield checkpoint，禁止建立第二套 Menu/Order/Pricing Truth。
-- OTA：`@capgo/capacitor-updater`／Capgo lifecycle；active store operation期間禁止強制套用新 bundle。
-- Dedicated POS：Android Enterprise／DevicePolicyManager／custom-home pattern。
-- Hardware：SUNMI／Xprinter／USB／LAN／cash drawer先 exact vendor SDK／protocol，再由 Capacitor plugin 薄包裝。
+未證：
+- PR #11 新 Business vertical slice 本批次 Test／Typecheck／Gradle：未形成正式 PASS。
+- Operational：NOT PASS。
+- Production：NOT PASS。
 
-Custom infrastructure 只有成熟方案不存在、exact device不兼容、license/security/cost不可接受、或違反 MoreFun Authority 時先可最小自研，並記錄 reject 理由。
+歷史 Hardware／Device PASS 只證已接受 MPC1 baseline；不可自動提升 PR #11 新 Business／Persistence／UI source。
 
-## 5｜證據層級
-`SOURCE_EXISTS → CONTRACT_PASS → FULL_REGRESSION_PASS → DEPLOYED → BROWSER_PASS → DEVICE_PASS → HARDWARE_PASS → STORE_PASS → PRODUCTION_ACCEPTED`
+## 6｜PR #11 Current Source State
+已存在：
+- Gate B typed Menu／Pricing／Order／Printing Business Soul。
+- Room 2.8.4 `MoreFunStorage` checkpoint＋outbox infrastructure-only boundary。
+- Durable Order／PrintJob repository。
+- persist-before-dispatch authoritative printer wrapper。
+- runtime composition＋restart restore source。
+- Gate B/C fail-closed source verifiers／behavior tests source。
 
-禁止跨級；Software／CI／Workflow／Emulator／Build PASS 不得寫成 Device／Hardware／Operational／Production PASS。
+仍未完成／不可冒充 PASS：
+- production SMT workspace mount 仍未完全收口；UI只可經 typed `UiPort`／Business Soul seam。
+- MoreFunPrinter production thin native adapter 未完成。
+- Payment／Refund formal mutation implementation 未完成。
+- full-day Operational／Production chain 未完成。
 
-## 6｜唯一下一 Gate
-**M3 Mature Container/Persistence Integration**：證明 Capacitor＋成熟 SQLite plugin 可以承載現有 M1/M2 Runtime，並 persist/restore 既有 Greenfield serialized checkpoint，而不建立第二套 Business Truth。
+## 7｜唯一下一優先事項
+**先完成 PR #11 當前 Source/Test closure：typed SMT workspace seam＋正式 production mount，保持 UI 不直接 import Room／TCP／USB／SUNMI；再做 targeted Test／Typecheck／Web／Gradle verification。**
 
-Gate順序：M3 Mature Container/Persistence → mature OTA updater → M4 Offline Runtime Simulation → Owner APK Build → structural/hash/runtime-authority verification → exact Physical Device → Hardware/Printer → Store/Production。
+未完成 targeted verification 前：
+- 禁止 Build APK；
+- 禁止用 Public Builder 做 debugger；
+- 禁止宣稱 Operational／Production PASS。
 
-## 7｜永久 Guard
-- Authority-first／Pitfall-first／External-first／minimal fix／same-gate rerun。
-- Workflow Source Exists ≠ Run Exists ≠ Run PASS。
-- Source／Type／Test／Cargo 必須四向盤點。
-- UI／External SDK／Plugin／Driver／Protocol 不得創造 Business Truth。
-- Cloud／Internet不得成 boot／restore／pricing／order／print／recovery critical path。
-- APK大小、Emulator PASS、Host unit PASS一律唔等於 Device PASS。
-- 禁止復活 legacy SMM 第二 Core、第二 Store／State／Native Bridge／OTA／Print Authority。
-
-## 8｜Legacy／三方定位
-Legacy `morefunos-platform-b`、舊 O5／B15、A-Line Admin／SMT／SMM／Customer 只係 OPTIONAL HISTORICAL REFERENCE／BODY donor／pitfall evidence，禁止反向覆蓋 Greenfield Current。
-
-- GitHub＝正式工程 Authority／Evidence。
-- Google Drive＝結構化長期鏡像／Archive。
-- Jade Note＝AI 接手導航／快速檢索。
+## 8｜永久 Guard
+- Authority-first／Fresh-read／first fatal evidence／minimal fix／same-gate rerun。
+- Source exists ≠ Test PASS ≠ Build PASS ≠ Device／Hardware／Operational／Production PASS。
+- Historical donor只可 minimum transplant；adopt 後由 VNext contract/test/source 擁有。
+- Drive＝長期鏡像；Jade＝AI導航；兩者都唔可反向覆蓋 GitHub VNext Authority。
