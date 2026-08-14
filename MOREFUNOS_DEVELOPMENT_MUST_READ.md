@@ -44,18 +44,20 @@ Greenfield、Platform-B、舊 P-Line、舊 SMT/SMM/Admin/Customer、Drive、Jade
 ## 5｜Evidence Truth
 Evidence ladder：`SOURCE → TEST/CONTRACT → BUILD → INSTALL → DEVICE → HARDWARE → OPERATIONAL → PRODUCTION`。
 
-已證：
+已證歷史／接受 baseline：
 - Manual Builder mechanism：PASS。
 - MPC1 stable signing／update-over-install：PASS。
 - RK3568 Device Stability（accepted WebView provider profile）：PASS。
 - RK3568 receipt／kitchen／label／cash-drawer Hardware Acceptance：PASS。
 
-未證：
-- PR #11 新 Business vertical slice 本批次 Test／Typecheck／Gradle：未形成正式 PASS。
+Current Gate 判定：
+- Gate A Source/Test：GREEN。
+- Gate A full current Device PASS：**未升級**，仍要完成 A3 後確認最小 exact-device acceptance。
+- Gate B/C：IN PROGRESS。
 - Operational：NOT PASS。
 - Production：NOT PASS。
 
-歷史 Hardware／Device PASS 只證已接受 MPC1 baseline；不可自動提升 PR #11 新 Business／Persistence／UI source。
+歷史 MPC1 Device／Hardware PASS 只係已接受 baseline；不可自動提升 PR #11 新 Business／Persistence／UI source。
 
 ## 6｜PR #11 Current Source State
 已存在：
@@ -67,18 +69,20 @@ Evidence ladder：`SOURCE → TEST/CONTRACT → BUILD → INSTALL → DEVICE →
 - Gate B/C fail-closed source verifiers／behavior tests source。
 
 仍未完成／不可冒充 PASS：
-- production SMT workspace mount 仍未完全收口；UI只可經 typed `UiPort`／Business Soul seam。
+- production SMT workspace mount 未完全收口；UI只可經 typed `UiPort`／Business Soul seam。
 - MoreFunPrinter production thin native adapter 未完成。
 - Payment／Refund formal mutation implementation 未完成。
 - full-day Operational／Production chain 未完成。
 
-## 7｜唯一下一優先事項
-**先完成 PR #11 當前 Source/Test closure：typed SMT workspace seam＋正式 production mount，保持 UI 不直接 import Room／TCP／USB／SUNMI；再做 targeted Test／Typecheck／Web／Gradle verification。**
+## 7｜唯一主 Gate＋平行 UI 工作
+**唯一主 Gate：Gate A A3 current Source／Typecheck／Web verification，禁止 APK；完成後先判斷 Gate A 最小剩餘 exact-device acceptance。**
 
-未完成 targeted verification 前：
+平行 UI 工作可繼續：typed SMT workspace seam＋production mount，但 UI progress 不可冒充 Gate A／Operational PASS；UI 禁止直接 import Room／TCP／USB／SUNMI，必須經 typed `UiPort`／Business Soul handoff。
+
+未完成 A3 前：
 - 禁止 Build APK；
 - 禁止用 Public Builder 做 debugger；
-- 禁止宣稱 Operational／Production PASS。
+- 禁止宣稱 current Gate A Device／Operational／Production PASS。
 
 ## 8｜永久 Guard
 - Authority-first／Fresh-read／first fatal evidence／minimal fix／same-gate rerun。
