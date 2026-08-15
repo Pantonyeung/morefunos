@@ -1,91 +1,64 @@
 # MoreFunOS｜每次開發必讀
 
-> 狀態：CURRENT／全系統唯一導航入口
-> 更新：2026-08-14 HKT
-> 本文件只做 Authority Routing；正式 VNext 工程真相只存在於下述兩個 Current Repo。
+> 狀態：ROUTING ONLY／歷史中央導航，不是工程 Authority
+> 更新：2026-08-15 HKT
+> 正式 Current Authority：`Pantonyeung/morefunos-v1`
 
 ## 1｜唯一現役 Repository Set
-1. `Pantonyeung/morefunos-vnext`
-   - 唯一 Source／Runtime／Business／Development Authority。
-2. `Pantonyeung/-morefunos-vnext-builder`
-   - Owner-manual build／execution relay only；永遠唔係 Business Truth／Runtime／Store／Native Bridge／Print／OTA Authority。
+1. `Pantonyeung/morefunos-v1`
+   - 唯一 Product／Source／Business／Development Authority。
+   - Current branch：`main`。
+   - Current head：`2989358a0bc7389b1de5bafa34edd4a3a6ec6c3e`。
+2. `Pantonyeung/morefunos-v1-builder`
+   - verification／build／release relay only。
+   - `main`：`58d783f8731ac0e7454bf92c27804f673603cdcd`。
+   - 永遠不是 Business／Runtime／Store／Native Bridge／Print Authority。
 
-**沒有第三個 Current Repo。**
-Greenfield、Platform-B、舊 P-Line、舊 SMT/SMM/Admin/Customer、Drive、Jade 全部只係 REFERENCE ONLY／HISTORICAL DONOR；不可覆蓋 VNext Current。
+VNext／Greenfield／Platform-B／舊 P-Line／舊 SMT/SMM/Admin/Customer 皆為 SEALED DONOR／HISTORICAL；只可按 V1 Migration Ledger 精準抽取。Jade Note 依 V1 Owner Decision D-011 為 UNINSTALLED／FORBIDDEN，禁止讀、寫、引用或作 mirror。
 
-## 2｜現役 Branch／PR／Head
-- Source Repo：`Pantonyeung/morefunos-vnext`
-- Active Branch：`feat/smt-operational-vertical-slice-gate-b`
-- Draft PR：#11 `Gate B-C: External-first SMT Business Soul + durable local operation`
-- Fresh Head：`64714a96c487ecbba280ea2773bb5c7fa976252f`
-- Base `main`：`4d654e6a77dff6fb75f9d8b8c71387f41796563c`
-- Builder `main`：`0bba4051b8c2f56135bdc01af99be9b8bca60448`
-
-## 3｜VNext 開工必讀
+## 2｜V1 開工唯一閱讀順序
 1. `AGENTS.md`
-2. `docs/handoffs/CURRENT_HANDOFF.md`
-3. `docs/handoffs/CURRENT_DEVELOPMENT_LOG.md`
-4. `docs/handoffs/CURRENT_OWNER_DECISIONS.md`
-5. `docs/handoffs/CURRENT_EXECUTION_PLAN.md`
-6. relevant `docs/authority/CURRENT_MANDATORY_*`
-7. UI work 額外讀：
-   - `CURRENT_MANDATORY_UI_AUTONOMY_AND_HANDOFF_POLICY.md`
-   - `CURRENT_MANDATORY_VNEXT_SMT_OPERATIONAL_SOUL_AND_UI_CONTRACT.md`
-   - `CURRENT_MANDATORY_VNEXT_SOVEREIGNTY_AND_REFERENCE_POLICY.md`
+2. `docs/current/CURRENT_HANDOFF.md`
+3. `docs/current/CURRENT_DEVELOPMENT_LOG.md`
+4. `docs/current/CURRENT_OWNER_DECISIONS.md`
+5. `docs/current/CURRENT_EXECUTION_PLAN.md`
+6. relevant `docs/authority/*`
+7. 改 UI 前再讀 `docs/current/CURRENT_FIVE_SURFACE_UI_INVENTORY.md`、`docs/authority/UI_RUNTIME_BOUNDARY.md`。
 
-## 4｜最新 LOCKED／CURRENT
-- VNext Sovereignty V1.1：只有 Source Repo＋Builder Repo Current。
-- External-first：Official OS/Framework SDK → Vendor SDK/Protocol → mature maintained OSS → thin VNext adapter → custom last。
-- UI owns presentation／layout／navigation／interaction／composition；Business Soul owns business meaning。
-- 不可建立第二套 Store／State／Business Truth／Native Bridge／Print／OTA Authority。
-- Private `morefunos-vnext` Actions 禁止；Builder 只可 Owner manual `workflow_dispatch`＋exact source SHA。
-- 一隻 APK／Source line：RK3568 primary＋SUNMI T2s backup；minSdk28；禁止 T2s fork／Printer APK。
+## 3｜最新 Current
+- G0-G5：CLOSED。
+- G6：IN PROGRESS。
+- Release／Stable Signing／Private Artifact Delivery：PASS。
+- Frozen Device baseline：source `753d034ae646132757d253692f6e87f245e5e461`，package `com.morefunos.smt`，versionCode `12`，versionName `0.1.2-g6`，APK SHA-256 `0b26b3b68a78324a5a44670a3d8f02d83612c1a17a054ca0babbf109d59ff31e`。
+- A0-A3：COMPLETE；A4 等待實體 SUNMI T2s／Android 11 cashier tablet。
+- Install／Device／Hardware／Operational／Production：NOT ESTABLISHED。
+- B1 Five-surface UI Inventory：OWNER APPROVED。
+- B2 Shared V1 UI Body：DESIGN＋PLAN LANDED；NO PRODUCTION CODE；OWNER APPROVAL REQUIRED。
+
+## 4｜最新 Owner Locks
+- D-011：Jade Note 禁止。
+- D-013：SMT thin APK＋replaceable Web body；SMM/Admin/Customer/Owner Web/PWA default。
+- D-016：五端只係一條營運鏈，禁止五套 Business Truth。
+- D-019：SUNMI T2s＋Android 11 device baseline。
+- D-020：stable app identity＋private Release delivery。
+- D-021：A-first；A 只因無實機而停先可做 B。
+- D-022：V1-first UI inventory；舊 UI 只可 exact donor recovery。
+- D-023：UI 可重設，但不得成為 Business Authority；純 UI 改動不構成 APK rebuild 理由。
 
 ## 5｜Evidence Truth
-Evidence ladder：`SOURCE → TEST/CONTRACT → BUILD → INSTALL → DEVICE → HARDWARE → OPERATIONAL → PRODUCTION`。
+`SOURCE → TEST → TYPECHECK → BUILD → INSTALL → DEVICE → HARDWARE → OPERATIONAL → PRODUCTION`
 
-已證歷史／接受 baseline：
-- Manual Builder mechanism：PASS。
-- MPC1 stable signing／update-over-install：PASS。
-- RK3568 Device Stability（accepted WebView provider profile）：PASS。
-- RK3568 receipt／kitchen／label／cash-drawer Hardware Acceptance：PASS。
+任何低層 PASS 不得用文字提升到高層。
 
-Current Gate 判定：
-- Gate A Source/Test：GREEN。
-- Gate A full current Device PASS：**未升級**，仍要完成 A3 後確認最小 exact-device acceptance。
-- Gate B/C：IN PROGRESS。
-- Operational：NOT PASS。
-- Production：NOT PASS。
-
-歷史 MPC1 Device／Hardware PASS 只係已接受 baseline；不可自動提升 PR #11 新 Business／Persistence／UI source。
-
-## 6｜PR #11 Current Source State
-已存在：
-- Gate B typed Menu／Pricing／Order／Printing Business Soul。
-- Room 2.8.4 `MoreFunStorage` checkpoint＋outbox infrastructure-only boundary。
-- Durable Order／PrintJob repository。
-- persist-before-dispatch authoritative printer wrapper。
-- runtime composition＋restart restore source。
-- Gate B/C fail-closed source verifiers／behavior tests source。
-
-仍未完成／不可冒充 PASS：
-- production SMT workspace mount 未完全收口；UI只可經 typed `UiPort`／Business Soul seam。
-- MoreFunPrinter production thin native adapter 未完成。
-- Payment／Refund formal mutation implementation 未完成。
-- full-day Operational／Production chain 未完成。
-
-## 7｜唯一主 Gate＋平行 UI 工作
-**唯一主 Gate：Gate A A3 current Source／Typecheck／Web verification，禁止 APK；完成後先判斷 Gate A 最小剩餘 exact-device acceptance。**
-
-平行 UI 工作可繼續：typed SMT workspace seam＋production mount，但 UI progress 不可冒充 Gate A／Operational PASS；UI 禁止直接 import Room／TCP／USB／SUNMI，必須經 typed `UiPort`／Business Soul handoff。
-
-未完成 A3 前：
-- 禁止 Build APK；
-- 禁止用 Public Builder 做 debugger；
-- 禁止宣稱 current Gate A Device／Operational／Production PASS。
-
-## 8｜永久 Guard
+## 6｜永久 Guard
 - Authority-first／Fresh-read／first fatal evidence／minimal fix／same-gate rerun。
-- Source exists ≠ Test PASS ≠ Build PASS ≠ Device／Hardware／Operational／Production PASS。
-- Historical donor只可 minimum transplant；adopt 後由 VNext contract/test/source 擁有。
-- Drive＝長期鏡像；Jade＝AI導航；兩者都唔可反向覆蓋 GitHub VNext Authority。
+- 不可建立第二套 Business Truth／Store／State／Native Bridge／Print／OTA／Order／Pricing Authority。
+- CI／APK／OTA 係 evidence/release gate，不係 debugger。
+- custom-last；先做 SDK／Reuse Fit Check。
+- 每次開發 END 必須做 Self-Invention Audit。
+- Drive 只係 mirror/archive；不可反向覆蓋 GitHub V1。
+
+## 7｜唯一下一步
+**Owner review／approval B2 written design＋implementation plan。**
+
+未批准前禁止 B2 production UI code。當實體裝置可用，立即 pause B，resume A4，以 frozen `0.1.2-g6` 做 exact Device acceptance。
