@@ -8,7 +8,7 @@
 1. `Pantonyeung/morefunos-v1`
    - 唯一 Product／Source／Business／Development Authority。
    - Authority branch：`main`。
-   - Fresh observed main head：`d7467418a7126f3f30d37080993b13d46b623f65`。
+   - Fresh observed main head：`85981b92d83db86555ace0b403ebbb73c2af51be`。
 2. `Pantonyeung/morefunos-v1-builder`
    - verification／build／release relay only。
    - 永遠不是 Business／Runtime／Store／Native Bridge／Print Authority。
@@ -42,7 +42,7 @@ VNext／Greenfield／Platform-B／舊 P-Line／舊 SMT/SMM/Admin/Customer 皆為
 - `g5-smt-locked-install`／`g5-targeted`／`current-regression`：PASS
 - `g5-typecheck`：FAIL
 - SMT Web test/build：未執行
-- Failure receipt：`docs/qa/B4_A6_EXACT_HEAD_G5_FAIL_TYPECHECK_2026-08-16.md`
+- Failure receipt：`docs/qa/B4_A6_EXACT_HEAD_G5_FAIL_TYPECHECK_2026-08-16.md`，已保留於 `main`。
 
 Repair checkpoint：`6ff9c64682079b3ae9d79bd3033c503131d28ee2`。修正只涉及 `packages/reporting/source-evidence.ts` TypeScript 5.8.3 control-flow termination；Business semantics／error codes／Authority 無改。舊 failed SHA 禁止 rerun 作 repair proof。
 
